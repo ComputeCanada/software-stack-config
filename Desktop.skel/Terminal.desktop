@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Terminal
+Comment=
+Exec=/usr/bin/bash
+Icon=utilities-terminal
+Path=$HOME
+Terminal=true
+StartupNotify=false
