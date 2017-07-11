@@ -244,11 +244,22 @@ local function validate_license(t)
 	require "io"
 	local non_commercial_autoaccept_message = [[
 ============================================================================================
-This software is available for non commercial usage only. By continuing, you accept that you
-will not use the software for commercial purpose. 
+The software listed above is available for non-commercial usage only. By continuing, you 
+accept that you will not use the software for commercial purposes. 
 
-Ce logiciel est disponible pour usage non commercial seulement. En continuant, vous acceptez
-de ne pas l'utiliser pour un usage commercial.
+Le logiciel listé ci-dessus est disponible pour usage non commercial seulement. En 
+continuant, vous acceptez de ne pas l'utiliser pour un usage commercial.
+============================================================================================
+	]]
+	local nvidia_autoaccept_message = [[
+============================================================================================
+The NVidia software listed above is subject to the terms of the NVidia Software
+License Agreement, which can be obtained via http://developer.nvidia.com.
+By continuing, you accept to be bound by the terms of that license.
+
+Le logiciel NVidia listé ci-dessus est sous réserve des termes de la licence
+NVidia Software License Agreement, qui peut être obtenue via http://developer.nvidia.com.
+En continuant, vous acceptez les termes de cette licence.
 ============================================================================================
 	]]
 	local academic_license_message = [[
@@ -279,6 +290,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 	]]
 	local licenseT = {
 		[ { "intel", "signalp", "tmhmm", "rnammer" } ] = "noncommercial_autoaccept",
+		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk" } ] = "academic_license",
 		[ { "dl_poly4", "orca" } ] = "posix_group",
 	}
@@ -307,6 +319,12 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 				if (not user_accepted_license(myModuleName(),true)) then
 					LmodMessage(myModuleFullName() .. ":")
 					LmodMessage(non_commercial_autoaccept_message)
+				end
+			end
+			if (v == "nvidia_autoaccept") then
+				if (not user_accepted_license(myModuleName(),true)) then
+					LmodMessage(myModuleFullName() .. ":")
+					LmodMessage(nvidia_autoaccept_message)
 				end
 			end
 			if (v == "academic_license") then
