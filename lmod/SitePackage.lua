@@ -335,15 +335,16 @@ local function set_props(t)
    -- table of properties for fullnames or sn
 
    local propT = {
-      [ { "arpack-ng", "cgal", "clhep", "cudnn", "eigen", "fftw", "fftw-mpi", "fftw-serial", "glpk", "gsl", "igraph", "imkl", "jags", "libxsmm", "magma", "metis", "qhull", "qrupdate", "scotch", "suitesparse", "superlu" } ]       = { {name = "type_", value = "math" }, },
-      [ { "abinit", "beast", "cp2k", "dl_poly4", "gromacs", "libint", "libxc", "namd", "namd-multicore", "namd-verbs", "orca", "plumed", "quantumespresso", "siesta" } ]       = { {name = "type_", value = "chem" }, },
+      [ { "arpack-ng", "cgal", "clhep", "cudnn", "eigen", "fftw", "fftw-mpi", "fftw-serial", "glpk", "gsl", "igraph", "imkl", "jags", "libxsmm", "magma", "metis", "qhull", "qrupdate", "scotch", "suitesparse", "superlu", "voro++" } ]       = { {name = "type_", value = "math" }, },
+      [ { "abinit", "beast", "cp2k", "dl_poly4", "gromacs", "libint", "libxc", "namd", "namd-multicore", "namd-verbs", "nwchem", "orca", "plumed", "quantumespresso", "rosetta", "siesta" } ]       = { {name = "type_", value = "chem" }, },
       [ { "mvapich2", "openmpi" } ]       = { {name = "type_", value = "mpi" }, },
-      [ { "abyss", "bamtools", "bcftools", "beagle-lib", "bedtools", "bioperl", "blat", "bowtie", "bowtie2", "bwa", "cufflinks", "fastqc", "gatk", "gmap-gsnap", "hmmer", "htslib", "impute2", "interproscan", "jellyfish", "mach", "minimac2", "minimac3", "mothur", "mrbayes", "picard", "plink", "ray", "repasthpc", "rnammer", "samtools", "signalp", "stacks", "tmhmm", "tophat", "trimmomatic", "trinity", "vcftools" } ]       = { {name = "type_", value = "bio"}, },
-      [ { "boost", "boost-mpi", "cuda", "eclipse", "gcc", "intel", "java", "julia", "mcr", "mono", "octave", "perl", "petsc", "petsc-64bits", "python", "qt", "qt5", "r", "rstudio-server", "ruby", "rubygems", "spark", "tbb" } ]          = { {name = "type_", value = "tools"}, },
+      [ { "abyss", "bamtools", "bamutil", "bcftools", "beagle-lib", "bedtools", "bioperl", "blat", "bowtie", "bowtie2", "bwa", "canu", "cufflinks", "fastqc", "gatk", "gmap-gsnap", "hmmer", "htslib", "impute2", "interproscan", "jellyfish", "mach", "megahit", "minia", "minimac2", "minimac3", "mothur", "mrbayes", "picard", "plink", "ray", "repasthpc", "rnammer", "samtools", "shotmap", "signalp", "spades", "stacks", "tmhmm", "tophat", "transdecoder", "trimmomatic", "trinity", "trinotate", "vcftools" } ]       = { {name = "type_", value = "bio"}, },
+      [ { "boost", "boost-mpi", "chapel", "cuda", "eclipse", "gcc", "intel", "java", "julia", "mcr", "mono", "octave", "perl", "petsc", "petsc-64bits", "python", "qt", "qt5", "r", "rstudio-server", "ruby", "rubygems", "spark", "tbb", "udunits", "yaxt" } ]          = { {name = "type_", value = "tools"}, },
       [ { "geant4", "openfoam" } ] = { {name = "type_", value = "phys"}, },
-      [ { "gdal", "geos", "proj", "wps", "wrf" } ] = { {name = "type_", value = "geo"}, },
-      [ { "jasper", "paraview", "paraview-offscreen" } ] = { {name = "type_", value = "vis"}, },
-      [ { "hdf5", "hdf5-mpi", "hdf5-serial", "netcdf", "netcdf-c++", "netcdf-c++4-mpi", "netcdf-c++-mpi", "netcdf-fortran-mpi", "netcdf-mpi", "netcdf-serial" } ] = { {name = "type_", value = "io"}, },
+      [ { "cdo", "gdal", "geos", "proj", "wps", "wrf" } ] = { {name = "type_", value = "geo"}, },
+      [ { "jasper", "ncview", "paraview", "paraview-offscreen", "vmd" } ] = { {name = "type_", value = "vis"}, },
+      [ { "hdf5", "hdf5-mpi", "hdf5-serial", "netcdf", "netcdf-c++", "netcdf-c++4-mpi", "netcdf-c++-mpi", "netcdf-fortran-mpi", "netcdf-mpi", "netcdf-serial", "pnetcdf" } ] = { {name = "type_", value = "io"}, },
+      [ { "torch" } ] = { { name = "type_", value = "ai" }, },
    }
 
    for k,v in pairs(propT) do
