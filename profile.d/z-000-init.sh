@@ -5,6 +5,3 @@ if [[ -z "$CC_CLUSTER" ]]; then
 	        export CC_CLUSTER="computecanada"
 	fi
 fi
-
-export PATH=/cvmfs/soft.computecanada.ca/custom/bin:/bin:/sbin:/usr/bin:/usr/sbin
-
