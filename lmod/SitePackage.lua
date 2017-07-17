@@ -314,7 +314,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 	local fn = myFileName()
 	-- skip tests for modules that are not on /cvmfs
 	local user = os.getenv("USER")
-	if (fn:find("^/cvmfs") == nil or user == "ebuser") then
+	if ((fn:find("^/cvmfs") == nil and fn:find("^/opt/software") == nil) or user == "ebuser") then
 		return
 	end
 	for k,v in pairs(licenseT) do

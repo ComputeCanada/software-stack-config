@@ -1,7 +1,11 @@
 #%Module
 
 if {![file isdirectory /cvmfs/restricted.computecanada.ca/easybuild]} {
+	hide-version cpmd/3.17.1
 	hide-version dl_poly4/4.08
+	hide-version orca/4.0.0.2
+	hide-version vasp/4.6
+	hide-version vasp/5.4.1
 }
 
 # default versions
