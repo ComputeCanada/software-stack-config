@@ -288,15 +288,21 @@ Please answer "yes" or "oui" to accept.
 Veuillez répondre "yes" ou "oui" pour accepter. 
 ============================================================================================
 	]]
+        -- The names in these lists should be just the module name, without the version
 	local licenseT = {
 		[ { "intel", "signalp", "tmhmm", "rnammer" } ] = "noncommercial_autoaccept",
 		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk" } ] = "academic_license",
-		[ { "dl_poly4", "orca" } ] = "posix_group",
+		[ { "cpmd", "dl_poly4", "gaussian", "orca", "vasp" } ] = "posix_group",
 	}
+	-- The names in these lists can be full name + version
 	local groupT = {
+		[ "cpmd" ] = "soft_cpmd",
 		[ "dl_poly4" ] = "soft_dl_poly4",
+		[ "gaussian" ] = "soft_gaussian",
 		[ "orca" ] = "soft_orca",
+		[ "vasp/4.6" ] = "soft_vasp4",
+		[ "vasp/5.4.1" ] = "soft_vasp5",
 	}
 	local licenseURLT = {
 		[ "namd" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
@@ -314,32 +320,39 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 	for k,v in pairs(licenseT) do
      		------------------------------------------------------------
 		-- Look for fullName first otherwise sn
-     		if (has_value(k,myModuleFullName()) or has_value(k,myModuleName())) then
+		local name = ""
+		if (has_value(k,myModuleFullName())) then
+			name = myModuleFullName()
+		elseif (has_value(k,myModuleName())) then
+			name = myModuleName()
+		end
+		
+     		if (has_value(k,name)) then
 			if (v == "noncommercial_autoaccept") then
-				if (not user_accepted_license(myModuleName(),true)) then
+				if (not user_accepted_license(name,true)) then
 					LmodMessage(myModuleFullName() .. ":")
 					LmodMessage(non_commercial_autoaccept_message)
 				end
 			end
 			if (v == "nvidia_autoaccept") then
-				if (not user_accepted_license(myModuleName(),true)) then
+				if (not user_accepted_license(name,true)) then
 					LmodMessage(myModuleFullName() .. ":")
 					LmodMessage(nvidia_autoaccept_message)
 				end
 			end
 			if (v == "academic_license") then
-				if (not user_accepted_license(myModuleName(),false)) then
+				if (not user_accepted_license(name,false)) then
 					LmodMessage(myModuleFullName() .. ":")
 					LmodMessage(academic_license_message)
-					LmodMessage(licenseURLT[myModuleName()])
-					if (not confirm_acceptance(myModuleName())) then
+					LmodMessage(licenseURLT[name])
+					if (not confirm_acceptance(name)) then
 						log_module_load(t,false)
 						LmodError(not_accepted_message)
 					end
 				end
 			end
 			if (v == "posix_group") then
-				if (not localUserInGroup(groupT[myModuleName()])) then
+				if (not localUserInGroup(groupT[name])) then
 					log_module_load(t,false)
 					LmodError(posix_group_message)
 				end
