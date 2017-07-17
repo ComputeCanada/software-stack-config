@@ -21,7 +21,9 @@ else
 	module refresh
 fi
 
+if [[ -d /opt/software/modulefiles ]]; then
+	module -q use --priority 10 /opt/software/modulefiles
+fi
 if [[ -d $HOME/modulefiles ]]; then
 	module -q use --priority 100 $HOME/modulefiles
 fi
-
