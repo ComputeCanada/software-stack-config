@@ -131,6 +131,7 @@ local function set_family(t)
       [ { "gcc", "intel", "pgi" } ] = "compiler",
       [ { "openmpi", "mvapich2" } ] = "mpi",
       [ { "hdf5-mpi", "hdf5", "hdf5-serial" } ] = "hdf5",
+      [ { "gromacs-plumed", "gromacs" } ] = "gromacs",
       [ { "netcdf-mpi", "netcdf", "netcdf-serial" } ] = "netcdf",
       [ { "fftw-mpi", "fftw", "fftw-serial" } ] = "fftw",
       [ { "boost-mpi", "boost", "boost-serial" } ] = "boost",
@@ -412,15 +413,15 @@ local function set_props(t)
    -- table of properties for fullnames or sn
 
    local propT = {
-      [ { "arpack-ng", "cgal", "clhep", "cudnn", "eigen", "fftw", "fftw-mpi", "fftw-serial", "glpk", "gsl", "igraph", "imkl", "jags", "libxsmm", "magma", "metis", "qhull", "qrupdate", "scotch", "suitesparse", "superlu", "voro++" } ]       = { {name = "type_", value = "math" }, },
-      [ { "abinit", "beast", "cp2k", "dl_poly4", "gromacs", "libint", "libxc", "namd", "namd-multicore", "namd-verbs", "nwchem", "orca", "plumed", "quantumespresso", "rosetta", "siesta" } ]       = { {name = "type_", value = "chem" }, },
+      [ { "armadillo", "arpack-ng", "cgal", "clhep", "cudnn", "dealii", "eigen", "fftw", "fftw-mpi", "fftw-serial", "glpk", "gsl", "igraph", "imkl", "jags", "libxsmm", "magma", "metis", "nlopt", "p4est", "parmetis", "qhull", "qrupdate", "scotch", "suitesparse", "superlu", "voro++" } ]       = { {name = "type_", value = "math" }, },
+      [ { "abinit", "beast", "cp2k", "cpmd", "dl_poly4", "gaussian", "gromacs", "gromacs-plumed", "lammps", "libint", "libxc", "namd", "namd-multicore", "namd-verbs", "nwchem", "openbabel", "orca", "plumed", "quantumespresso", "rosetta", "siesta", "spglib", "vasp" } ]       = { {name = "type_", value = "chem" }, },
       [ { "mvapich2", "openmpi" } ]       = { {name = "type_", value = "mpi" }, },
-      [ { "abyss", "bamtools", "bamutil", "bcftools", "beagle-lib", "bedtools", "bioperl", "blat", "bowtie", "bowtie2", "bwa", "canu", "cufflinks", "fastqc", "gatk", "gmap-gsnap", "hmmer", "htslib", "impute2", "interproscan", "jellyfish", "mach", "megahit", "minia", "minimac2", "minimac3", "mothur", "mrbayes", "picard", "plink", "ray", "repasthpc", "rnammer", "samtools", "shotmap", "signalp", "spades", "stacks", "tmhmm", "tophat", "transdecoder", "trimmomatic", "trinity", "trinotate", "vcftools" } ]       = { {name = "type_", value = "bio"}, },
-      [ { "boost", "boost-mpi", "chapel", "cuda", "eclipse", "gcc", "intel", "java", "julia", "mcr", "mono", "octave", "perl", "petsc", "petsc-64bits", "python", "qt", "qt5", "r", "rstudio-server", "ruby", "rubygems", "spark", "tbb", "udunits", "yaxt" } ]          = { {name = "type_", value = "tools"}, },
-      [ { "geant4", "openfoam" } ] = { {name = "type_", value = "phys"}, },
-      [ { "cdo", "gdal", "geos", "proj", "wps", "wrf" } ] = { {name = "type_", value = "geo"}, },
-      [ { "jasper", "ncview", "paraview", "paraview-offscreen", "vmd" } ] = { {name = "type_", value = "vis"}, },
-      [ { "hdf5", "hdf5-mpi", "hdf5-serial", "netcdf", "netcdf-c++", "netcdf-c++4-mpi", "netcdf-c++-mpi", "netcdf-fortran-mpi", "netcdf-mpi", "netcdf-serial", "pnetcdf" } ] = { {name = "type_", value = "io"}, },
+      [ { "abyss", "bamtools", "bamutil", "bcftools", "beagle-lib", "bedtools", "bioperl", "blast+", "blat", "bowtie", "bowtie2", "bwa", "canu", "cnvnator", "cufflinks", "diamond", "fastqc", "fastx-toolkit", "gatk", "gmap-gsnap", "hmmer", "htslib", "impute2", "interproscan", "jellyfish", "libgtextutils", "mach", "megahit", "minia", "minimac2", "minimac3", "mothur", "mrbayes", "picard", "plink", "prinseq", "ray", "r-bundle-bioconductor", "repasthpc", "rnammer", "samtools", "shotmap", "signalp", "spades", "stacks", "subread", "tmhmm", "tophat", "transdecoder", "trimmomatic", "trinity", "trinotate", "vcftools", "vsearch" } ]       = { {name = "type_", value = "bio"}, },
+      [ { "bazel", "boost", "boost-mpi", "chapel", "cuda", "eclipse", "gcc", "intel", "java", "julia", "matlab", "mcr", "mono", "octave", "perl", "petsc", "petsc-64bits", "python", "qt", "qt5", "r", "root", "rstudio-server", "ruby", "rubygems", "spark", "tbb", "trilinos", "udunits", "yaxt" } ]          = { {name = "type_", value = "tools"}, },
+      [ { "grackle", "geant4", "openfoam" } ] = { {name = "type_", value = "phys"}, },
+      [ { "cdo", "esmf", "gdal", "g2clib", "g2lib", "geos", "proj", "wps", "wrf", "wrf-fire" } ] = { {name = "type_", value = "geo"}, },
+      [ { "glm", "jasper", "ncl", "ncview", "paraview", "paraview-offscreen", "vmd", "xcrysden" } ] = { {name = "type_", value = "vis"}, },
+      [ { "hdf", "hdf5", "hdf5-mpi", "hdf5-serial", "matio", "nco", "netcdf", "netcdf-c++", "netcdf-c++4-mpi", "netcdf-c++-mpi", "netcdf-fortran", "netcdf-fortran-mpi", "netcdf-mpi", "netcdf-serial", "pnetcdf" } ] = { {name = "type_", value = "io"}, },
       [ { "torch" } ] = { { name = "type_", value = "ai" }, },
    }
 
