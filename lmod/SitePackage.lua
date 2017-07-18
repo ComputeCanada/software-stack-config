@@ -106,15 +106,7 @@ require("strict")
 --  the right is what the function is called in SitePackage.lua.  The names can be the
 --  same.
 
-function CommonTable()
-        local t = {}
---        t.module_root = "/software6/modulefiles"
---        t.compilers_root = "/software6/modulefiles/Compilers-colosse"
---        t.mpi_root = "/software6/modulefiles/MPI-colosse"
-        return t
-end
-
-sandbox_registration{ loadfile = loadfile, assert = assert, CommonTable = CommonTable }
+sandbox_registration{ loadfile = loadfile, assert = assert }
 require("strict")
 require("string_utils")
 local hook      = require("Hook")
@@ -204,6 +196,46 @@ local function localUserInGroup(group)
 	end
 	return found
 end
+function find_and_define_license_file(environment_variable,application)
+	require'lfs'
+	require "os"
+	local posix = require "posix"
+	local license_found = false
+
+	-- First, look at the public repository for a file called by the cluster's name
+	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application)
+	if (posix.stat(dir,"type") == 'directory') then
+		local path = pathJoin(dir,os.getenv("CC_CLUSTER") .. ".lic")
+		if (posix.stat(path,"type") == 'regular') then
+			prepend_path(environment_variable,path)
+			license_found = true
+		end
+	end
+
+	-- Second, look at restricted repository for a license readable if you are in the right group
+	local dir = pathJoin("/cvmfs/restricted.computecanada.ca/config/licenses/",application)
+	for file in lfs.dir(dir) do
+		local path = pathJoin(dir,file)
+		if (posix.stat(path,"type") == 'regular') then
+			-- We can open that file, lets use it as license file
+			if ( io.open(path) ) then
+				prepend_path(environment_variable,path)
+				license_found = true
+			end
+		end
+	end
+
+	-- Third, look at the user's home for a $HOME/.licenses/<application>.lic
+	local home = os.getenv("HOME")
+	local license_file = pathJoin(home,".licenses",application .. ".lic")
+	if (posix.stat(license_file,"type") == 'regular') then
+		prepend_path(environment_variable,license_file)
+		license_found = true
+	end
+	return license_found 
+end
+sandbox_registration{ find_and_define_license_file = find_and_define_license_file }
+
 local function log_module_load(t,success)
 	-- t is a table containing:
 	-- t.modFullName:   Full name of the Module,
@@ -310,6 +342,14 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ "rosetta" ] = "https://els.comotion.uw.edu/licenses/86",
 		[ "gatk" ] = "https://software.broadinstitute.org/gatk/download/licensing.php",
 	}
+	-- environment variable to define
+	local auto_find_environment_variableT = {
+--		[ "matlab" ] = "MLM_LICENSE_FILE",
+	}
+	-- message to display when a license is not found
+	local auto_find_messageT = {
+--		[ "matlab" ] = [[ test ]]
+	}
 
 	local fn = myFileName()
 	-- skip tests for modules that are not on /cvmfs
@@ -355,6 +395,12 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 				if (not localUserInGroup(groupT[name])) then
 					log_module_load(t,false)
 					LmodError(posix_group_message)
+				end
+			end
+			if (v == "auto_find_license") then
+				if (not find_and_define_license_file(auto_find_environment_variableT[name],name)) then
+					log_module_load(t,false)
+					LmodError(auto_find_messageT[name])
 				end
 			end
 		end
