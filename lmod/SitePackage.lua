@@ -305,7 +305,6 @@ L'avez-vous fait ? (oui/non)
 ============================================================================================
 	]]
 	local posix_group_message = [[
-
 ============================================================================================
 Using this software requires you to have access to a license. If you do, please write to
 us at support@computecanada.ca so that we can enable access for you.
@@ -336,6 +335,75 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ "orca" ] = "soft_orca",
 		[ "vasp/4.6" ] = "soft_vasp4",
 		[ "vasp/5.4.1" ] = "soft_vasp5",
+	}
+	-- The names in these lists can be full name + version
+	local posix_group_messageT = {
+		[ { "cpmd" } ] = [[
+
+============================================================================================
+Using CPMD requires you to have access to a license. Please register on this site
+ http://cpmd.org/download/cpmd-download-1/accept-license
+Once this is done, write to us at support@computecanada.ca telling us so. Once we confirm
+with CPMD that you indeed have registered, we will be able to grant you access to CPMD.
+
+Utiliser CPMD nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
+ http://cpmd.org/download/cpmd-download-1/accept-license
+Lorsque c'est fait, écrivez-nous à support@calculcanada.ca pour nous le dire. Lorsque
+nous aurons confirmé votre enregistrement avec CPMD, nous pourrons vous donner accès au
+logiciel.
+============================================================================================
+		]],
+		[ { "dl_poly4" } ] = [[
+
+============================================================================================
+Using DL POLY4 requires you to have access to a license. Please register on this site
+ http://www.scd.stfc.ac.uk/SCD/40526.aspx
+Once this is done, send a copy of the confirmation message to us at support@computecanada.ca.
+We will then be able to grant you access to DL POLY4.
+
+Utiliser DL POLY4 nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
+ http://www.scd.stfc.ac.uk/SCD/40526.aspx
+Lorsque c'est fait, envoyez-nous une copie du courriel de confirmation à
+support@calculcanada.ca. Nous pourrons ensuite vous donner accès à DL POLY4.
+============================================================================================
+		]],
+		[ { "gaussian" } ] = [[
+
+============================================================================================
+Using Gaussian requires you to agree to the following license terms:
+ 1) You are not a member of a research group developing software competitive to Gaussian.
+ 2) You will not copy the Gaussian software, nor make it available to anyone else.
+ 3) You will properly acknowledge Gaussian Inc. and Compute Canada in publications.
+ 4) You will notify us of any change in the above acknowledgement.
+
+If you do, please send an email with a copy of those conditions, saying that you agree to
+them at support@computecanada.ca. We will then be able to grant you access to Gaussian.
+
+Utiliser Gaussian nécessites que vous acceptiez les conditions suivantes (en anglais) :
+ 1) You are not a member of a research group developing software competitive to Gaussian.
+ 2) You will not copy the Gaussian software, nor make it available to anyone else.
+ 3) You will properly acknowledge Gaussian Inc. and Compute Canada in publications.
+ 4) You will notify us of any change in the above acknowledgement.
+
+Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
+que vous les acceptez, à support@calculcanada.ca. Nous pourrons ensuite activer votre
+accès à Gaussian.
+============================================================================================
+		]],
+		[ { "orca" } ] = [[
+
+============================================================================================
+Using ORCA requires you to have access to a license. Please register on this site
+https://cec.mpg.de/orcadownload/
+Once this is done, send a copy of the confirmation message to us at support@computecanada.ca.
+We will then be able to grant you access to ORCA.
+
+Utiliser ORCA nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
+https://cec.mpg.de/orcadownload/
+Lorsque c'est fait, envoyez-nous une copie du courriel de confirmation à
+support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
+============================================================================================
+		]],
 	}
 	local licenseURLT = {
 		[ "namd" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
@@ -395,7 +463,16 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 			if (v == "posix_group") then
 				if (not localUserInGroup(groupT[name])) then
 					log_module_load(t,false)
-					LmodError(posix_group_message)
+					local message_found = false
+					for k2,v2 in pairs(posix_group_messageT) do
+						if (has_value(k2,name)) then
+							LmodError(v2)
+							message_found = true
+						end
+					end
+					if (not message_found) then
+						LmodError(posix_group_message)
+					end
 				end
 			end
 			if (v == "auto_find_license") then

@@ -1,6 +1,7 @@
 export MODULESHOME=/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/lmod
 source /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/lmod/init/profile
 export LMOD_PACKAGE_PATH=/cvmfs/soft.computecanada.ca/config/lmod/
+export LMOD_ADMIN_FILE=/cvmfs/soft.computecanada.ca/config/lmod/admin.list
 export MODULERCFILE=$LMOD_PACKAGE_PATH/modulerc
 export LMOD_AVAIL_STYLE=grouped:system
 export LMOD_RC=$LMOD_PACKAGE_PATH/lmodrc.lua

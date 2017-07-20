@@ -6,6 +6,7 @@ if {![file isdirectory /cvmfs/restricted.computecanada.ca/easybuild]} {
 	hide-version orca/4.0.0.2
 	hide-version vasp/4.6
 	hide-version vasp/5.4.1
+	hide-version matlab/2017a
 }
 
 # default versions
