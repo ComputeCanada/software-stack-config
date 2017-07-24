@@ -320,14 +320,13 @@ Please answer "yes" or "oui" to accept.
 Veuillez répondre "yes" ou "oui" pour accepter. 
 ============================================================================================
 	]]
-        -- The names in these lists should be just the module name, without the version
+	-- The names in these lists can be full name + version or just the name
 	local licenseT = {
 		[ { "intel", "signalp", "tmhmm", "rnammer" } ] = "noncommercial_autoaccept",
 		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk" } ] = "academic_license",
-		[ { "cpmd", "dl_poly4", "gaussian", "orca", "vasp" } ] = "posix_group",
+		[ { "cpmd", "dl_poly4", "gaussian", "orca", "vasp/4.6", "vasp/5.4.1" } ] = "posix_group",
 	}
-	-- The names in these lists can be full name + version
 	local groupT = {
 		[ "cpmd" ] = "soft_cpmd",
 		[ "dl_poly4" ] = "soft_dl_poly4",
@@ -336,7 +335,6 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ "vasp/4.6" ] = "soft_vasp4",
 		[ "vasp/5.4.1" ] = "soft_vasp5",
 	}
-	-- The names in these lists can be full name + version
 	local posix_group_messageT = {
 		[ { "cpmd" } ] = [[
 
