@@ -135,6 +135,7 @@ local function set_family(t)
       [ { "netcdf-mpi", "netcdf", "netcdf-serial" } ] = "netcdf",
       [ { "fftw-mpi", "fftw", "fftw-serial" } ] = "fftw",
       [ { "boost-mpi", "boost", "boost-serial" } ] = "boost",
+      [ { "ls-dyna-mpi", "ls-dyna" } ] = "lsdyna",
    }
 
    for k,v in pairs(familyT) do
@@ -200,6 +201,12 @@ end
 function find_and_define_license_file(environment_variable,application)
 	require'lfs'
 	require "os"
+	-- skip the test in these cases
+	local fn = myFileName()
+	local user = os.getenv("USER")
+	if ((fn:find("^/cvmfs") == nil and fn:find("^/opt/software") == nil) or user == "ebuser") then
+		return true
+	end
 	local posix = require "posix"
 	local license_found = false
 
@@ -215,13 +222,15 @@ function find_and_define_license_file(environment_variable,application)
 
 	-- Second, look at restricted repository for a license readable if you are in the right group
 	local dir = pathJoin("/cvmfs/restricted.computecanada.ca/config/licenses/",application)
-	for file in lfs.dir(dir) do
-		local path = pathJoin(dir,file)
-		if (posix.stat(path,"type") == 'regular') then
-			-- We can open that file, lets use it as license file
-			if ( io.open(path) ) then
-				prepend_path(environment_variable,path)
-				license_found = true
+	if (posix.stat(dir,"type") == 'directory') then
+		for file in lfs.dir(dir) do
+			local path = pathJoin(dir,file)
+			if (posix.stat(path,"type") == 'regular') then
+				-- We can open that file, lets use it as license file
+				if ( io.open(path) ) then
+					prepend_path(environment_variable,path)
+					license_found = true
+				end
 			end
 		end
 	end
