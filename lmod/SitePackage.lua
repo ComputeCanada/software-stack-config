@@ -148,7 +148,36 @@ local function set_family(t)
      end
    end
 end
+local function set_wiki_url(t)
+   ------------------------------------------------------------
+   -- table of properties for fullnames or sn
+   local wiki_urlT = {
+	   [ { "gromacs", "gromacs-plumed" } ] = "GROMACS",
+	   [ { "namd", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "NAMD",
+	   [ { "abinit" } ] = "Abinit",
+	   [ { "spark" } ] = "Apache Spark",
+	   [ { "cuda" } ] = "CUDA",
+	   [ { "gaussian" } ] = "Gaussian",
+	   [ { "java" } ] = "Java",
+	   [ { "openmpi", "mvapich2" } ] = "MPI",
+	   [ { "perl" } ] = "Perl",
+	   [ { "python" } ] = "Python",
+	   [ { "quantumespresso" } ] = "Quantum ESPRESSO",
+	   [ { "r" } ] = "R",
+	   [ { "vasp" } ] = "VASP",
+	   [ { "paraview", "paraview-offscreen" } ] = "Visualization"
+   }
 
+   for k,v in pairs(wiki_urlT) do
+     ------------------------------------------------------------
+     -- Look for fullName first otherwise sn
+     if (has_value(k,myModuleFullName()) or has_value(k,myModuleName())) then
+        ----------------------------------------------------------
+        -- Loop over value array and fill properties for this module.
+	whatis("CC-Wiki: " .. v)
+     end
+   end
+end
 local function user_accepted_license(soft,autoaccept)
 	require "lfs"
 	local posix = require "posix"
@@ -524,14 +553,18 @@ local function set_props(t)
    end
 end
 local function load_hook(t)
-  local valid = validate_license(t)
-  set_props(t)
-  set_family(t)
-  log_module_load(t,true)
+	local valid = validate_license(t)
+	set_props(t)
+	set_wiki_url(t)
+	set_family(t)
+	log_module_load(t,true)
 end
-
+local function spider_hook(t)
+	set_props(t)
+	set_wiki_url(t)
+end
 hook.register("load",           load_hook)
-hook.register("load_spider", set_props)
+hook.register("load_spider", 	spider_hook)
 
 local mapT =
 {
