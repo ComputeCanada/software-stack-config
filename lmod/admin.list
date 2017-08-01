@@ -1,3 +1,6 @@
-parallel/20170622: 	This module is deprecated. GNU Parallel no longer require a module to be used.
-			Ce module est marqué pour être retiré. GNU Parallel ne requiert pas de module pour être utilisé.
+parallel/20170622: 	This module is deprecated and will be removed in the future. GNU Parallel no longer requires a module to be used.
+			Ce module est marqué pour être retiré et sera supprimé dans le futur. GNU Parallel ne requiert pas de module pour être utilisé.
+
+torch/20170530: 	This module is deprecated and will be removed in the future. A newer version of Torch is available and includes more built-in modules. 
+			Ce module est marqué pour être retiré et sera supprimé dans le futur. Une nouvelle version de Torch est disponible et inclus davantage de modules intégrés. 
 
