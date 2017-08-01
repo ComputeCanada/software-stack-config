@@ -9,6 +9,11 @@ if {![file isdirectory /cvmfs/restricted.computecanada.ca/easybuild]} {
 	hide-version matlab/2017a
 }
 
+# Hide the singularity module if the path to it does not exist
+if {![file isdirectory /opt/software/singularity]} {
+	hide-version singularity
+}
+
 # default versions
 module-version boost/1.60.0 default
 module-version boost-mpi/1.60.0 default
