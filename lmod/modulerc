@@ -33,3 +33,17 @@ module-version imkl/2017.1.132 2017
 # hidden versions
 hide-version boost/1.63.0
 hide-version flex/2.5.39
+
+
+# Temporarily hide local intel modules on Graham
+hide-version intel/17.0.4
+hide-version intel/ipp/17.0.4
+hide-version intel/mkl/17.0.4
+hide-version intel/mpi-mt-debug/17.0.4
+hide-version intel/mpi/17.0.4
+hide-version intel/daal/17.0.4
+hide-version intel/mkl-ilp64/17.0.4
+hide-version intel/mpi-debug/17.0.4
+hide-version intel/mpi-mt/17.0.4
+hide-version intel/tbb/17.0.4
+
