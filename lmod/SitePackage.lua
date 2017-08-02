@@ -240,9 +240,10 @@ function find_and_define_license_file(environment_variable,application)
 	local license_found = false
 
 	-- First, look at the public repository for a file called by the cluster's name
+	local cluster = os.getenv("CC_CLUSTER") or nil
 	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application)
 	if (posix.stat(dir,"type") == 'directory') then
-		local path = pathJoin(dir,os.getenv("CC_CLUSTER") .. ".lic")
+		local path = pathJoin(dir,cluster .. ".lic")
 		if (posix.stat(path,"type") == 'regular') then
 			prepend_path(environment_variable,path)
 			license_found = true
@@ -252,11 +253,20 @@ function find_and_define_license_file(environment_variable,application)
 	-- Second, look at restricted repository for a license readable if you are in the right group
 	local dir = pathJoin("/cvmfs/restricted.computecanada.ca/config/licenses/",application)
 	if (posix.stat(dir,"type") == 'directory') then
-		for file in lfs.dir(dir) do
-			local path = pathJoin(dir,file)
-			if (posix.stat(path,"type") == 'regular') then
-				-- We can open that file, lets use it as license file
-				if ( io.open(path) ) then
+		for item in lfs.dir(dir) do
+			local path = pathJoin(dir,item)
+			-- check if we can read the path
+			if (io.open(path)) then
+				-- the item is a directory, find a file called <cluster>.lic in that directory
+				if (posix.stat(path,"type") == 'directory') then
+					local file = pathJoin(path,cluster .. ".lic")
+					if (posix.stat(file,"type") == 'regular') then
+						-- We can open that file, lets use it as license file
+						prepend_path(environment_variable,file)
+						license_found = true
+					end
+				elseif (posix.stat(path,"type") == 'regular') then
+					-- We can open that file, lets use it as license file
 					prepend_path(environment_variable,path)
 					license_found = true
 				end
