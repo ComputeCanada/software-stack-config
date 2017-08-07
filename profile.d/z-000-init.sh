@@ -5,3 +5,13 @@ if [[ -z "$CC_CLUSTER" ]]; then
 	        export CC_CLUSTER="computecanada"
 	fi
 fi
+if [[ -z "$RSNT_ARCH" ]]; then
+	export RSNT_ARCH="avx2"
+fi
+if [[ -z "$RSNT_INTERCONNECT" ]]; then
+	if [[ "$CC_CLUSTER" == "cedar" ]]; then
+		export RSNT_INTERCONNECT="omnipath"
+	else
+		export RSNT_INTERCONNECT="infiniband"
+	fi
+fi

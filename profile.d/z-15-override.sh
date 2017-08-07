@@ -10,7 +10,7 @@ then
 			export LD_LIBRARY_PATH=$d${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 		fi
 	done
-	if [[ "$CC_CLUSTER" == "cedar" ]];
+	if [[ "$RSNT_INTERCONNECT" == "omnipath" ]];
 	then
 		export OMPI_MCA_mtl=^mxm
 		export OMPI_MCA_pml=^yalla

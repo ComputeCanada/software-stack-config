@@ -7,11 +7,6 @@ export LMOD_AVAIL_STYLE=grouped:system
 export LMOD_RC=$LMOD_PACKAGE_PATH/lmodrc.lua
 export LMOD_SHORT_TIME=3600
 
-if [[ -z "$RSNT_ARCH" ]]; then
-	export RSNT_ARCH="avx2"
-fi
-
-
 if [[ -z "$__Init_Default_Modules" || -z "$LD_LIBRARY_PATH" ]]; then
 	export MODULEPATH=
 	module use /cvmfs/soft.computecanada.ca/custom/modules
