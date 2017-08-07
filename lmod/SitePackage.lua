@@ -292,12 +292,12 @@ local function log_module_load(t,success)
 
 	local a   = {}
 	local hostname = getenv("HOSTNAME")
+	local clustername = getenv("CC_CLUSTER")
 	if hostname == nil then
 		hostname = io.popen("hostname"):read("*a")
 		hostname = string.gsub(hostname,"[\n\r]+ *","")
 		hostname = string.gsub(hostname,"^ *","")
 	end
-
 	a[#a+1] = "H=" .. hostname
 	a[#a+1] = "U=" .. getenv("USER")
 	local slurm_jobid = getenv("SLURM_JOB_ID") or "-"
@@ -310,12 +310,82 @@ local function log_module_load(t,success)
 	a[#a+1] = "J=" .. jobid
 	a[#a+1] = "M="  .. t.modFullName
 	a[#a+1] = "FN=" .. t.fn
+	local hierarchy = "-"
+	local arch = "generic"
+	local root = "-"
+	local root_found = false
+	local name = "-"
+	local version = "-"
+	for v in t.modFullName:split("/") do
+		name = version
+		version = v
+	end
+	local last = ""
+	local second_last = ""
+	local third_last = ""
+	local fourth_last = ""
+	local fifth_last = ""
+	for v in t.fn:split("/") do
+		if not root_found and string.match(v,'[a-zA-Z0-9]+') then
+			root = v
+			root_found = true
+		end
+		if v == "CUDA" then
+			hierarchy = "CUDA"
+		end
+		if v == "MPI" then
+			hierarchy = "MPI"
+		end
+		if v == "Compiler" then
+			hierarchy = "Compiler"
+		end
+		if v == "Core" then
+			hierarchy = "Core"
+		end
+		if v == "avx" or v == "avx2" or v == "sse3" then
+			arch = v
+		end
+		fifth_last = fourth_last
+		fourth_last = third_last
+		third_last = second_last
+		second_last = last
+		last = v
+	end
+	local compiler = "-"
+	local mpi = "-"
+	local cuda = "-"
+	if hierarchy == "Compiler" then
+		compiler = third_last
+	end
+	if hierarchy == "MPI" then
+		if string.find(fourth_last, 'cuda') then
+			compiler = fifth_last
+			cuda = fourth_last
+			mpi = third_last
+		else
+			mpi = third_last
+			compiler = fourth_last
+		end
+	end
+	if hierarchy == "CUDA" then
+		compiler = fourth_last
+		cuda = third_last
+	end
+	a[#a+1] = "hierarchy=" .. hierarchy
+	a[#a+1] = "arch=" .. arch
+	a[#a+1] = "root=" .. root
+	a[#a+1] = "MN=" .. name
+	a[#a+1] = "MV=" .. version
+	a[#a+1] = "cuda=" .. cuda
+	a[#a+1] = "mpi=" .. mpi
+	a[#a+1] = "compiler=" .. compiler
+	a[#a+1] = "cluster=" .. clustername
 
 	local s = concatTbl(a," ")  --> "M${module} FN${fn} U${user} H${hostname}"
 
-	local cmd = "logger -t lmod-1.0 -p local0.info " .. s
+	local cmd = "logger -t lmod-1.1 -p local0.info " .. s
 	if (not success) then
-		cmd = cmd .. " Error=\\'Failed to load due to license restriction.\\'"
+		cmd = cmd .. " Error=\\'Failed_to_load_due_to_license_restriction.\\'"
 	end
 	os.execute(cmd)
 end
@@ -352,6 +422,15 @@ Utiliser ce logiciel nécessite que vous acceptiez une licence sur le site de l'
 L'avez-vous fait ? (oui/non)
 ============================================================================================
 	]]
+	local academic_license_message_autoaccept = [[
+============================================================================================
+Using this software requires you to accept a license on the software website. 
+Please ensure that you register on the website below.
+
+Utiliser ce logiciel nécessite que vous acceptiez une licence sur le site de l'auteur. 
+Veuillez vous enregistrer sur le site web ci-dessous.
+============================================================================================
+	]]
 	local posix_group_message = [[
 ============================================================================================
 Using this software requires you to have access to a license. If you do, please write to
@@ -373,6 +452,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ { "intel", "signalp", "tmhmm", "rnammer" } ] = "noncommercial_autoaccept",
 		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk" } ] = "academic_license",
+		[ { "namd", "namd-mpi", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "academic_license_autoaccept",
 		[ { "cpmd", "dl_poly4", "gaussian", "orca", "vasp/4.6", "vasp/5.4.1" } ] = "posix_group",
 	}
 	local groupT = {
@@ -453,6 +533,10 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 	}
 	local licenseURLT = {
 		[ "namd" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
+		[ "namd-mpi" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
+		[ "namd-verbs" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
+		[ "namd-verbs-smp" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
+		[ "namd-multicore" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
 		[ "vmd" ] = "http://www.ks.uiuc.edu/Research/vmd/current/LICENSE.html",
 		[ "rosetta" ] = "https://els.comotion.uw.edu/licenses/86",
 		[ "gatk" ] = "https://software.broadinstitute.org/gatk/download/licensing.php",
@@ -504,6 +588,13 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 						log_module_load(t,false)
 						LmodError(not_accepted_message)
 					end
+				end
+			end
+			if (v == "academic_license_autoaccept") then
+				if (not user_accepted_license(name,true)) then
+					LmodMessage(myModuleFullName() .. ":")
+					LmodMessage(academic_license_message_autoaccept)
+					LmodMessage(licenseURLT[name])
 				end
 			end
 			if (v == "posix_group") then
