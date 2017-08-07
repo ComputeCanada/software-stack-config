@@ -383,7 +383,7 @@ local function log_module_load(t,success)
 
 	local s = concatTbl(a," ")  --> "M${module} FN${fn} U${user} H${hostname}"
 
-	local cmd = "logger -t lmod-1.1 -p local0.info " .. s
+	local cmd = "logger -t lmod-1.0 -p local0.info " .. s
 	if (not success) then
 		cmd = cmd .. " Error=\\'Failed_to_load_due_to_license_restriction.\\'"
 	end
