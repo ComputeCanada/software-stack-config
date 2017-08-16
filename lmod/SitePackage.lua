@@ -312,9 +312,9 @@ local function log_module_load(t,success)
 	a[#a+1] = "J=" .. jobid
 	a[#a+1] = "M="  .. t.modFullName
 	a[#a+1] = "FN=" .. t.fn
-	local hierarchy = "-"
+	local hierarchy = "na"
 	local arch = "generic"
-	local root = "-"
+	local root = "na"
 	local root_found = false
 	local name = "-"
 	local version = "-"
@@ -353,9 +353,9 @@ local function log_module_load(t,success)
 		second_last = last
 		last = v
 	end
-	local compiler = "-"
-	local mpi = "-"
-	local cuda = "-"
+	local compiler = "na"
+	local mpi = "na"
+	local cuda = "na"
 	if hierarchy == "Compiler" then
 		compiler = third_last
 	end
