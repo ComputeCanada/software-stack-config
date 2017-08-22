@@ -106,11 +106,27 @@ require("strict")
 --  the right is what the function is called in SitePackage.lua.  The names can be the
 --  same.
 
-sandbox_registration{ loadfile = loadfile, assert = assert }
+local getenv    = os.getenv
+function getenv_logged(var,default)
+	local val = getenv(var)
+	if not val then
+		val = default
+		local user = getenv("USER") or "unknown"
+		local slurm_jobid = getenv("SLURM_JOB_ID") or "-"
+		local moab_jobid = getenv("MOAB_JOBID") or "-"
+		local pbs_jobid = getenv("PBS_JOBID") or "-"
+		local jobid = getenv("SLURM_JOB_ID") or getenv("MOAB_JOBID") or getenv("PBS_JOBID") or "-"
+		local hostname = getenv("HOSTNAME") or "unknown"
+		local cluster = getenv("CC_CLUSTER") or "unknown"
+		os.execute("logger -t lmod-err -p local0.info User " .. user .. " had the environment variable " .. var .. " undefined in job " .. jobid .. " on host " .. hostname .. " on cluster " .. cluster)
+	end
+	return val
+end
+
+sandbox_registration{ loadfile = loadfile, assert = assert, getenv_logged = getenv_logged }
 require("strict")
 require("string_utils")
 local hook      = require("Hook")
-local getenv    = os.getenv
 local concatTbl = table.concat
 local time = os.time
 local date = os.date
@@ -185,7 +201,8 @@ local function user_accepted_license(soft,autoaccept)
 	local posix = require "posix"
 	require "io"
 	require "os"
-	local home = os.getenv("HOME")
+	local user = getenv_logged("USER","unknown")
+	local home = getenv_logged("HOME",pathJoin("/home",user))
 	local license_dir = home .. "/.licenses"
 	local license_file = license_dir .. "/" .. soft
 	if not (posix.stat(license_dir,"type") == 'directory') then
@@ -197,7 +214,6 @@ local function user_accepted_license(soft,autoaccept)
 		local file = io.open(license_file,"w")
 		file:close()
 		
-		local user = os.getenv("USER")
 		local cmd = "logger -t lmod-UA-1.0 -p local0.info User " .. user .. " accepted usage agreement for software " .. soft
  		os.execute(cmd)
 		
@@ -234,7 +250,7 @@ function find_and_define_license_file(environment_variable,application)
 	require "os"
 	-- skip the test in these cases
 	local fn = myFileName()
-	local user = os.getenv("USER")
+	local user = getenv_logged("USER","unknown")
 	if ((fn:find("^/cvmfs") == nil and fn:find("^/opt/software") == nil) or user == "ebuser") then
 		return true
 	end
@@ -277,7 +293,7 @@ function find_and_define_license_file(environment_variable,application)
 	end
 
 	-- Third, look at the user's home for a $HOME/.licenses/<application>.lic
-	local home = os.getenv("HOME")
+	local home = getenv_logged("HOME",pathJoin("/home",user))
 	local license_file = pathJoin(home,".licenses",application .. ".lic")
 	if (posix.stat(license_file,"type") == 'regular') then
 		prepend_path(environment_variable,license_file)
@@ -294,6 +310,11 @@ local function log_module_load(t,success)
 
 	local a   = {}
 	local hostname = getenv("HOSTNAME")
+	local user = getenv_logged("USER","unknown")
+	local slurm_jobid = getenv("SLURM_JOB_ID") or "-"
+	local moab_jobid = getenv("MOAB_JOBID") or "-"
+	local pbs_jobid = getenv("PBS_JOBID") or "-"
+	local jobid = getenv("SLURM_JOB_ID") or getenv("MOAB_JOBID") or getenv("PBS_JOBID") or "-"
 	local clustername = getenv("CC_CLUSTER")
 	if hostname == nil then
 		hostname = io.popen("hostname"):read("*a")
@@ -301,11 +322,7 @@ local function log_module_load(t,success)
 		hostname = string.gsub(hostname,"^ *","")
 	end
 	a[#a+1] = "H=" .. hostname
-	a[#a+1] = "U=" .. getenv("USER")
-	local slurm_jobid = getenv("SLURM_JOB_ID") or "-"
-	local moab_jobid = getenv("MOAB_JOBID") or "-"
-	local pbs_jobid = getenv("PBS_JOBID") or "-"
-	local jobid = getenv("SLURM_JOB_ID") or getenv("MOAB_JOBID") or getenv("PBS_JOBID") or "-"
+	a[#a+1] = "U=" .. user
 	a[#a+1] = "SJ=" .. slurm_jobid
 	a[#a+1] = "MJ=" .. moab_jobid
 	a[#a+1] = "TJ=" .. pbs_jobid
@@ -391,7 +408,6 @@ local function log_module_load(t,success)
 	end
 	os.execute(cmd)
 end
-
 
 local function validate_license(t)
 	require "io"
@@ -554,7 +570,7 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 
 	local fn = myFileName()
 	-- skip tests for modules that are not on /cvmfs
-	local user = os.getenv("USER")
+	local user = getenv_logged("USER","unknown")
 	if ((fn:find("^/cvmfs") == nil and fn:find("^/opt/software") == nil) or user == "ebuser") then
 		return
 	end
