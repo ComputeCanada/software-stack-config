@@ -233,7 +233,7 @@ local function confirm_acceptance(soft)
 	return false
 end
 local function localUserInGroup(group)
-	local handle = io.popen("groups")
+	local handle = io.popen("groups 2>/dev/null")
 	local grps = handle:read()
 	handle:close()
 	local found  = false
