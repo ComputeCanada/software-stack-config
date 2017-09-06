@@ -187,7 +187,7 @@ local function set_wiki_url(t)
 	   [ { "quantumespresso" } ] = "Quantum ESPRESSO",
 	   [ { "r" } ] = "R",
 	   [ { "vasp" } ] = "VASP",
-
+	   [ { "caffe2" } ] = "Caffe2",
    }
 
    for k,v in pairs(wiki_urlT) do
