@@ -152,6 +152,10 @@ local function set_family(t)
       [ { "fftw-mpi", "fftw", "fftw-serial" } ] = "fftw",
       [ { "boost-mpi", "boost", "boost-serial" } ] = "boost",
       [ { "ls-dyna-mpi", "ls-dyna" } ] = "lsdyna",
+      [ { "namd-verbs-smp", "namd-verbs", "namd-multicore", "namd-mpi" } ] = "namd",
+      [ { "python27-scipy-stack", "python35-scipy-stack" } ] = "scipy_stack",
+      [ { "python27-mpi4py", "python35-mpi4py" } ] = "mpi4py",
+      [ { "lammps", "lammps-omp", "lammps-user-intel" } ] = "lammps",
    }
 
    for k,v in pairs(familyT) do
