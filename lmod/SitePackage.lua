@@ -252,6 +252,11 @@ end
 function find_and_define_license_file(environment_variable,application)
 	require'lfs'
 	require "os"
+	local mode_s = mode() or nil
+	-- unless 
+	if (not (mode_s == 'load' or mode_s == 'unload' or mode_s == 'show')) then
+		return false
+	end
 	-- skip the test in these cases
 	local fn = myFileName()
 	local user = getenv_logged("USER","unknown")
