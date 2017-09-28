@@ -156,6 +156,7 @@ local function set_family(t)
       [ { "python27-scipy-stack", "python35-scipy-stack" } ] = "scipy_stack",
       [ { "python27-mpi4py", "python35-mpi4py" } ] = "mpi4py",
       [ { "lammps", "lammps-omp", "lammps-user-intel" } ] = "lammps",
+      [ { "starccm", "starccm-mixed" } ] = "starccm",
    }
 
    for k,v in pairs(familyT) do
