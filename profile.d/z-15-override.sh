@@ -1,3 +1,4 @@
+__Init_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 if [[ "$CC_CLUSTER" == "graham" || "$CC_CLUSTER" == "cedar" ]]; 
 then
 	for d in /opt/software/slurm/bin /opt/software/bin ; do

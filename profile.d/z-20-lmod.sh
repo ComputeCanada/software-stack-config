@@ -7,7 +7,7 @@ export LMOD_AVAIL_STYLE=grouped:system
 export LMOD_RC=$LMOD_PACKAGE_PATH/lmodrc.lua
 export LMOD_SHORT_TIME=3600
 
-if [[ -z "$__Init_Default_Modules" || -z "$LD_LIBRARY_PATH" ]]; then
+if [[ -z "$__Init_Default_Modules" || -z "$__Init_LD_LIBRARY_PATH" ]]; then
 	export MODULEPATH=
 	module use /cvmfs/soft.computecanada.ca/custom/modules
 	__Init_Default_Modules=1; export __Init_Default_Modules;
@@ -16,6 +16,7 @@ if [[ -z "$__Init_Default_Modules" || -z "$LD_LIBRARY_PATH" ]]; then
 else
 	module refresh
 fi
+unset __Init_LD_LIBRARY_PATH
 
 if [[ -d /opt/software/modulefiles ]]; then
 	module -q use --priority 10 /opt/software/modulefiles

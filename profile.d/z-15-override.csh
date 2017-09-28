@@ -1,3 +1,6 @@
+if ( $?LD_LIBRARY_PATH ) then
+    set __init_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+endif
 if ( $?CC_CLUSTER ) then
     if ( "$CC_CLUSTER" == "graham" || "$CC_CLUSTER" == "cedar" ) then
 	foreach d ( /opt/software/slurm/bin /opt/software/bin )

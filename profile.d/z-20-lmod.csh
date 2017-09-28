@@ -7,7 +7,7 @@ setenv LMOD_AVAIL_STYLE grouped:system
 setenv LMOD_RC $LMOD_PACKAGE_PATH/lmodrc.lua
 setenv LMOD_SHORT_TIME 3600
 
-if ( ! $?__Init_Default_Modules || ! $?LD_LIBRARY_PATH ) then
+if ( ! $?__Init_Default_Modules || ! $?__Init_LD_LIBRARY_PATH ) then
 	setenv MODULEPATH
 	module use /cvmfs/soft.computecanada.ca/custom/modules
 	setenv __Init_Default_Modules 1
@@ -16,6 +16,7 @@ if ( ! $?__Init_Default_Modules || ! $?LD_LIBRARY_PATH ) then
 else
 	module refresh
 endif
+unset __Init_LD_LIBRARY_PATH
 
 if ( -d /opt/software/modulefiles ) then
 	module -q use --priority 10 /opt/software/modulefiles
