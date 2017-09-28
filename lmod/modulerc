@@ -1,23 +1,5 @@
 #%Module
 
-if {![file isdirectory /cvmfs/restricted.computecanada.ca/easybuild]} {
-	hide-version cpmd/3.17.1
-	hide-version demon2k/4.4.4
-	hide-version dl_poly4/4.08
-	hide-version ls-dyna/9.1
-	hide-version ls-dyna-mpi/9.1
-	hide-version matlab/2017a
-	hide-version orca/4.0.0.2
-	hide-version orca/4.0.1.2
-	hide-version vasp/4.6
-	hide-version vasp/5.4.1
-}
-
-# Hide the singularity module if the path to it does not exist
-if {![file isdirectory /opt/software/singularity]} {
-	hide-version singularity
-}
-
 # default versions
 module-version boost/1.60.0 default
 module-version boost-mpi/1.60.0 default

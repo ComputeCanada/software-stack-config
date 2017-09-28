@@ -682,6 +682,32 @@ local function set_props(t)
      end
    end
 end
+local function visible_hook(t)
+	local pathT = {
+		[ { "cpmd", "demon2k", "dl_poly4", "ls-dyna", "ls-dyna-mpi", "matlab", "orca" } ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ { "vasp" } ] = "/opt/software/easybuild", 
+		[ { "gaussian" } ] = "/opt/software/gaussian",
+		[ { "singularity" } ] = "/opt/software/singularity"
+	}
+	local moduleName = t.sn
+	local fullName = t.fullName
+	local fn = t.fn
+	local posix = require "posix"
+	-- only test visibility for modules in /cvmfs/soft.computecanada.ca
+	local prefix = "/cvmfs/soft.computecanada.ca"
+	if (string.sub(fn,1,string.len(prefix)) ~= prefix) then
+		return
+	end
+	for k,path in pairs(pathT) do
+		if (has_value(k,moduleName)) then
+			local ftype = posix.stat(path,"type") or "nil"
+			if (ftype == "nil") then
+				t['isVisible'] = false
+			end
+			break
+		end
+	end
+end
 local function load_hook(t)
 	local valid = validate_license(t)
 	set_props(t)
@@ -695,7 +721,7 @@ local function spider_hook(t)
 end
 hook.register("load",           load_hook)
 hook.register("load_spider", 	spider_hook)
-
+hook.register("isVisibleHook",  visible_hook)
 local mapT =
 {
    grouped = {
