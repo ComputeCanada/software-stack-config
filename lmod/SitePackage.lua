@@ -269,6 +269,7 @@ function find_and_define_license_file(environment_variable,application)
 	end
 	local posix = require "posix"
 	local license_found = false
+	local license_path = ""
 
 	-- First, look at the public repository for a file called by the cluster's name
 	local cluster = os.getenv("CC_CLUSTER") or nil
@@ -276,6 +277,7 @@ function find_and_define_license_file(environment_variable,application)
 	if (posix.stat(dir,"type") == 'directory') then
 		local path = pathJoin(dir,cluster .. ".lic")
 		if (posix.stat(path,"type") == 'regular') then
+			license_path = path
 			prepend_path(environment_variable,path)
 			license_found = true
 		end
@@ -294,11 +296,13 @@ function find_and_define_license_file(environment_variable,application)
 					local typef = posix.stat(file,"type") or "nil"
 					if (typef == 'regular' or typef == 'link') then
 						-- We can open that file, lets use it as license file
+						license_path = file
 						prepend_path(environment_variable,file)
 						license_found = true
 					end
 				elseif (posix.stat(path,"type") == 'regular') then
 					-- We can open that file, lets use it as license file
+					license_path = path
 					prepend_path(environment_variable,path)
 					license_found = true
 				end
@@ -310,10 +314,11 @@ function find_and_define_license_file(environment_variable,application)
 	local home = getenv_logged("HOME",pathJoin("/home",user))
 	local license_file = pathJoin(home,".licenses",application .. ".lic")
 	if (posix.stat(license_file,"type") == 'regular') then
+		license_path = license_file
 		prepend_path(environment_variable,license_file)
 		license_found = true
 	end
-	return license_found 
+	return license_found, license_path
 end
 sandbox_registration{ find_and_define_license_file = find_and_define_license_file }
 
@@ -586,7 +591,7 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 	-- skip tests for modules that are not on /cvmfs
 	local user = getenv_logged("USER","unknown")
 	if ((fn:find("^/cvmfs") == nil and fn:find("^/opt/software") == nil) or user == "ebuser") then
-		return
+		return true, nil
 	end
 	for k,v in pairs(licenseT) do
      		------------------------------------------------------------
