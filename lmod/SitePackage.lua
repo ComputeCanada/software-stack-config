@@ -534,19 +534,19 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à DL POLY4.
 
 ============================================================================================
 Using Gaussian requires you to agree to the following license terms:
- 1) You are not a member of a research group developing software competitive to Gaussian.
- 2) You will not copy the Gaussian software, nor make it available to anyone else.
- 3) You will properly acknowledge Gaussian Inc. and Compute Canada in publications.
- 4) You will notify us of any change in the above acknowledgement.
+ 1) I am not a member of a research group developing software competitive to Gaussian.
+ 2) I will not copy the Gaussian software, nor make it available to anyone else.
+ 3) I will properly acknowledge Gaussian Inc. and Compute Canada in publications.
+ 4) I will notify Compute Canada of any change in the above acknowledgement.
 
 If you do, please send an email with a copy of those conditions, saying that you agree to
 them at support@computecanada.ca. We will then be able to grant you access to Gaussian.
 
 Utiliser Gaussian nécessites que vous acceptiez les conditions suivantes (en anglais) :
- 1) You are not a member of a research group developing software competitive to Gaussian.
- 2) You will not copy the Gaussian software, nor make it available to anyone else.
- 3) You will properly acknowledge Gaussian Inc. and Compute Canada in publications.
- 4) You will notify us of any change in the above acknowledgement.
+ 1) I am not a member of a research group developing software competitive to Gaussian.
+ 2) I will not copy the Gaussian software, nor make it available to anyone else.
+ 3) I will properly acknowledge Gaussian Inc. and Compute Canada in publications.
+ 4) I will notify Compute Canada of any change in the above acknowledgement.
 
 Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
 que vous les acceptez, à support@calculcanada.ca. Nous pourrons ensuite activer votre
