@@ -4,3 +4,5 @@ parallel/20170622: 	This module is deprecated and will be removed in the future.
 torch/20170530: 	This module is deprecated and will be removed in the future. A newer version of Torch is available and includes more built-in modules. 
 			Ce module est marqué pour être retiré et sera supprimé dans le futur. Une nouvelle version de Torch est disponible et inclus davantage de modules intégrés. 
 
+pyqt/4.12: 	This module is deprecated and will be removed in the future. python/2.7.13 or python/3.5.2 and qt/4.8.7 should be used instead.
+			Ce module est marqué pour être retiré et sera supprimé dans le futur. 
