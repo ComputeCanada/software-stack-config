@@ -157,6 +157,7 @@ local function set_family(t)
       [ { "python27-mpi4py", "python35-mpi4py" } ] = "mpi4py",
       [ { "lammps", "lammps-omp", "lammps-user-intel" } ] = "lammps",
       [ { "starccm", "starccm-mixed" } ] = "starccm",
+      [ { "gatk", "gatk-queue" } ] = "gatk",
    }
 
    for k,v in pairs(familyT) do
@@ -488,7 +489,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 	local licenseT = {
 		[ { "intel", "signalp", "tmhmm", "rnammer" } ] = "noncommercial_autoaccept",
 		[ { "cudnn" } ] = "nvidia_autoaccept",
-		[ { "namd", "vmd", "rosetta", "gatk" } ] = "academic_license",
+		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue" } ] = "academic_license",
 		[ { "namd", "namd-mpi", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "academic_license_autoaccept",
 		[ { "cpmd", "dl_poly4", "gaussian", "orca", "vasp/4.6", "vasp/5.4.1" } ] = "posix_group",
 	}
@@ -577,6 +578,7 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 		[ "vmd" ] = "http://www.ks.uiuc.edu/Research/vmd/current/LICENSE.html",
 		[ "rosetta" ] = "https://els.comotion.uw.edu/licenses/86",
 		[ "gatk" ] = "https://software.broadinstitute.org/gatk/download/licensing.php",
+		[ "gatk-queue" ] = "https://software.broadinstitute.org/gatk/download/licensing.php",
 	}
 	-- environment variable to define
 	local auto_find_environment_variableT = {
