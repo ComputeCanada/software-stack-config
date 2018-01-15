@@ -147,6 +147,7 @@ local function set_family(t)
       [ { "gcc", "intel", "pgi" } ] = "compiler",
       [ { "openmpi", "mvapich2" } ] = "mpi",
       [ { "hdf5-mpi", "hdf5", "hdf5-serial" } ] = "hdf5",
+      [ { "petsc", "petsc-64bits", "petsc-debug" } ] = "petsc",
       [ { "gromacs-plumed", "gromacs" } ] = "gromacs",
       [ { "netcdf-mpi", "netcdf", "netcdf-serial" } ] = "netcdf",
       [ { "fftw-mpi", "fftw", "fftw-serial" } ] = "fftw",
