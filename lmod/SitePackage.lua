@@ -159,6 +159,7 @@ local function set_family(t)
       [ { "lammps", "lammps-omp", "lammps-user-intel" } ] = "lammps",
       [ { "starccm", "starccm-mixed" } ] = "starccm",
       [ { "gatk", "gatk-queue" } ] = "gatk",
+      [ { "gdal", "gdal-mpi" } ] = "gdal"
    }
 
    for k,v in pairs(familyT) do
