@@ -26,6 +26,7 @@ hide-version boost/1.63.0
 hide-version flex/2.5.39
 hide-version python/3.5.2
 hide-version python/2.7.13
+hide-version librt-compat/centos7
 
 # Temporarily hide local intel modules on Graham
 hide-version intel/17.0.4
