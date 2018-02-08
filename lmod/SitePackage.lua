@@ -176,7 +176,7 @@ local function set_wiki_url(t)
    ------------------------------------------------------------
    -- table of properties for fullnames or sn
    local wiki_urlT = {
-	   [ { "abinit" } ] = "Abinit",
+	   [ { "abinit" } ] = "ABINIT",
 	   [ { "ansys", "fluent", "cfx" } ] = "ANSYS",
 	   [ { "spark" } ] = "Apache Spark",
 	   [ { "cuda" } ] = "CUDA",
@@ -184,7 +184,7 @@ local function set_wiki_url(t)
 	   [ { "gromacs", "gromacs-plumed" } ] = "GROMACS",
 	   [ { "java" } ] = "Java",
 	   [ { "namd", "namd-verbs", "namd-multicore", "namd-verbs-smp", "namd-mpi" } ] = "NAMD",
-	   [ { "matlab", "mcr" } ] = "Matlab",
+	   [ { "matlab", "mcr" } ] = "MATLAB",
 	   [ { "openmpi", "mvapich2" } ] = "MPI",
 	   [ { "orca" } ] = "ORCA",
 	   [ { "paraview", "paraview-offscreen", "paraview-offscreen-gpu" } ] = "Visualization",
