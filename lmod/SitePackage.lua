@@ -494,17 +494,32 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue" } ] = "academic_license",
 		[ { "namd", "namd-mpi", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "academic_license_autoaccept",
-		[ { "cpmd", "dl_poly4", "gaussian", "orca", "vasp/4.6", "vasp/5.4.1" } ] = "posix_group",
+		[ { "cpmd", "dl_poly4", "gaussian", "maker", "orca", "vasp/4.6", "vasp/5.4.1" } ] = "posix_group",
 	}
 	local groupT = {
 		[ "cpmd" ] = "soft_cpmd",
 		[ "dl_poly4" ] = "soft_dl_poly4",
 		[ "gaussian" ] = "soft_gaussian",
+		[ "maker" ] = "soft_maker",
 		[ "orca" ] = "soft_orca",
 		[ "vasp/4.6" ] = "soft_vasp4",
 		[ "vasp/5.4.1" ] = "soft_vasp5",
 	}
 	local posix_group_messageT = {
+		[ { "maker" } ] = [[
+
+============================================================================================
+Using maker requires you to register with them. Please register on this site
+ http://yandell.topaz.genetics.utah.edu/cgi-bin/maker_license.cgi
+Once this is done, write to us at support@computecanada.ca showing us that you've registered. 
+Then we will be able to grant you access to maker.
+
+Utiliser maker nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
+ http://yandell.topaz.genetics.utah.edu/cgi-bin/maker_license.cgi
+Lorsque c'est fait, écrivez-nous à support@calculcanada.ca pour nous le dire. Nous pourrons
+ensuite vous donner accès à maker.
+============================================================================================
+		]],
 		[ { "cpmd" } ] = [[
 
 ============================================================================================
@@ -697,7 +712,7 @@ local function set_props(t)
 end
 local function visible_hook(t)
 	local pathT = {
-		[ { "cpmd", "demon2k", "dl_poly4", "ls-dyna", "ls-dyna-mpi", "matlab", "orca" } ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ { "cpmd", "demon2k", "dl_poly4", "ls-dyna", "ls-dyna-mpi", "maker", "matlab", "orca" } ] = "/cvmfs/restricted.computecanada.ca/easybuild",
 		[ { "vasp" } ] = "/opt/software/easybuild", 
 		[ { "gaussian" } ] = "/opt/software/gaussian",
 		[ { "singularity" } ] = "/opt/software/singularity"
