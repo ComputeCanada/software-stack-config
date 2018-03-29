@@ -196,6 +196,7 @@ local function set_wiki_url(t)
 	   [ { "caffe2" } ] = "Caffe2",
 	   [ { "starccm", "starccm-mixed" } ] = "StarCCM",
 	   [ { "allinea-cpu", "allinea-gpu" } ] = "Allinea software",
+	   [ { "openfoam" } ] = "OpenFOAM",
    }
 
    for k,v in pairs(wiki_urlT) do
