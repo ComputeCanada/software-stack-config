@@ -22,6 +22,12 @@ module-version r/3.3.3 3.3 3
 module-version imkl/11.3.4.258 11
 module-version imkl/2017.1.132 2017
 
+# module aliases
+module-alias allinea-cpu ddt-cpu
+module-alias allinea-gpu ddt-gpu
+module-alias arm-forge-cpu ddt-cpu
+module-alias arm-forge-gpu ddt-gpu
+
 # hidden versions
 hide-version parallel/20170622
 hide-version parallel/20160722

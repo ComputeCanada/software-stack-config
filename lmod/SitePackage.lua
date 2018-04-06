@@ -195,7 +195,7 @@ local function set_wiki_url(t)
 	   [ { "vasp" } ] = "VASP",
 	   [ { "caffe2" } ] = "Caffe2",
 	   [ { "starccm", "starccm-mixed" } ] = "StarCCM",
-	   [ { "allinea-cpu", "allinea-gpu" } ] = "Allinea software",
+	   [ { "ddt-cpu", "ddt-gpu" } ] = "ARM software",
 	   [ { "openfoam" } ] = "OpenFOAM",
    }
 
