@@ -9,7 +9,7 @@ module-version openmpi/2.1.1 default
 module-version gcc/5.4.0 default
 module-version cuda/8.0.44 default
 module-version python/3.5.4 default
-module-version singularity/2.3 default
+module-version singularity/2.4 default
 module-version matlab/2017a default
 
 # shortcut versions
