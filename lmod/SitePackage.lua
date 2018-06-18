@@ -359,9 +359,13 @@ local function log_module_load(t,success)
 	local root_found = false
 	local name = "-"
 	local version = "-"
-	for v in t.modFullName:split("/") do
-		name = version
-		version = v
+	if string.match(t.modFullName,'.*/.*') then
+		for v in t.modFullName:split("/") do
+			name = version
+			version = v
+		end
+	else
+		name = t.modFullName
 	end
 	local last = ""
 	local second_last = ""
