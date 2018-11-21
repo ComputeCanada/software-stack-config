@@ -1,0 +1,1 @@
+/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/etc/profile.d/vte.sh
