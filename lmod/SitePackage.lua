@@ -123,7 +123,7 @@ function getenv_logged(var,default)
 	return val
 end
 
-sandbox_registration{ loadfile = loadfile, assert = assert, getenv_logged = getenv_logged }
+sandbox_registration{ loadfile = loadfile, assert = assert, getenv_logged = getenv_logged, loaded_modules = loaded_modules, serializeTbl = serializeTbl, clearWarningFlag = clearWarningFlag  }
 require("strict")
 require("string_utils")
 local hook      = require("Hook")
@@ -131,7 +131,7 @@ local concatTbl = table.concat
 local time = os.time
 local date = os.date
 
-local function has_value(tab, val)
+function has_value(tab, val)
 	for index, value in ipairs(tab) do
 		if value == val then
 			return true
@@ -209,6 +209,33 @@ local function set_wiki_url(t)
 	whatis("CC-Wiki: " .. v)
      end
    end
+end
+local cached_arch = nil
+function get_highest_supported_architecture()
+	if not cached_arch then 
+		cached_arch = _get_highest_supported_architecture()
+	end
+	return cached_arch
+end
+function _get_highest_supported_architecture()
+	local open = io.open
+	local file = open("/proc/cpuinfo")
+	if (file) then
+		local whole = file:read("*all") .. "\n"
+		file:close()
+		for line in whole:split("\n") do
+			if line:match("avx512") then
+				return "avx512"
+			elseif line:match("avx2") then
+				return "avx2"
+			elseif line:match("avx") then
+				return "avx"
+			elseif line:match("pni") or line:match("sse3") then
+				return "sse3"
+			end
+		end
+	end
+	return "sse3"
 end
 local function user_accepted_license(soft,autoaccept)
 	require "lfs"
@@ -813,6 +840,23 @@ local function visible_hook(t)
 				t['isVisible'] = false
 			end
 			break
+		end
+	end
+
+	local arch = get_highest_supported_architecture()
+	if moduleName == "arch" then
+		local name = nil
+		local version = nil
+		for v in fullName:split("/") do
+			name = version
+			version = v
+		end
+		if version == "avx" and (arch == "sse3") then
+			t['isVisible'] = false
+		elseif version == "avx2" and (arch == "sse3" or arch == "avx") then
+			t['isVisible'] = false
+		elseif version == "avx512" and (arch == "sse3" or arch == "avx" or arch == "avx2") then
+			t['isVisible'] = false
 		end
 	end
 end
