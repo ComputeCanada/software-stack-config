@@ -402,7 +402,7 @@ local function log_module_load(t,success)
 		if v == "Core" then
 			hierarchy = "Core"
 		end
-		if v == "avx" or v == "avx2" or v == "sse3" then
+		if v == "avx" or v == "avx2" or v == "sse3" or v == "avx512" then
 			arch = v
 		end
 		fifth_last = fourth_last
@@ -834,6 +834,9 @@ local mapT =
 {
    grouped = {
       ['/cvmfs/.*/modules/.*/Core.*']     = "Core Modules",
+      ['/cvmfs/.*/modules/.*/avx512/Compiler.*'] = "Compiler-dependent avx512 modules",
+      ['/cvmfs/.*/modules/.*/avx512/MPI.*'] = "MPI-dependent avx512 modules",
+      ['/cvmfs/.*/modules/.*/avx512/CUDA.*'] = "Cuda-dependent avx512 modules",
       ['/cvmfs/.*/modules/.*/avx2/Compiler.*'] = "Compiler-dependent avx2 modules",
       ['/cvmfs/.*/modules/.*/avx2/MPI.*'] = "MPI-dependent avx2 modules",
       ['/cvmfs/.*/modules/.*/avx2/CUDA.*'] = "Cuda-dependent avx2 modules",
@@ -843,7 +846,11 @@ local mapT =
       ['/cvmfs/.*/modules/.*/sse3/Compiler.*'] = "Compiler-dependent sse3 modules",
       ['/cvmfs/.*/modules/.*/sse3/MPI.*'] = "MPI-dependent sse3 modules",
       ['/cvmfs/.*/modules/.*/sse3/CUDA.*'] = "Cuda-dependent sse3 modules",
-      ['/cvmfs/.*/custom/modules.*'] = "Core modules",
+      ['/cvmfs/.*/custom/modules.avx$'] = "Custom avx modules",
+      ['/cvmfs/.*/custom/modules.avx2$'] = "Custom avx2 modules",
+      ['/cvmfs/.*/custom/modules.avx512$'] = "Custom avx512 modules",
+      ['/cvmfs/.*/custom/modules.sse3$'] = "Custom sse3 modules",
+      ['/cvmfs/.*/custom/modules$'] = "Custom modules",
       ['/opt/software/modulefiles'] = "Cluster specific modules",
       ['/project/.*'] = "Your groups' modules",
       ['/home/.*'] = "Your personal modules",
