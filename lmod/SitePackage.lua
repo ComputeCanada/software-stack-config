@@ -147,19 +147,20 @@ local function set_family(t)
       [ { "gcc", "intel", "pgi" } ] = "compiler",
       [ { "openmpi", "mvapich2" } ] = "mpi",
       [ { "hdf5-mpi", "hdf5", "hdf5-serial" } ] = "hdf5",
-      [ { "petsc", "petsc-64bits", "petsc-debug" } ] = "petsc",
+      [ { "petsc", "petsc-64bits", "petsc-debug", "petsc-complex" } ] = "petsc",
       [ { "gromacs-plumed", "gromacs" } ] = "gromacs",
       [ { "netcdf-mpi", "netcdf", "netcdf-serial" } ] = "netcdf",
       [ { "fftw-mpi", "fftw", "fftw-serial" } ] = "fftw",
       [ { "boost-mpi", "boost", "boost-serial" } ] = "boost",
       [ { "ls-dyna-mpi", "ls-dyna" } ] = "lsdyna",
       [ { "namd-verbs-smp", "namd-verbs", "namd-multicore", "namd-mpi" } ] = "namd",
-      [ { "python27-scipy-stack", "python35-scipy-stack" } ] = "scipy_stack",
-      [ { "python27-mpi4py", "python35-mpi4py" } ] = "mpi4py",
+      [ { "python27-scipy-stack", "python35-scipy-stack", "scipy-stack" } ] = "scipy_stack",
+      [ { "python27-mpi4py", "python35-mpi4py", "mpi4py" } ] = "mpi4py",
       [ { "lammps", "lammps-omp", "lammps-user-intel" } ] = "lammps",
       [ { "starccm", "starccm-mixed" } ] = "starccm",
       [ { "gatk", "gatk-queue" } ] = "gatk",
-      [ { "gdal", "gdal-mpi" } ] = "gdal"
+      [ { "gdal", "gdal-mpi" } ] = "gdal",
+      [ { "wrf", "pwrf" } ] = "wrf"
    }
 
    for k,v in pairs(familyT) do
@@ -691,7 +692,7 @@ local function set_props(t)
 
    local propT = {
       [ { "armadillo", "arpack-ng", "cgal", "clhep", "cudnn", "dealii", "eigen", "elpa", "fftw", "fftw-mpi", "fftw-serial", "flint", "glpk", "gsl", "harminv", "igraph", "imkl", "jags", "libcerf", "libgpuarray", "libmesh", "libxsmm", "lpsolve", "magma", "mcl", "metis", "mpfi", "nektar++", "nlopt", "openblas", "p4est", "parmetis", "pcl", "pfft", "python27-scipy-stack", "python35-scipy-stack", "qhull", "qrupdate", "scalapack", "scipy-stack", "scotch", "su2", "suitesparse", "superlu", "viennacl", "voro++", "xgboost" } ]       = { {name = "type_", value = "math" }, },
-      [ { "abinit", "adf", "amber", "chemps2", "cp2k", "cpmd", "demon2k", "dl_poly4", "gamess-us", "gaussian", "gromacs", "gromacs-plumed", "kim", "lammps", "lammps-omp", "lammps-user-intel", "libint", "libxc", "molden", "namd", "namd-mpi", "namd-multicore", "namd-verbs", "namd-verbs-smp", "nwchem", "open3dqsar", "openbabel", "openmm", "orca", "pcmsolver", "plumed", "psi4", "quantumespresso", "rosetta",  "siesta", "spglib", "vasp", "yaehmop" } ]       = { {name = "type_", value = "chem" }, },
+      [ { "abinit", "adf", "amber", "chemps2", "cp2k", "cfour", "cpmd", "demon2k", "dl_poly4", "gamess-us", "gaussian", "gromacs", "gromacs-plumed", "kim", "lammps", "lammps-omp", "lammps-user-intel", "libint", "libxc", "molden", "namd", "namd-mpi", "namd-multicore", "namd-verbs", "namd-verbs-smp", "nwchem", "open3dqsar", "openbabel", "openmm", "orca", "pcmsolver", "plumed", "psi4", "quantumespresso", "rosetta",  "siesta", "spglib", "vasp", "yaehmop" } ]       = { {name = "type_", value = "chem" }, },
       [ { "mpe2", "mpi.net", "mvapich2", "openmpi" } ]       = { {name = "type_", value = "mpi" }, },
       [ { "abyss", "admixture", "allpaths-lg", "angsd", "annovar", "arcs", "augustus", "bamtools", "bamutil", "bbmap", "bcftools", "bcl2fastq2", "beast", "beagle-lib", "bedtools", "bioperl", "blasr", "blasr_libcpp", "blast+", "blat", "bolt-lmm", "bowtie", "bowtie2", "breakdancer", "busco", "bwa", "canu", "canvas", "casper", "cd-hit", "cellranger", "centrifuge", "cnvnator", "cufflinks", "detonate", "diamond", "discosnp", "eems", "eigensoft", "emboss", "erds", "exonerate", "falcon", "fast-gbs", "fastp", "fastqc", "fastsimcoal2", "fasttree", "fastx-toolkit", "freebayes", "fusioncatcher", "gapfiller", "gatk", "gatk-queue", "gemma", "gmap-gsnap", "grnboost", "hisat2", "hmmer", "htslib", "igblast", "impute2", "infernal", "interproscan", "iq-tree", "jellyfish", "kallisto", "kraken", "libgtextutils", "libplinkio", "links", "lumpy", "mach", "mafft", "maker", "manta", "masurca", "maxbin", "mefit", "megahit", "meraculous", "metabat", "metal", "metaphlan", "minia", "minimac2", "minimac3", "mira", "mitobim", "mixcr", "mothur", "mrbayes", "multovl", "mummer", "mummer-64bit", "muscle", "nanopolish", "nextgenmap", "ngstools", "pbbam", "pbdagcon", "pbsuite", "pear", "phylip", "phylobayes", "picard", "pindel", "pilon", "platypus", "plink", "pplacer", "prinseq", "prodigal", "psmc", "racon", "ray", "r-bundle-bioconductor", "repasthpc", "rnammer", "rsem", "sabre", "salmon", "sambamba", "samtools", "selscan", "shotmap", "signalp", "soapdenovo2", "sortmerna", "spades", "sra-toolkit", "sspace_basic", "sspace-longread", "seqan", "seqmule", "seqtk", "sga", "sickle", "snap", "snpeff", "speedseq", "stacks", "star", "stringtie", "structure", "subread", "sumaclust", "supernova", "tabix", "tmhmm", "tophat", "transrate", "trans-abyss", "transdecoder", "trimal", "trimmomatic", "trinity", "trinotate", "vcftools", "velvet", "vsearch", "motioncor2" } ]       = { {name = "type_", value = "bio"}, },
       [ { "arrow", "ascp", "bazel", "blitz++", "boost", "boost-mpi", "chapel", "chapel-single", "chapel-slurm-gasnetrun_ibv", "clang", "cuda", "eclipse", "elixir", "erlangotp", "fpc", "gcc", "googletest", "guile", "intel", "ipp", "java", "julia", "leveldb", "libctl", "matlab", "maven", "mcr", "mono", "mpe", "mpi4py", "networkx", "octave", "python27-mpi4py", "python35-mpi4py", "perl", "perl4-corelibs", "petsc", "petsc-64bits", "petsc-debug", "postgresql", "protobuf", "python", "pypy", "qt", "qt5", "r", "root", "rstudio-server", "ruby", "rubygems", "sagemath", "sbt", "sip", "snappy", "spark", "tbb", "tcl", "trilinos", "udunits", "xerces-c++", "yaxt" } ]          = { {name = "type_", value = "tools"}, },
@@ -718,7 +719,7 @@ local function set_props(t)
 end
 local function visible_hook(t)
 	local pathT = {
-		[ { "cpmd", "demon2k", "dl_poly4", "ls-dyna", "ls-dyna-mpi", "maker", "matlab", "orca" } ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ { "cfour", "cpmd", "demon2k", "dl_poly4", "ls-dyna", "ls-dyna-mpi", "maker", "matlab", "orca" } ] = "/cvmfs/restricted.computecanada.ca/easybuild",
 		[ { "vasp" } ] = "/opt/software/easybuild", 
 		[ { "gaussian" } ] = "/opt/software/gaussian",
 		[ { "singularity" } ] = "/opt/software/singularity"
