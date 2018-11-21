@@ -315,8 +315,20 @@ function find_and_define_license_file(environment_variable,application)
 			end
 		end
 	end
+	
+	-- Third, look at the public repository for a file called by the cluster's name with priority
+	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application)
+	if (posix.stat(dir,"type") == 'directory') then
+		local path = pathJoin(dir,cluster .. ".priority.lic")
+		local typef = posix.stat(path,"type") or "nil"
+		if (typef == 'regular' or typef == 'link') then
+			license_path = path
+			prepend_path(environment_variable,path)
+			license_found = true
+		end
+	end
 
-	-- Third, look at the user's home for a $HOME/.licenses/<application>.lic
+	-- Finally, look at the user's home for a $HOME/.licenses/<application>.lic
 	local home = getenv_logged("HOME",pathJoin("/home",user))
 	local license_file = pathJoin(home,".licenses",application .. ".lic")
 	if (posix.stat(license_file,"type") == 'regular') then
@@ -440,6 +452,15 @@ end
 
 local function validate_license(t)
 	require "io"
+	local academic_autoaccept_message = [[
+============================================================================================
+The software listed above is available for academic usage only. By continuing, you 
+accept that you will not use the software for commercial or non-academic purposes. 
+
+Le logiciel listé ci-dessus est disponible pour usage académique seulement. En 
+continuant, vous acceptez de ne pas l'utiliser pour un usage commercial ou non académique.
+============================================================================================
+	]]
 	local non_commercial_autoaccept_message = [[
 ============================================================================================
 The software listed above is available for non-commercial usage only. By continuing, you 
@@ -463,10 +484,10 @@ En continuant, vous acceptez les termes de cette licence.
 	local academic_license_message = [[
 ============================================================================================
 Using this software requires you to accept a license on the software website. 
-Did you accept such license ? (yes/no)
+Please confirm that you registered on the website below (yes/no).
 
 Utiliser ce logiciel nécessite que vous acceptiez une licence sur le site de l'auteur. 
-L'avez-vous fait ? (oui/non)
+Veuillez confirmer que vous vous êtes enregistrés sur le site web ci-dessous (oui/non).
 ============================================================================================
 	]]
 	local academic_license_message_autoaccept = [[
@@ -496,13 +517,15 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 	]]
 	-- The names in these lists can be full name + version or just the name
 	local licenseT = {
+		[ { "matlab" } ] = "academic_autoaccept",
 		[ { "intel", "signalp", "tmhmm", "rnammer" } ] = "noncommercial_autoaccept",
 		[ { "cudnn" } ] = "nvidia_autoaccept",
-		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue", "motioncor2"} ] = "academic_license",
+		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue", "motioncor2", "pwrf"} ] = "academic_license",
 		[ { "namd", "namd-mpi", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "academic_license_autoaccept",
-		[ { "cpmd", "dl_poly4", "gaussian", "maker", "orca", "vasp/4.6", "vasp/5.4.1" } ] = "posix_group",
+		[ { "cfour", "cpmd", "dl_poly4", "gaussian", "maker", "orca", "vasp/4.6", "vasp/5.4.1", "sas" } ] = "posix_group",
 	}
 	local groupT = {
+		[ "cfour" ] = "soft_cfour",
 		[ "cpmd" ] = "soft_cpmd",
 		[ "dl_poly4" ] = "soft_dl_poly4",
 		[ "gaussian" ] = "soft_gaussian",
@@ -510,6 +533,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ "orca" ] = "soft_orca",
 		[ "vasp/4.6" ] = "soft_vasp4",
 		[ "vasp/5.4.1" ] = "soft_vasp5",
+		[ "sas" ] = "soft_sas",
 	}
 	local posix_group_messageT = {
 		[ { "maker" } ] = [[
@@ -526,6 +550,37 @@ Lorsque c'est fait, écrivez-nous à support@calculcanada.ca pour nous le dire. 
 ensuite vous donner accès à maker.
 ============================================================================================
 		]],
+                [ { "cfour-mpi" } ] = [[
+
+============================================================================================
+Using CFOUR requires you to agree to the following license terms:
+
+1) I will use CFOUR only for academic research.
+2) I will not copy the CFOUR software, nor make it available to anyone else.
+3) I will properly acknowledge original papers of CFOUR and Compute Canada in my 
+   publications (see the license form for more details).
+4) I understand that the agreement for using CFOUR can be terminated by one of the 
+   parties: CFOUR developers or Compute Canada.
+5) I will notify Compute Canada of any change in the above acknowledgement.
+
+If you do, please send an email with a copy of those conditions, saying that you agree to
+them at support@computecanada.ca. We will then be able to grant you access to CFOUR.
+
+Utiliser CFOUR nécessites que vous acceptiez les conditions suivantes (en anglais) :
+
+1) I will use CFOUR only for academic research.
+2) I will not copy the CFOUR software, nor make it available to anyone else.
+3) I will properly acknowledge original papers of CFOUR and Compute Canada in my 
+   publications (see the license form for more details).
+4) I understand that the agreement for using CFOUR can be terminated by one of the 
+   parties: CFOUR developers or Compute Canada.
+5) I will notify Compute Canada of any change in the above acknowledgement.
+
+Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
+que vous les acceptez, à support@calculcanada.ca. Nous pourrons ensuite activer votre
+accès à CFOUR.
+============================================================================================
+                ]],
 		[ { "cpmd" } ] = [[
 
 ============================================================================================
@@ -592,6 +647,17 @@ Lorsque c'est fait, envoyez-nous une copie du courriel de confirmation à
 support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 ============================================================================================
 		]],
+		[ { "sas" } ] = [[
+
+============================================================================================
+This software is only licesed for Alberta School of Business users.
+If you are in the Alberta School of Buisness and covered by the SAS license agreement
+please send an email to support@computecanada.ca with following subject line:
+Please add me to soft_sas group
+The email should include your userid and a statment that you are in the
+the Alberta School of Buisness and thefore the current SAS license covers you.
+============================================================================================
+		]],
 	}
 	local licenseURLT = {
 		[ "namd" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
@@ -604,6 +670,7 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 		[ "motioncor2" ] = "http://tiny.cc/UCSFMotionCor2",
 		[ "gatk" ] = "https://software.broadinstitute.org/gatk/download/licensing.php",
 		[ "gatk-queue" ] = "https://software.broadinstitute.org/gatk/download/licensing.php",
+		[ "pwrf" ] = "http://polarmet.osu.edu/PWRF/registration.php",
 	}
 	-- environment variable to define
 	local auto_find_environment_variableT = {
@@ -631,6 +698,12 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 		end
 		
      		if (has_value(k,name)) then
+			if (v == "academic_autoaccept") then
+				if (not user_accepted_license(name,true)) then
+					LmodMessage(myModuleFullName() .. ":")
+					LmodMessage(academic_autoaccept_message)
+				end
+			end
 			if (v == "noncommercial_autoaccept") then
 				if (not user_accepted_license(name,true)) then
 					LmodMessage(myModuleFullName() .. ":")
