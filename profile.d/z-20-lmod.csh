@@ -11,7 +11,7 @@ if ( ! $?__Init_Default_Modules ) then
 	setenv MODULEPATH
 	module use /cvmfs/soft.computecanada.ca/custom/modules
 	setenv __Init_Default_Modules 1
-	setenv LMOD_SYSTEM_DEFAULT_MODULES "StdEnv/2016.4"
+	setenv LMOD_SYSTEM_DEFAULT_MODULES "StdEnv"
 	module --initial_load restore
 else
 	if ( ! $?__Init_LD_LIBRARY_PATH && $?EBROOTNIXPKGS ) then
