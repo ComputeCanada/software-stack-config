@@ -13,7 +13,8 @@ module-version python/3.5.4 default
 module-version singularity/2.5 default
 
 # shortcut versions
-module-version intel/2017.1 2017 17
+module-version intel/2018.3 2018 18
+module-version intel/2017.5 2017 17
 module-version intel/2016.4 2016 16
 module-version python/2.7.14 2.7 2
 module-version python/3.5.4 3.5
@@ -56,16 +57,4 @@ module-version python35-scipy-stack/2017a default
 module-version python27-mpi4py/2.0.0 default
 module-version python35-mpi4py/2.0.0 default
 module-version caffe2/0.8.1 default
-
-# Temporarily hide local intel modules on Graham
-hide-version intel/17.0.4
-hide-version intel/ipp/17.0.4
-hide-version intel/mkl/17.0.4
-hide-version intel/mpi-mt-debug/17.0.4
-hide-version intel/mpi/17.0.4
-hide-version intel/daal/17.0.4
-hide-version intel/mkl-ilp64/17.0.4
-hide-version intel/mpi-debug/17.0.4
-hide-version intel/mpi-mt/17.0.4
-hide-version intel/tbb/17.0.4
 
