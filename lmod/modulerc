@@ -1,7 +1,7 @@
 #%Module
 
 # default versions
-module-version StdEnv/2016.4 default
+#module-version StdEnv/2016.4 default
 module-version boost/1.60.0 default
 module-version boost-mpi/1.60.0 default
 module-version imkl/11.3.4.258 default
@@ -10,7 +10,7 @@ module-version openmpi/2.1.1 default
 module-version gcc/5.4.0 default
 module-version cuda/8.0.44 default
 module-version python/3.5.4 default
-module-version singularity/2.5 default
+module-version singularity/2.6 default
 
 # shortcut versions
 module-version intel/2018.3 2018 18
