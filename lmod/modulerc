@@ -1,7 +1,7 @@
 #%Module
 
 # default versions
-#module-version StdEnv/2016.4 default
+module-version StdEnv/2016.4 default
 module-version boost/1.60.0 default
 module-version boost-mpi/1.60.0 default
 module-version imkl/11.3.4.258 default
