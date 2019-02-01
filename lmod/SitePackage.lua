@@ -240,6 +240,15 @@ function _get_highest_supported_architecture()
 	end
 	return "sse3"
 end
+function get_interconnect()
+	if posix.stat("/sys/module/opa_vnic","type") == 'directory' then
+		return "omnipath"
+	elseif posix.stat("/sys/module/ib_core","type") == 'directory' then
+		return "infiniband"
+	end
+	return "ethernet"
+end
+sandbox_registration{ get_interconnect = get_interconnect }
 local function user_accepted_license(soft,autoaccept)
 	require "lfs"
 	local posix = require "posix"
