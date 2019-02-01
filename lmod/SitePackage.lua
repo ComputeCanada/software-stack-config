@@ -217,6 +217,7 @@ function get_highest_supported_architecture()
 	end
 	return cached_arch
 end
+sandbox_registration{ get_highest_supported_architecture = get_highest_supported_architecture }
 function _get_highest_supported_architecture()
 	local open = io.open
 	local file = open("/proc/cpuinfo")
