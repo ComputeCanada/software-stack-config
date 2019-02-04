@@ -217,26 +217,38 @@ function get_highest_supported_architecture()
 	end
 	return cached_arch
 end
+sandbox_registration{ get_highest_supported_architecture = get_highest_supported_architecture }
 function _get_highest_supported_architecture()
-	local open = io.open
-	local file = open("/proc/cpuinfo")
-	if (file) then
-		local whole = file:read("*all") .. "\n"
-		file:close()
-		for line in whole:split("\n") do
-			if line:match("avx512") then
-				return "avx512"
-			elseif line:match("avx2") then
-				return "avx2"
-			elseif line:match("avx") then
-				return "avx"
-			elseif line:match("pni") or line:match("sse3") then
-				return "sse3"
+	local flags = {};
+	for line in io.lines("/proc/cpuinfo") do
+		local values = string.match(line, "flags%s*: (.+)");
+		if values ~= nil then
+			for match in (values.." "):gmatch("(.-)".." ") do
+				flags[match] = true;
 			end
+			break
 		end
+	end
+	if flags.avx512f then
+		return "avx512"
+	elseif flags.avx2 then
+		return "avx2"
+	elseif flags.avx then
+		return "avx"
+	elseif flags.pni then
+		return "sse3"
 	end
 	return "sse3"
 end
+function get_interconnect()
+	if posix.stat("/sys/module/opa_vnic","type") == 'directory' then
+		return "omnipath"
+	elseif posix.stat("/sys/module/ib_core","type") == 'directory' then
+		return "infiniband"
+	end
+	return "ethernet"
+end
+sandbox_registration{ get_interconnect = get_interconnect }
 local function user_accepted_license(soft,autoaccept)
 	require "lfs"
 	local posix = require "posix"
