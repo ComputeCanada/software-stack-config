@@ -241,6 +241,7 @@ function _get_highest_supported_architecture()
 	return "sse3"
 end
 function get_interconnect()
+	local posix = require "posix"
 	if posix.stat("/sys/module/opa_vnic","type") == 'directory' then
 		return "omnipath"
 	elseif posix.stat("/sys/module/ib_core","type") == 'directory' then
