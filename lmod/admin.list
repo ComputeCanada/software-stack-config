@@ -42,3 +42,27 @@ caffe2/0.8.1: 		This module is deprecated and will be removed in the future. caf
 			virtual environment as instructed here https://docs.computecanada.ca/wiki/Python  and install the package "torch_gpu".
 			Ce module est marqué pour être retiré est sera supprimé dans le futur. caffe2 fait maintenant partie de pytorch. Pour utiliser caffe2,
 			créez un environnement virtuel tel que décrit ici https://docs.computecanada.ca/wiki/Python/fr et installez le paquet "torch_gpu".
+
+julia/0.5.1:
+Julia versions prior to 1.x had serious performance issues to manage packages. We recommend moving to julia 1.x, which is available by first loading the module gcc/7.3.0 : 
+	module load gcc/7.3.0 julia
+Les versions de Julia précédant la version 1.x avaient de sérieux problèmes de performance lors de l'installation de packages. Nous recommandons de migrer à la version 1.x, qui est disponible en chargeant le module gcc/7.3.0 au préalable : 
+	module load gcc/7.3.0 julia
+
+julia/0.6.0:
+Julia versions prior to 1.x had serious performance issues to manage packages. We recommend moving to julia 1.x, which is available by first loading the module gcc/7.3.0 : 
+	module load gcc/7.3.0 julia
+Les versions de Julia précédant la version 1.x avaient de sérieux problèmes de performance lors de l'installation de packages. Nous recommandons de migrer à la version 1.x, qui est disponible en chargeant le module gcc/7.3.0 au préalable : 
+	module load gcc/7.3.0 julia
+
+julia/0.6.2:
+Julia versions prior to 1.x had serious performance issues to manage packages. We recommend moving to julia 1.x, which is available by first loading the module gcc/7.3.0 : 
+	module load gcc/7.3.0 julia
+Les versions de Julia précédant la version 1.x avaient de sérieux problèmes de performance lors de l'installation de packages. Nous recommandons de migrer à la version 1.x, qui est disponible en chargeant le module gcc/7.3.0 au préalable : 
+	module load gcc/7.3.0 julia
+
+julia/1.0.0:
+This version of Julia was compiled with the Intel compiler, which is not recommended by the Julia developers. We suggest you load the version that we have deployed with gcc/7.3.0 instead:
+	module load gcc/7.3.0 julia
+Cette version de Julia a été compilée avec les compilateurs Intel, ce qui n'est pas recommandé par les développeurs de Julia. Nous vous suggérons de plutôt charger la version compilée avec le compilateur gcc/7.3.0 : 
+	module load gcc/7.3.0 julia

@@ -50,6 +50,10 @@ hide-version librt-compat/centos7
 hide-version singularity/2.3
 hide-version singularity/2.4
 hide-version gentoo/2019
+hide-version julia/0.5.1
+hide-version julia/0.6.0
+hide-version julia/0.6.2
+hide-version julia/1.0.0
 #hide-version cuda/10.0.130
 # default versions for hidden deprecated modules,
 # where there is only one version per directory
