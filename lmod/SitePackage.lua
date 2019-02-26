@@ -833,10 +833,20 @@ local function set_props(t)
 end
 local function visible_hook(t)
 	local pathT = {
-		[ { "cfour", "cpmd", "demon2k", "dl_poly4", "ls-dyna", "ls-dyna-mpi", "maker", "matlab", "orca" } ] = "/cvmfs/restricted.computecanada.ca/easybuild",
-		[ { "vasp" } ] = "/opt/software/easybuild", 
-		[ { "gaussian" } ] = "/opt/software/gaussian",
-		[ { "singularity" } ] = "/opt/software/singularity"
+		[ "cfour" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "cpmd" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "demon2k" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "dl_poly4" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "ls-dyna" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "ls-dyna-mpi" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "maker" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "matlab" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "orca" ] = "/cvmfs/restricted.computecanada.ca/easybuild",
+		[ "vasp" ] = "/opt/software/easybuild",
+		[ "gaussian" ] = "/opt/software/gaussian",
+		[ "singularity/2.5" ] = "/opt/software/singularity-2.5",
+		[ "singularity/2.6" ] = "/opt/software/singularity-2.6",
+		[ "singularity/3.1" ] = "/opt/software/singularity-3.1"
 	}
 	local moduleName = t.sn
 	local fullName = t.fullName
@@ -847,13 +857,11 @@ local function visible_hook(t)
 	if (string.sub(fn,1,string.len(prefix)) ~= prefix) then
 		return
 	end
-	for k,path in pairs(pathT) do
-		if (has_value(k,moduleName)) then
-			local ftype = posix.stat(path,"type") or "nil"
-			if (ftype == "nil") then
-				t['isVisible'] = false
-			end
-			break
+	local modulePath = pathT[moduleName] or pathT[fullName]
+	if modulePath ~= nil then
+		local ftype = posix.stat(modulePath,"type") or nil
+		if ftype == nil then
+			t['isVisible'] = false
 		end
 	end
 
