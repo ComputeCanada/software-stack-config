@@ -1,4 +1,11 @@
 local ompiv=...
+local cluster = os.getenv("CC_CLUSTER") or nil
+
+if cluster == "beluga" then
+	-- hack to disable OpenIB warnings on Beluga login nodes
+	setenv("OMPI_MCA_btl_openib_if_exclude", "mlx5_bond_0")
+	setenv("OMPI_MCA_btl_openib_warn_nonexistent_if", "0")
+end
 
 if ompiv == "2.1" or ompiv == "2.0" then
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
