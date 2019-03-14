@@ -29,7 +29,7 @@ elseif  ompiv == "3.1" then
 	else
 	        setenv("OMPI_MCA_pml", "^yalla")
 	end
-elseif ompiv == "1.6" or ompiv == "1.8" then
+elseif ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" then
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 		setenv("OMPI_MCA_mtl", "^mxm")
 		setenv("OMPI_MCA_pml", "^yalla")
