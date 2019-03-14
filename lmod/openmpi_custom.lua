@@ -13,9 +13,16 @@ if ompiv == "2.1" or ompiv == "2.0" then
 	        setenv("OMPI_MCA_pml", "^yalla,ucx")
 	        setenv("OMPI_MCA_btl", "^openib")
 	        setenv("OMPI_MCA_oob", "^ud")
-	        setenv("OMPI_MCA_coll", "^fca")
+	        setenv("OMPI_MCA_coll", "^fca,hcoll")
 	else
-	        setenv("OMPI_MCA_pml", "^ucx")
+		if ompiv == "2.1" and cluster == "beluga" then
+			-- Beluga 2.1 behaves like 3.1, better performance.
+			setenv("OMPI_MCA_pml_ucx_priority", 51)
+			setenv("OMPI_MCA_mtl", "^mxm")
+			setenv("OMPI_MCA_pml", "^yalla")
+		else
+			setenv("OMPI_MCA_pml", "^ucx")
+		end
 	end
 elseif  ompiv == "3.1" then
 	setenv("SLURM_MPI_TYPE", "pmi2")
