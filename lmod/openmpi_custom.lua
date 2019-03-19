@@ -17,9 +17,8 @@ if ompiv == "2.1" or ompiv == "2.0" then
 	else
 		if ompiv == "2.1" and cluster == "beluga" then
 			-- Beluga 2.1 behaves like 3.1, better performance.
-			setenv("OMPI_MCA_pml_ucx_priority", 51)
 			setenv("OMPI_MCA_mtl", "^mxm")
-			setenv("OMPI_MCA_pml", "^yalla")
+			setenv("OMPI_MCA_pml", "ucx")
 		else
 			setenv("OMPI_MCA_pml", "^ucx")
 		end
