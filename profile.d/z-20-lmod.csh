@@ -25,17 +25,8 @@ if ( ! $?__Init_Default_Modules ) then
 	endif
 	module --initial_load restore
 else
-	if ( ! $?__Init_LD_LIBRARY_PATH && $?EBROOTNIXPKGS ) then
-		# workaround newgrp etc. that reset LD_LIBRARY_PATH
-		if ( $?LD_LIBRARY_PATH ) then
-			setenv LD_LIBRARY_PATH /cvmfs/soft.computecanada.ca/nix/lib:${LD_LIBRARY_PATH}
-		else
-			setenv LD_LIBRARY_PATH /cvmfs/soft.computecanada.ca/nix/lib
-		endif
-	endif
 	module refresh
 endif
-unset __Init_LD_LIBRARY_PATH
 
 if ( -d /opt/software/modulefiles ) then
 	module -q use --priority 10 /opt/software/modulefiles

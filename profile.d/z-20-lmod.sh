@@ -21,13 +21,8 @@ if [[ -z "$__Init_Default_Modules" ]]; then
 	fi
 	module --initial_load restore
 else
-	if [[ -z "$__Init_LD_LIBRARY_PATH" && -a "$EBROOTNIXPKGS" ]]; then
-		# workaround newgrp etc. that reset LD_LIBRARY_PATH
-		export LD_LIBRARY_PATH=/cvmfs/soft.computecanada.ca/nix/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-	fi
 	module refresh
 fi
-unset __Init_LD_LIBRARY_PATH
 
 if [[ -d /opt/software/modulefiles ]]; then
 	module -q use --priority 10 /opt/software/modulefiles
