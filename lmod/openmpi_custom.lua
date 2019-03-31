@@ -7,6 +7,21 @@ if cluster == "beluga" then
 	setenv("OMPI_MCA_btl_openib_warn_nonexistent_if", "0")
 end
 
+if ompiv ~= "3.1" then
+	-- OpenMPI 3.1 does not need LD_LIBRARY_PATH any more
+	local slurmpaths = { "/opt/software/slurm/lib", "/opt/software/slurm/lib64",
+	                     "/opt/slurm/lib64" }
+	local posix = require "posix"
+	for i,v in ipairs(slurmpaths) do
+		if posix.stat(pathJoin(v,"libpmi.so"),"type") == "link" then
+			prepend_path("LD_LIBRARY_PATH", v)
+			-- below is so we can recover it after newgrp
+			prepend_path("RSNT_LD_LIBRARY_PATH", v)
+			break
+		end
+	end
+end
+
 if ompiv == "2.1" or ompiv == "2.0" then
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 	        setenv("OMPI_MCA_mtl", "^mxm")
