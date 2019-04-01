@@ -107,14 +107,11 @@ require("strict")
 --  same.
 
 local getenv    = os.getenv
-local posix     = require "posix"
-local getlogin  = posix.getlogin
-
 function getenv_logged(var,default)
 	local val = getenv(var)
 	if not val then
 		val = default
-		local user = getenv("USER") or getlogin()
+		local user = getenv("USER") or "unknown"
 		local slurm_jobid = getenv("SLURM_JOB_ID") or "-"
 		local moab_jobid = getenv("MOAB_JOBID") or "-"
 		local pbs_jobid = getenv("PBS_JOBID") or "-"
@@ -258,7 +255,7 @@ local function user_accepted_license(soft,autoaccept)
 	local posix = require "posix"
 	require "io"
 	require "os"
-	local user = getenv_logged("USER",getlogin())
+	local user = getenv_logged("USER","unknown")
 	local home = getenv_logged("HOME",pathJoin("/home",user))
 	local license_dir = home .. "/.licenses"
 	local license_file = license_dir .. "/" .. soft
@@ -312,7 +309,7 @@ function find_and_define_license_file(environment_variable,application)
 	end
 	-- skip the test in these cases
 	local fn = myFileName()
-	local user = getenv_logged("USER",getlogin())
+	local user = getenv_logged("USER","unknown")
 	if ((fn:find("^/cvmfs") == nil and fn:find("^/opt/software") == nil) or user == "ebuser") then
 		return true
 	end
@@ -390,7 +387,7 @@ local function log_module_load(t,success)
 
 	local a   = {}
 	local hostname = getenv("HOSTNAME")
-	local user = getenv_logged("USER",getlogin())
+	local user = getenv_logged("USER","unknown")
 	local slurm_jobid = getenv("SLURM_JOB_ID") or "-"
 	local moab_jobid = getenv("MOAB_JOBID") or "-"
 	local pbs_jobid = getenv("PBS_JOBID") or "-"
@@ -727,7 +724,7 @@ the Alberta School of Buisness and thefore the current SAS license covers you.
 
 	local fn = myFileName()
 	-- skip tests for modules that are not on /cvmfs
-	local user = getenv_logged("USER",getlogin())
+	local user = getenv_logged("USER","unknown")
 	if ((fn:find("^/cvmfs") == nil and fn:find("^/opt/software") == nil) or user == "ebuser") then
 		return true, nil
 	end
