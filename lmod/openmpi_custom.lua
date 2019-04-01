@@ -40,6 +40,8 @@ if ompiv == "2.1" or ompiv == "2.0" then
 	end
 elseif  ompiv == "3.1" then
 	setenv("SLURM_MPI_TYPE", "pmi2")
+	-- RSNT_SLURM_MPI_TYPE is set so we can recover SLURM_MPI_TYPE after salloc
+	setenv("RSNT_SLURM_MPI_TYPE", "pmi2")
 	setenv("OMPI_MCA_mtl", "^mxm")
 
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
