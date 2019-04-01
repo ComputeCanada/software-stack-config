@@ -6,6 +6,12 @@ for d in /opt/software/slurm/bin /opt/software/bin /opt/slurm/bin ; do
 		export PATH=$d:$PATH
 	fi
 done
+
+# working around an issue with seff using /opt/software/slurm/lib
+if [[ -z "$RSNT_LD_LIBRARY_PATH" && ! -f "/opt/software/slurm/lib/libslurm.so" && -f "/opt/software/slurm/lib64/libslurm.so" ]]; then
+        export RSNT_LD_LIBRARY_PATH=/opt/software/slurm/lib64
+fi
+
 if [[ -n "$RSNT_LD_LIBRARY_PATH" && -z "$LD_LIBRARY_PATH" ]]; then
 	export LD_LIBRARY_PATH=$RSNT_LD_LIBRARY_PATH
 fi
