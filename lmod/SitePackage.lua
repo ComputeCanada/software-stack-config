@@ -109,12 +109,15 @@ require("strict")
 local getenv    = os.getenv
 function getenv_logged(var,default)
 	local val = getenv(var)
-	if not val and var == "USER" then
+	if var == "USER" and (not val or val == "") then
 		val = getenv("SLURM_JOB_USER")
 	end
 	if not val then
 		val = default
 		local user = getenv("USER") or getenv("SLURM_JOB_USER") or "unknown"
+		if user == "" then
+			user = getenv("SLURM_JOB_USER") or "unknown"
+		end
 		local slurm_jobid = getenv("SLURM_JOB_ID") or "-"
 		local moab_jobid = getenv("MOAB_JOBID") or "-"
 		local pbs_jobid = getenv("PBS_JOBID") or "-"
