@@ -34,6 +34,8 @@ if ompiv == "2.1" or ompiv == "2.0" then
 			-- Beluga 2.1 behaves like 3.1, better performance.
 			setenv("OMPI_MCA_mtl", "^mxm")
 			setenv("OMPI_MCA_pml", "ucx")
+			-- avoids error messages about multicast, needs investigation
+			setenv("HCOLL_ENABLE_MCAST_ALL", "0")
 		else
 			setenv("OMPI_MCA_pml", "^ucx")
 		end
@@ -51,6 +53,8 @@ elseif  ompiv == "3.1" then
 	        setenv("OMPI_MCA_coll", "^fca,hcoll")
 	else
 	        setenv("OMPI_MCA_pml", "^yalla")
+		-- avoids error messages about multicast, needs investigation
+		setenv("HCOLL_ENABLE_MCAST_ALL", "0")
 	end
 elseif ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" then
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
