@@ -68,7 +68,10 @@ elseif  ompiv == "3.1" then
 	else
 	        setenv("OMPI_MCA_pml", "^yalla")
 		-- avoids error messages about multicast, needs investigation
-		setenv("HCOLL_ENABLE_MCAST_ALL", "0")
+		-- setenv("HCOLL_ENABLE_MCAST_ALL", "0")
+		-- we have multiple issues with the hcoll module, will need
+		-- thorough investigation, disabling for now
+		setenv("OMPI_MCA_coll", "^hcoll")
 	end
 elseif ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" then
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
