@@ -18,8 +18,8 @@ for i,v in ipairs(slurmpaths) do
 	end
 end
 
-if ompiv ~= "3.1" then
-	-- OpenMPI 3.1 does not need LD_LIBRARY_PATH any more
+if ompiv ~= "3.1" and ompiv ~= '4.0' then
+	-- OpenMPI 3.1+ do not need LD_LIBRARY_PATH any more
 	if slurmpath and posix.stat(pathJoin(slurmpath,"libpmi.so"),"type") == "link" then
 		prepend_path("LD_LIBRARY_PATH", slurmpath)
 		-- below is so we can recover it after newgrp
@@ -45,7 +45,7 @@ if ompiv == "2.1" or ompiv == "2.0" then
 			setenv("OMPI_MCA_pml", "^ucx")
 		end
 	end
-elseif  ompiv == "3.1" then
+elseif  ompiv == "3.1" or ompiv == "4.0" then
 	local slurm_pmi = nil
 	if slurmpath then
 		if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v2.so"),"type") == "regular" then
@@ -58,12 +58,16 @@ elseif  ompiv == "3.1" then
 		setenv("RSNT_SLURM_MPI_TYPE", slurm_pmi)
 	end
 
-	setenv("OMPI_MCA_mtl", "^mxm")
+        if ompiv == "3.1" then -- removed in 4.0
+		setenv("OMPI_MCA_mtl", "^mxm")
+	end
 
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 	        setenv("OMPI_MCA_pml", "^ucx,yalla")
 	        setenv("OMPI_MCA_btl", "^openib")
-	        setenv("OMPI_MCA_oob", "^ud")
+	        if ompiv == "3.1" then -- removed in 4.0
+		        setenv("OMPI_MCA_oob", "^ud")
+		end
 	        setenv("OMPI_MCA_coll", "^fca,hcoll")
 	else
 	        setenv("OMPI_MCA_pml", "^yalla")
