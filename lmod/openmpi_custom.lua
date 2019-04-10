@@ -40,7 +40,10 @@ if ompiv == "2.1" or ompiv == "2.0" then
 			setenv("OMPI_MCA_mtl", "^mxm")
 			setenv("OMPI_MCA_pml", "ucx")
 			-- avoids error messages about multicast, needs investigation
-			setenv("HCOLL_ENABLE_MCAST_ALL", "0")
+			-- setenv("HCOLL_ENABLE_MCAST_ALL", "0")
+			-- we have multiple issues with the hcoll module, will need
+			-- thorough investigation, disabling for now
+			setenv("OMPI_MCA_coll", "^hcoll")
 		else
 			setenv("OMPI_MCA_pml", "^ucx")
 		end
