@@ -63,6 +63,7 @@ hide_version("julia/0.5.1")
 hide_version("julia/0.6.0")
 hide_version("julia/0.6.2")
 hide_version("julia/1.0.0")
+hide_version("impi/2018.3.222")
 --hide_version("cuda/10.0.130")
 -- default versions for hidden deprecated modules,
 -- where there is only one version per directory
