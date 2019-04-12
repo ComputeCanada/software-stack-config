@@ -10,9 +10,10 @@ for i,v in ipairs(slurmpaths) do
 	end
 end
 
-if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
-	setenv("I_MPI_FABRICS_LIST", "ofi,tmi,dapl,tcp,ofa")
-else
-	setenv("I_MPI_FABRICS_LIST", "ofa,dapl,tmi,tcp,ofi")
+if impiv ~= "2019.3" then
+	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
+		setenv("I_MPI_FABRICS_LIST", "ofi,tmi,dapl,tcp,ofa")
+	else
+		setenv("I_MPI_FABRICS_LIST", "ofa,dapl,tmi,tcp,ofi")
+	end
 end
-
