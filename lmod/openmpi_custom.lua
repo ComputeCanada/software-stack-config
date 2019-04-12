@@ -12,6 +12,13 @@ for i,v in ipairs(slurmpaths) do
 	end
 end
 
+if cluster == "beluga" then
+	-- hack to disable OpenIB warnings on Beluga login nodes,
+	-- and UCX issues from trying to use mlx5_2 and mlx5_bond_0
+	setenv("UCX_NET_DEVICES","mlx5_0:1")
+	setenv("OMPI_MCA_btl_openib_if_include", "mlx5_0")
+end
+
 if ompiv ~= "3.1" and ompiv ~= '4.0' then
 	-- OpenMPI 3.1+ do not need LD_LIBRARY_PATH any more
 	if slurmpath and posix.stat(pathJoin(slurmpath,"libpmi.so"),"type") == "link" then
