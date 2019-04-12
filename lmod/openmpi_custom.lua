@@ -15,8 +15,6 @@ end
 if cluster == "beluga" then
 	-- hack to disable OpenIB warnings on Beluga login nodes,
 	-- and UCX issues from trying to use mlx5_2 and mlx5_bond_0
-	-- and tell UCX not to use DC to cut down on dmesg noise
-	setenv("UCX_TLS","self,tcp,rc,rc_mlx5,ud,ud_mlx5,cm,mm,cma")
 	setenv("UCX_NET_DEVICES","mlx5_0:1")
 	setenv("OMPI_MCA_btl_openib_if_include", "mlx5_0")
 end
