@@ -1,12 +1,6 @@
 local ompiv=...
 local cluster = os.getenv("CC_CLUSTER") or nil
 
-if cluster == "beluga" then
-	-- hack to disable OpenIB warnings on Beluga login nodes
-	setenv("OMPI_MCA_btl_openib_if_exclude", "mlx5_bond_0")
-	setenv("OMPI_MCA_btl_openib_warn_nonexistent_if", "0")
-end
-
 local posix = require "posix"
 local slurmpaths = { "/opt/software/slurm/lib", "/opt/software/slurm/lib64",
                      "/opt/slurm/lib64" }
@@ -39,6 +33,8 @@ if ompiv == "2.1" or ompiv == "2.0" then
 			-- Beluga 2.1 behaves like 3.1, better performance.
 			setenv("OMPI_MCA_mtl", "^mxm")
 			setenv("OMPI_MCA_pml", "ucx")
+			-- disable openib unconditionally, as it does not work very well with UCX
+			setenv("OMPI_MCA_btl", "^openib")
 			-- avoids error messages about multicast, needs investigation
 			-- setenv("HCOLL_ENABLE_MCAST_ALL", "0")
 			-- we have multiple issues with the hcoll module, will need
@@ -65,9 +61,11 @@ elseif  ompiv == "3.1" or ompiv == "4.0" then
 		setenv("OMPI_MCA_mtl", "^mxm")
 	end
 
+	-- disable openib unconditionally, as it does not work very well with UCX
+	setenv("OMPI_MCA_btl", "^openib")
+
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 	        setenv("OMPI_MCA_pml", "^ucx,yalla")
-	        setenv("OMPI_MCA_btl", "^openib")
 	        if ompiv == "3.1" then -- removed in 4.0
 		        setenv("OMPI_MCA_oob", "^ud")
 		end
