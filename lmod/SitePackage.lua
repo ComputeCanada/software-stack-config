@@ -310,7 +310,7 @@ function find_and_define_license_file(environment_variable,application)
 	require "os"
 	local mode_s = mode() or nil
 	-- unless 
-	if (not (mode_s == 'load' or mode_s == 'unload' or mode_s == 'show')) then
+	if (not (mode_s == 'load' or mode_s == 'unload' or mode_s == 'show' or mode_s == 'dependencyCk')) then
 		return false
 	end
 	-- skip the test in these cases
