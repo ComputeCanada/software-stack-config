@@ -20,6 +20,7 @@ else
 	module_version("python/3.5.4","default")
 	module_version("singularity/2.6","default")
 end
+module_version("matlab/2018b","default")
 
 -- shortcut versions
 module_version("intel/2018.3","2018","18")
