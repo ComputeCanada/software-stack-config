@@ -183,6 +183,7 @@ local function set_wiki_url(t)
    ------------------------------------------------------------
    -- table of properties for fullnames or sn
    local wiki_urlT = {
+	   [ { "abaqus" } ] = "Abaqus",
 	   [ { "abinit" } ] = "ABINIT",
 	   [ { "ansys", "fluent", "cfx" } ] = "ANSYS",
 	   [ { "spark" } ] = "Apache Spark",
