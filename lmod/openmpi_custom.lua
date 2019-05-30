@@ -1,5 +1,6 @@
 local ompiv=...
 local cluster = os.getenv("CC_CLUSTER") or nil
+local arch = os.getenv("RSNT_ARCH") or nil
 
 local posix = require "posix"
 local slurmpaths = { "/opt/software/slurm/lib", "/opt/software/slurm/lib64",
@@ -28,7 +29,7 @@ if ompiv ~= "3.1" and ompiv ~= '4.0' then
 	end
 end
 
-if ompiv == "2.1" or ompiv == "2.0" then
+if ompiv == "2.1" or ompiv == "2.0" or (ompiv == "1.10" and arch == "avx512") then
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 	        setenv("OMPI_MCA_mtl", "^mxm")
 	        setenv("OMPI_MCA_pml", "^yalla,ucx")
@@ -36,8 +37,8 @@ if ompiv == "2.1" or ompiv == "2.0" then
 	        setenv("OMPI_MCA_oob", "^ud")
 	        setenv("OMPI_MCA_coll", "^fca,hcoll")
 	else
-		if ompiv == "2.1" and cluster == "beluga" then
-			-- Beluga 2.1 behaves like 3.1, better performance.
+		if (ompiv == "2.1" or ompiv == "1.10") and cluster == "beluga" then
+			-- Beluga 2.1 and 1.10 behave like 3.1, better performance.
 			setenv("OMPI_MCA_mtl", "^mxm")
 			setenv("OMPI_MCA_pml", "ucx")
 			-- disable openib unconditionally, as it does not work very well with UCX
