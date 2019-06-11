@@ -1,6 +1,7 @@
 #%Module
 
 # default versions
+module-version StdEnv/2018.3 default
 module-version boost/1.68.0 default
 module-version boost-mpi/1.68.0 default
 module-version imkl/2018.3.222 default
@@ -62,4 +63,6 @@ module-version python35-scipy-stack/2017a default
 module-version python27-mpi4py/2.0.0 default
 module-version python35-mpi4py/2.0.0 default
 module-version caffe2/0.8.1 default
+=======
+>>>>>>> parent of 6859298... Manage MODULERCFILE via StdEnv module instead of shell scripts.
 
