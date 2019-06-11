@@ -1,5 +1,6 @@
 -- default versions
 if os.getenv("EBVERSIONSTDENV") == "2018.3" then
+	module_version("StdEnv/2018.3","default")
 	module_version("boost/1.68.0","default")
 	module_version("boost-mpi/1.68.0","default")
 	module_version("imkl/2018.3.222","default")
@@ -10,6 +11,7 @@ if os.getenv("EBVERSIONSTDENV") == "2018.3" then
 	module_version("python/3.6.4","default")
 	module_version("singularity/3.0","default")
 else
+	module_version("StdEnv/2016.4","default")
 	module_version("boost/1.60.0","default")
 	module_version("boost-mpi/1.60.0","default")
 	module_version("imkl/11.3.4.258","default")
