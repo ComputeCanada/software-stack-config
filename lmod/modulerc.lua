@@ -1,5 +1,5 @@
 -- default versions
-if os.getenv("EBVERSIONSTDENV") == "2018.3" then
+if os.getenv("EBVERSIONSTDENV") == "2019.3" then
 	module_version("StdEnv/2018.3","default")
 	module_version("boost/1.68.0","default")
 	module_version("boost-mpi/1.68.0","default")
