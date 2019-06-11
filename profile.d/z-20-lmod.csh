@@ -2,7 +2,7 @@ setenv MODULESHOME /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/
 source /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/lmod/init/csh
 setenv LMOD_PACKAGE_PATH /cvmfs/soft.computecanada.ca/config/lmod/
 setenv LMOD_ADMIN_FILE /cvmfs/soft.computecanada.ca/config/lmod/admin.list
-setenv MODULERCFILE $LMOD_PACKAGE_PATH/modulerc.lua
+setenv MODULERCFILE $LMOD_PACKAGE_PATH/modulerc
 setenv LMOD_AVAIL_STYLE grouped:system
 setenv LMOD_RC $LMOD_PACKAGE_PATH/lmodrc.lua
 setenv LMOD_SHORT_TIME 3600
