@@ -50,6 +50,7 @@ if ompiv == "2.1" or ompiv == "2.0" or (ompiv == "1.10" and arch == "avx512") th
 			setenv("OMPI_MCA_coll", "^hcoll")
 		else
 			setenv("OMPI_MCA_pml", "^ucx")
+			setenv("MXM_LOG_LEVEL", "error")
 		end
 	end
 elseif  ompiv == "3.1" or ompiv == "4.0" then
@@ -90,6 +91,8 @@ elseif ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" then
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 		setenv("OMPI_MCA_mtl", "^mxm")
 		setenv("OMPI_MCA_pml", "^yalla")
+	else
+		setenv("MXM_LOG_LEVEL", "error")
 	end
 end
 
