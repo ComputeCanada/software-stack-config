@@ -188,6 +188,8 @@ local function set_wiki_url(t)
 	   [ { "ansys", "fluent", "cfx" } ] = "ANSYS",
 	   [ { "spark" } ] = "Apache Spark",
 	   [ { "cuda" } ] = "CUDA",
+	   [ { "cpmd" } ] = "CPMD",
+	   [ { "delft3d" } ] = "Delft3D",
 	   [ { "gaussian" } ] = "Gaussian",
 	   [ { "gromacs", "gromacs-plumed" } ] = "GROMACS",
 	   [ { "java" } ] = "Java",

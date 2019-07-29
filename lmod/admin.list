@@ -16,6 +16,9 @@ singularity/2.4: 	This module is deprecated and will be removed in the future du
 singularity/2.5: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/2.6.
 			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/2.6.
 
+singularity/3.1: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.2.
+			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.2.
+
 python/2.7.13: 		This module is deprecated and will be removed in the future. Please upgrade to python/2.7. If you had created virtual environments
 			we recommend to recreate them. 
 			Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser python/2.7. Si vous aviez créé un environnement
