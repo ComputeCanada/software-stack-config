@@ -3,11 +3,11 @@ set force_cc_cvmfs = 0
 if ( $?FORCE_CC_CVMFS ) then
     set force_cc_cvmfs = $FORCE_CC_CVMFS
 endif
-set skip_cvmfs = 0
-if ( $?SKIP_CVMFS ) then
-    set skip_cvmfs = $SKIP_CVMFS
+set skip_cc_cvmfs = 0
+if ( $?SKIP_CC_CVMFS ) then
+    set skip_cc_cvmfs = $SKIP_CC_CVMFS
 endif
-if ( ($uid >= 1000 && $skip_cvmfs != 1) || ($force_cc_cvmfs == 1) ) then
+if ( ($uid >= 1000 && $skip_cc_cvmfs != 1) || ($force_cc_cvmfs == 1) ) then
 	foreach file ( /cvmfs/soft.computecanada.ca/config/profile.d/*.csh )
 		if ( -r "$file" ) then
 			source $file
@@ -15,4 +15,4 @@ if ( ($uid >= 1000 && $skip_cvmfs != 1) || ($force_cc_cvmfs == 1) ) then
 	end
 endif
 unset force_cc_cvmfs
-unset skip_cvmfs
+unset skip_cc_cvmfs
