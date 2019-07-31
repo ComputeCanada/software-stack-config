@@ -855,7 +855,8 @@ local function visible_hook(t)
 		[ "gaussian" ] = "/opt/software/gaussian",
 		[ "singularity/2.5" ] = "/opt/software/singularity-2.5",
 		[ "singularity/2.6" ] = "/opt/software/singularity-2.6",
-		[ "singularity/3.1" ] = "/opt/software/singularity-3.1"
+		[ "singularity/3.1" ] = "/opt/software/singularity-3.1",
+		[ "singularity/3.2" ] = "/opt/software/singularity-3.2"
 	}
 	local moduleName = t.sn
 	local fullName = t.fullName
