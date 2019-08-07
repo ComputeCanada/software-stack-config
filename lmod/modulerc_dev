@@ -12,8 +12,13 @@ module-version intel/2016.4 default
 module-version openmpi/2.0.2 default
 
 # shortcut versions
-module-version intel/2017.1 17
-module-version intel/2016.4 16
+module-version intel/2017.1 2017 17
+module-version intel/2016.4 2016 16
+module-version python/2.7.13 2.7 2
+module-version python/3.5.2 3.5 3
+module-version r/3.3.3 3.3 3
+module-version imkl/11.3.4.258 11
+module-version imkl/2017.1.132 2017
 
 # hidden versions
 hide-version boost/1.63.0
