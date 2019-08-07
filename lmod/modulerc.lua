@@ -25,20 +25,9 @@ end
 module_version("matlab/2018b","default")
 
 -- shortcut versions
-module_version("intel/2018.3","2018","18")
-module_version("intel/2017.5","2017","17")
-module_version("intel/2016.4","2016","16")
-module_version("python/2.7.14","2.7","2")
-module_version("python/3.5.4","3.5")
-module_version("python/3.6.3","3.6")
-module_version("python/3.7.0","3.7","3")
-module_version("r/3.3.3","3.3","3")
-module_version("imkl/11.3.4.258","11")
-module_version("imkl/2017.4.239","2017.4","2017")
-module_version("imkl/2018.3.222","2018.3","2018")
-module_version("cuda/8.0.44","8.0","8")
-module_version("cuda/9.0.176","9.0","9")
-module_version("cuda/10.0.130","10.0","10")
+module_version("intel/2018.3","18")
+module_version("intel/2017.5","17")
+module_version("intel/2016.4","16")
 
 -- module aliases
 module_alias("allinea-cpu","ddt-cpu")
