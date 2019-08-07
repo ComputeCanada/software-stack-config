@@ -17,8 +17,7 @@ if ( ! $?__Init_Default_Modules ) then
 	setenv MODULERCFILE $NEWMODULERCFILE
 	unset NEWMODULERCFILE
 
-	setenv MODULEPATH
-	module use /cvmfs/soft.computecanada.ca/custom/modules
+	setenv MODULEPATH /cvmfs/soft.computecanada.ca/custom/modules
 	setenv __Init_Default_Modules 1
 	if ( ! $?LMOD_SYSTEM_DEFAULT_MODULES ) then
 		setenv LMOD_SYSTEM_DEFAULT_MODULES "StdEnv"

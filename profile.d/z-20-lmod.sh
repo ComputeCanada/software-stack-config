@@ -13,7 +13,7 @@ if [[ -z "$__Init_Default_Modules" ]]; then
 	fi
 	export MODULERCFILE=${MODULERCFILE:+:$MODULERCFILE}:$NEWMODULERCFILE
 	unset NEWMODULERCFILE
-	export MODULEPATH=
+	export MODULEPATH=/cvmfs/soft.computecanada.ca/custom/modules
 	module use /cvmfs/soft.computecanada.ca/custom/modules
 	__Init_Default_Modules=1; export __Init_Default_Modules;
 	if [[ -z "$LMOD_SYSTEM_DEFAULT_MODULES" ]]; then
