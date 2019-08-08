@@ -20,7 +20,7 @@ module-version intel/2016.4 2016 16
 module-version python/2.7.14 2.7 2
 module-version python/3.5.4 3.5
 module-version python/3.6.3 3.6 
-module-version python/3.7.0 3.7 3
+module-version python/3.7.4 3.7 3
 module-version r/3.3.3 3.3 3
 module-version imkl/11.3.4.258 11
 module-version imkl/2017.4.239 2017.4 2017
