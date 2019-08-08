@@ -66,21 +66,22 @@ elseif  ompiv == "3.1" or ompiv == "4.0" then
 		setenv("RSNT_SLURM_MPI_TYPE", slurm_pmi)
 	end
 
-        if ompiv == "3.1" then -- removed in 4.0
-		setenv("OMPI_MCA_mtl", "^mxm")
-	end
-
 	-- disable openib unconditionally, as it does not work very well with UCX
 	setenv("OMPI_MCA_btl", "^openib")
 
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 	        setenv("OMPI_MCA_pml", "^ucx,yalla")
-	        if ompiv == "3.1" then -- removed in 4.0
-		        setenv("OMPI_MCA_oob", "^ud")
+	        if ompiv == "3.1" then -- removed in 4.0; don't use ofi by default for cuda
+			setenv("OMPI_MCA_mtl", "^mxm,ofi")
+			setenv("OMPI_MCA_oob", "^ud")
 		end
 	        setenv("OMPI_MCA_coll", "^fca,hcoll")
+		setenv("OMPI_MCA_osc", "^ucx")
 	else
 	        setenv("OMPI_MCA_pml", "^yalla")
+		if ompiv == "3.1" then -- removed in 4.0
+			setenv("OMPI_MCA_mtl", "^mxm")
+		end
 		-- avoids error messages about multicast, needs investigation
 		-- setenv("HCOLL_ENABLE_MCAST_ALL", "0")
 		-- we have multiple issues with the hcoll module, will need
