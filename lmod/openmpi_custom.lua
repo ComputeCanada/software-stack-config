@@ -97,4 +97,7 @@ elseif ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" then
 	end
 end
 
-
+-- for CUDA + omnipath enable direct GPU transfers
+if os.getenv("RSNT_INTERCONNECT") == "omnipath" and isloaded("cuda") then
+	setenv("PSM2_CUDA", 1)
+end
