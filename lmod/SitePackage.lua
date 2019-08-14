@@ -700,7 +700,7 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 		[ { "sas" } ] = [[
 
 ============================================================================================
-This software is only licesed for Alberta School of Business users.
+This software is only licensed for Alberta School of Business users.
 If you are in the Alberta School of Buisness and covered by the SAS license agreement
 please send an email to support@computecanada.ca with following subject line:
 Please add me to soft_sas group
