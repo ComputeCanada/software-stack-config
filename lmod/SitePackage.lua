@@ -5,7 +5,7 @@
 require("strict")
 
 
---------------------------------------------------------------------------------
+
 -- Anything in this file will automatically be loaded everytime the Lmod command
 -- is run.  Here are two suggestions on how to use your SitePackage.lua file 
 --
@@ -112,12 +112,12 @@ function dofile (filename)
 	return f()
 end
 
-dofile("SitePackage_logging.lua")
-dofile("SitePackage_licenses.lua")
-dofile("SitePackage_families.lua")
-dofile("SitePackage_wiki_url.lua")
-dofile("SitePackage_properties.lua")
-dofile("SitePackage_visible.lua")
+dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_logging.lua")
+dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_licenses.lua")
+dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_families.lua")
+dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_wiki_url.lua")
+dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_properties.lua")
+dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_visible.lua")
 
 sandbox_registration{ loadfile = loadfile, assert = assert, loaded_modules = loaded_modules, serializeTbl = serializeTbl, clearWarningFlag = clearWarningFlag  }
 require("strict")
