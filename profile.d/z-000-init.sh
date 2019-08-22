@@ -5,3 +5,7 @@ fi
 if [[ -z "$CC_CLUSTER" ]]; then
 	export CC_CLUSTER="computecanada"
 fi
+if [[ -d "/cvmfs/restricted.computecanada.ca/easybuild" ]]; then
+	export CC_RESTRICTED="true"
+fi
+
