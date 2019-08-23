@@ -115,7 +115,6 @@ end
 dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_logging.lua")
 dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_licenses.lua")
 dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_families.lua")
-dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_wiki_url.lua")
 dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_properties.lua")
 dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_visible.lua")
 
@@ -191,13 +190,11 @@ end
 local function load_hook(t)
 	local valid = validate_license(t)
 	set_props(t)
-	set_wiki_url(t)
 	set_family(t)
 	log_module_load(t,true)
 end
 local function spider_hook(t)
 	set_props(t)
-	set_wiki_url(t)
 end
 hook.register("load",           load_hook)
 hook.register("load_spider", 	spider_hook)
