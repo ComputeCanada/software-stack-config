@@ -187,10 +187,27 @@ local function localUserInGroup(group)
 	return found
 end
 
+local function default_module_change_warning(t)
+	local FrameStk   = require("FrameStk")
+	local frameStk   = FrameStk:singleton()
+	local modulename = myModuleName()
+	if (modulename == "python") then
+		-- This will only display if "module load python" is used, not if "module load python/3.5.4" is used
+		if (frameStk:userName() == modulename) then
+			LmodMessage("Warning, on 9/15 the default Python module will be version 3.7.4.")
+			LmodMessage("Please adjust your scripts to call python/3.5.4 if you need to preserve this version.")
+
+			LmodMessage("Attention! Le 15 septembre, la version par defaut de Python sera la version 3.7.4")
+			LmodMessage("Ajustez vos scripts pour charger python/3.5.4 si vous desirez garder cette version.")
+		end
+	end
+end
+
 local function load_hook(t)
 	local valid = validate_license(t)
 	set_props(t)
 	set_family(t)
+	default_module_change_warning(t)
 	log_module_load(t,true)
 end
 local function spider_hook(t)
