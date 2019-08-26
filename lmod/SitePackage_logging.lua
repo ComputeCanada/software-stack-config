@@ -27,6 +27,10 @@ function log_module_load(t,success)
 	-- t.modFullName:   Full name of the Module,
 	-- t.fn:            the path of the modulefile.
 
+	local FrameStk   = require("FrameStk")
+	local frameStk   = FrameStk:singleton()
+	local module_user_name   = frameStk:userName()
+
 	local a   = {}
 	local hostname = getenv("HOSTNAME")
 	local user = getenv_logged("USER","unknown")
@@ -122,6 +126,7 @@ function log_module_load(t,success)
 	a[#a+1] = "mpi=" .. mpi
 	a[#a+1] = "compiler=" .. compiler
 	a[#a+1] = "cluster=" .. clustername
+	a[#a+1] = "MUN=" .. module_user_name
 
 	local s = concatTbl(a," ")  --> "M${module} FN${fn} U${user} H${hostname}"
 
