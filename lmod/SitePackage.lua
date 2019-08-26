@@ -173,20 +173,6 @@ function get_interconnect()
 	return "ethernet"
 end
 sandbox_registration{ get_interconnect = get_interconnect }
-local function localUserInGroup(group)
-	local handle = io.popen("groups 2>/dev/null")
-	local grps = handle:read()
-	handle:close()
-	local found  = false
-	for g in string.gmatch(grps, '([^ ]+)') do
-		if (g == group)  then
-			found = true
-			break
-		end
-	end
-	return found
-end
-
 local function default_module_change_warning(t)
 	local FrameStk   = require("FrameStk")
 	local frameStk   = FrameStk:singleton()

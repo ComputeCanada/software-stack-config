@@ -1,3 +1,17 @@
+local function localUserInGroup(group)
+	local handle = io.popen("groups 2>/dev/null")
+	local grps = handle:read()
+	handle:close()
+	local found  = false
+	for g in string.gmatch(grps, '([^ ]+)') do
+		if (g == group)  then
+			found = true
+			break
+		end
+	end
+	return found
+end
+
 local function user_accepted_license(soft,autoaccept)
 	require "lfs"
 	local posix = require "posix"
