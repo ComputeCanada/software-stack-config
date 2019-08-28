@@ -55,7 +55,7 @@ function log_module_load(t,success)
 	local hierarchy = "na"
 	local arch = "generic"
 	local root = "na"
-	local root_found = false
+	local root_level_found = 0
 	local name = "-"
 	local version = "-"
 	if string.match(t.modFullName,'.*/.*') then
@@ -72,9 +72,13 @@ function log_module_load(t,success)
 	local fourth_last = ""
 	local fifth_last = ""
 	for v in t.fn:split("/") do
-		if not root_found and string.match(v,'[a-zA-Z0-9]+') then
-			root = v
-			root_found = true
+		if root_level_found < 2 and string.match(v,'[a-zA-Z0-9]+') then
+			if root == "na" then
+				root = "/" .. v
+			else
+				root = root .. "/" .. v
+			end
+			root_level_found = root_level_found+1
 		end
 		if v == "CUDA" then
 			hierarchy = "CUDA"
