@@ -22,6 +22,15 @@ function getenv_logged(var,default)
 	return val
 end
 
+function has_key(tab, val)
+	for key, value in pairs(tab) do
+		if key == val then
+			return true
+		end
+	end
+	return false
+end
+
 function log_module_load(t,success)
 	-- t is a table containing:
 	-- t.modFullName:   Full name of the Module,
@@ -30,7 +39,8 @@ function log_module_load(t,success)
 	local FrameStk   = require("FrameStk")
 	local frameStk   = FrameStk:singleton()
 	local module_user_name   = frameStk:userName()
-
+	local mt = frameStk:mt()['mT']
+	
 	local a   = {}
 	local hostname = getenv("HOSTNAME")
 	local user = getenv_logged("USER","unknown")
@@ -66,6 +76,24 @@ function log_module_load(t,success)
 	else
 		name = t.modFullName
 	end
+
+	local prop_string = "na"
+	if has_key(mt,name) then
+--		LmodWarning("Warning \n" .. serializeTbl{name, value=mt, indent = true})
+		if has_key(mt[name],'propT') then
+--			LmodWarning("Warning \n" .. serializeTbl{name, value=mt[name], indent = true})
+			local prop = mt[name]['propT']
+			if has_key(prop,'type_') then
+				prop_string = ""
+--				LmodWarning("Warning \n" .. serializeTbl{name, value=prop['type_'], indent = true})
+				for key,value in pairs(prop['type_']) do
+					prop_string = prop_string .. key .. ","
+				end
+				prop_string = prop_string:sub(1,prop_string:len()-1)
+			end
+		end
+	end
+
 	local last = ""
 	local second_last = ""
 	local third_last = ""
@@ -131,6 +159,7 @@ function log_module_load(t,success)
 	a[#a+1] = "compiler=" .. compiler
 	a[#a+1] = "cluster=" .. clustername
 	a[#a+1] = "MUN=" .. module_user_name
+	a[#a+1] = "prop=" .. prop_string
 
 	local s = concatTbl(a," ")  --> "M${module} FN${fn} U${user} H${hostname}"
 
