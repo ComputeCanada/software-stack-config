@@ -180,11 +180,22 @@ local function default_module_change_warning(t)
 	if (modulename == "python") then
 		-- This will only display if "module load python" is used, not if "module load python/3.5.4" is used
 		if (frameStk:userName() == modulename) then
-			LmodMessage("Warning, on 9/15 the default Python module will changed to 3.7.")
+			LmodMessage("Warning, on September 16 the default Python module will changed to 3.7.")
 			LmodMessage("Please adjust your scripts to call python/3.5.4 if you need to preserve this version.")
 
-			LmodMessage("Attention! Le 15 septembre, la version par defaut de Python sera la version 3.7.")
+			LmodMessage("Attention! Le 16 septembre, la version par defaut de Python sera la version 3.7.")
 			LmodMessage("Ajustez vos scripts pour charger python/3.5.4 si vous desirez garder cette version.")
+		end
+	end
+	if (modulename == "singularity") then
+		-- This will only display if "module load singularity" is used, for "module load singularity/2.6"
+		-- there is a deprecation message
+		if (frameStk:userName() == modulename) then
+			LmodMessage("Warning, on September 16 the default Singularity module will be changed to 3.2.")
+			LmodMessage("The singularity/2.6 module may no longer function.")
+
+			LmodMessage("Attention! Le 16 septembre, la version par defaut de Singularity sera la version 3.2.")
+			LmodMessage("Le module singularity/2.6 ne pourrait plus fonctionner.")
 		end
 	end
 end
