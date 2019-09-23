@@ -1,6 +1,7 @@
 local ompiv=...
 local cluster = os.getenv("CC_CLUSTER") or nil
 local arch = os.getenv("RSNT_ARCH") or nil
+local interconnect = os.getenv("RSNT_INTERCONNECT") or nil
 
 local posix = require "posix"
 local slurmpaths = { "/opt/software/slurm/lib", "/opt/software/slurm/lib64",
@@ -30,7 +31,7 @@ if ompiv ~= "3.1" and ompiv ~= '4.0' then
 end
 
 if ompiv == "2.1" or ompiv == "2.0" or (ompiv == "1.10" and arch == "avx512") then
-	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
+	if interconnect == "omnipath" or interconnect == "ethernet" then
 	        setenv("OMPI_MCA_mtl", "^mxm")
 	        setenv("OMPI_MCA_pml", "^yalla,ucx")
 	        setenv("OMPI_MCA_btl", "^openib")
@@ -69,7 +70,7 @@ elseif  ompiv == "3.1" or ompiv == "4.0" then
 	-- disable openib unconditionally, as it does not work very well with UCX
 	setenv("OMPI_MCA_btl", "^openib")
 
-	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
+	if interconnect == "omnipath" or interconnect == "ethernet" then
 	        setenv("OMPI_MCA_pml", "^ucx,yalla")
 	        if ompiv == "3.1" then -- removed in 4.0; don't use ofi by default for cuda
 			setenv("OMPI_MCA_mtl", "^mxm,ofi")
@@ -89,7 +90,7 @@ elseif  ompiv == "3.1" or ompiv == "4.0" then
 		setenv("OMPI_MCA_coll", "^hcoll")
 	end
 elseif ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" then
-	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
+	if interconnect == "omnipath" or interconnect == "ethernet" then
 		setenv("OMPI_MCA_mtl", "^mxm")
 		setenv("OMPI_MCA_pml", "^yalla")
 	else
@@ -98,6 +99,6 @@ elseif ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" then
 end
 
 -- for CUDA + omnipath enable direct GPU transfers
-if os.getenv("RSNT_INTERCONNECT") == "omnipath" and isloaded("cuda") then
+if interconnect == "omnipath" and isloaded("cuda") then
 	setenv("PSM2_CUDA", 1)
 end
