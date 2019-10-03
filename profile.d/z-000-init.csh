@@ -8,5 +8,5 @@ endif
 if ( -d "/cvmfs/restricted.computecanada.ca/easybuild" ) then
 	setenv CC_RESTRICTED "true"
 endif
-umask -S 0027
+umask 0027
 

@@ -8,5 +8,5 @@ fi
 if [[ -d "/cvmfs/restricted.computecanada.ca/easybuild" ]]; then
 	export CC_RESTRICTED="true"
 fi
-umask -S 0027
+umask 0027
 
