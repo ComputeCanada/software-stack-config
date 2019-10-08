@@ -199,7 +199,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ { "fsl" } ] = "academic_autoaccept",
 		[ { "intel", "signalp", "tmhmm", "rnammer" } ] = "noncommercial_autoaccept",
 		[ { "cudnn" } ] = "nvidia_autoaccept",
-		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue", "motioncor2", "pwrf", "delft3d"} ] = "academic_license",
+		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue", "motioncor2", "pwrf"} ] = "academic_license",
 		[ { "namd", "namd-mpi", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "academic_license_autoaccept",
 		[ { "cfour", "cpmd", "dl_poly4", "gaussian", "maker", "orca", "vasp/4.6", "vasp/5.4.1", "sas" } ] = "posix_group",
 	}
