@@ -9,7 +9,7 @@ module-version intel/2016.4 default
 module-version openmpi/2.1.1 default
 module-version gcc/5.4.0 default
 module-version cuda/8.0.44 default
-module-version python/3.7 default
+module-version python/3.7.4 default
 module-version singularity/2.6 default
 module-version matlab/2018b default
 
@@ -21,6 +21,7 @@ module-version python/2.7.14 2.7 2
 module-version python/3.5.4 3.5
 module-version python/3.6.3 3.6 
 module-version python/3.7.4 3.7 3
+module-version python/3.8.0 3.8
 module-version r/3.3.3 3.3 3
 module-version imkl/11.3.4.258 11
 module-version imkl/2017.4.239 2017.4 2017
