@@ -181,11 +181,15 @@ local function default_module_change_warning(t)
 		-- This will only display if "module load singularity" is used, for "module load singularity/2.6"
 		-- there is a deprecation message
 		if (frameStk:userName() == modulename) then
-			LmodMessage("Warning, on September 16 the default Singularity module will be changed to 3.2.")
+			LmodMessage("==============================================================================================")
+			LmodMessage("Warning, on December 1st the default Singularity module will be changed to 3.4.")
 			LmodMessage("The singularity/2.6 module may no longer function.")
+			LmodMessage("==============================================================================================")
+			LmodMessage("")
 
-			LmodMessage("Attention! Le 16 septembre, la version par defaut de Singularity sera la version 3.2.")
+			LmodMessage("Attention! Le 1er decembre, la version par defaut de Singularity sera la version 3.4.")
 			LmodMessage("Le module singularity/2.6 ne pourrait plus fonctionner.")
+			LmodMessage("==============================================================================================")
 		end
 	end
 	if (modulename == "scipy-stack") then
