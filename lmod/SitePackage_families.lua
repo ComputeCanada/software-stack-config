@@ -20,7 +20,8 @@ function set_family(t)
       [ { "starccm", "starccm-mixed" } ] = "starccm",
       [ { "gatk", "gatk-queue" } ] = "gatk",
       [ { "gdal", "gdal-mpi" } ] = "gdal",
-      [ { "wrf", "pwrf" } ] = "wrf"
+      [ { "wrf", "pwrf" } ] = "wrf",
+      [ { "lumerical", "fdtd_solutions"  } ] = "lumerical"
    }
 
    for k,v in pairs(familyT) do
