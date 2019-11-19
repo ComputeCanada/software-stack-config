@@ -32,6 +32,33 @@ if ompiv ~= "3.1" and ompiv ~= '4.0' then
 	end
 end
 
+if ompiv == "2.1" or ompiv == "3.1" or ompiv == "4.0" then
+	local slurm_pmi = nil
+	if slurmpath then
+		if ompiv == "3.1" or ompiv == "4.0" then
+			if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v3.so"),"type") == "regular" then
+				slurm_pmi = "pmix_v3"
+			elseif posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v2.so"),"type") == "regular" then
+				slurm_pmi = "pmix_v2"
+			else
+				slurm_pmi = "pmi2"
+			end
+		else
+			if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v1.so"),"type") == "regular" then
+				if not posix.stat("/usr/lib64/libpmix.so.2.0.2") then
+					slurm_pmi = "pmix_v1"
+				end
+			end
+		end
+		if slurm_pmi then
+			setenv("SLURM_MPI_TYPE", slurm_pmi)
+			-- RSNT_SLURM_MPI_TYPE is set so we can recover SLURM_MPI_TYPE after salloc
+			setenv("RSNT_SLURM_MPI_TYPE", slurm_pmi)
+		end
+	end
+
+end
+
 if ompiv == "2.1" or ompiv == "2.0" or (ompiv == "1.10" and arch == "avx512") then
 	if interconnect == "omnipath" or interconnect == "ethernet" then
 	        setenv("OMPI_MCA_mtl", "^mxm")
@@ -57,18 +84,6 @@ if ompiv == "2.1" or ompiv == "2.0" or (ompiv == "1.10" and arch == "avx512") th
 		end
 	end
 elseif  ompiv == "3.1" or ompiv == "4.0" then
-	local slurm_pmi = nil
-	if slurmpath then
-		if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v2.so"),"type") == "regular" then
-			slurm_pmi = "pmix_v2"
-		else
-			slurm_pmi = "pmi2"
-		end
-		setenv("SLURM_MPI_TYPE", slurm_pmi)
-		-- RSNT_SLURM_MPI_TYPE is set so we can recover SLURM_MPI_TYPE after salloc
-		setenv("RSNT_SLURM_MPI_TYPE", slurm_pmi)
-	end
-
 	-- disable openib unconditionally, as it does not work very well with UCX
 	setenv("OMPI_MCA_btl", "^openib")
 
