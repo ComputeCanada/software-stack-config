@@ -20,7 +20,7 @@ if cluster == "beluga" then
 	setenv("UCX_NET_DEVICES","mlx5_0:1")
 	setenv("OMPI_MCA_btl_openib_if_include", "mlx5_0")
 	-- this is because CentOS 7.7 does not include ib_ucm.ko
-	setenv("UCX_TLS","self,tcp,rc,rc_mlx5,dc_mlx5,ud,ud_mlx5,mm,cma")
+	setenv("UCX_TLS","self,tcp,rc,rc_mlx5,ud,ud_mlx5,mm,cma")
 end
 
 if ompiv ~= "3.1" and ompiv ~= '4.0' then
