@@ -8,8 +8,6 @@ if os.getenv("EBVERSIONSTDENV") == "2019.3" then
 	module_version("openmpi/3.1.2","default")
 	module_version("gcc/7.3.0","default")
 	module_version("cuda/10.0.130","default")
-	module_version("python/3.7","default")
-	module_version("singularity/3.0","default")
 else
 	module_version("StdEnv/2016.4","default")
 	module_version("boost/1.60.0","default")
@@ -19,9 +17,9 @@ else
 	module_version("openmpi/2.1.1","default")
 	module_version("gcc/5.4.0","default")
 	module_version("cuda/8.0.44","default")
-	module_version("python/3.7","default")
-	module_version("singularity/2.6","default")
 end
+module_version("python/3.7","default")
+module_version("singularity/3.4","default")
 module_version("matlab/2018b","default")
 
 -- shortcut versions

@@ -9,5 +9,4 @@ module-version intel/2018.3 default
 module-version openmpi/3.1.2 default
 module-version gcc/7.3.0 default
 module-version cuda/10.0.130 default
-module-version singularity/3.0 default
 

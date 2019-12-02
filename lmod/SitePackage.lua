@@ -177,39 +177,24 @@ local function default_module_change_warning(t)
 	local FrameStk   = require("FrameStk")
 	local frameStk   = FrameStk:singleton()
 	local modulename = myModuleName()
-	if (modulename == "singularity") then
-		-- This will only display if "module load singularity" is used, for "module load singularity/2.6"
-		-- there is a deprecation message
-		if (frameStk:userName() == modulename) then
-			LmodMessage("==============================================================================================")
-			LmodMessage("Warning, on December 1st the default Singularity module will be changed to 3.4.")
-			LmodMessage("The singularity/2.6 module may no longer function.")
-			LmodMessage("==============================================================================================")
-			LmodMessage("")
-
-			LmodMessage("Attention! Le 1er decembre, la version par defaut de Singularity sera la version 3.4.")
-			LmodMessage("Le module singularity/2.6 ne pourrait plus fonctionner.")
-			LmodMessage("==============================================================================================")
-		end
-	end
-	if (modulename == "scipy-stack") then
+--	if (modulename == "scipy-stack") then
 		-- This will only display if "module load scipy-stack" is used, for "module load scipy-stack/2019a"
 		-- there is a deprecation message
-		if (frameStk:userName() == modulename) then
-			LmodMessage("==============================================================================================")
-			LmodMessage("Warning, on December 1st, the default scipy-stack module will be changed to 2019b.")
-			LmodMessage("Note that version 2019a is the last one to support python/2.7.")
-			LmodMessage("If you need python/2.7, we suggest you load the module scipy-stack/2019a")
-			LmodMessage("Version 2019b is the first one to support python/3.8.")
-			LmodMessage("==============================================================================================")
-			LmodMessage("")
-			LmodMessage("Attention! Le 1er decembre, la version par default de scipy-stack deviendra la version 2019b.")
-			LmodMessage("Notez que la version 2019a est la derniere qui supportera python/2.7.")
-			LmodMessage("Si vous devez utiliser python/2.7, nous vous suggerons de charger le module scipy-stack/2019a")
-			LmodMessage("La version 2019b est la premiere version a supporter python/3.8.")
-			LmodMessage("==============================================================================================")
-		end
-	end
+--		if (frameStk:userName() == modulename) then
+--			LmodMessage("==============================================================================================")
+--			LmodMessage("Warning, on December 1st, the default scipy-stack module will be changed to 2019b.")
+--			LmodMessage("Note that version 2019a is the last one to support python/2.7.")
+--			LmodMessage("If you need python/2.7, we suggest you load the module scipy-stack/2019a")
+--			LmodMessage("Version 2019b is the first one to support python/3.8.")
+--			LmodMessage("==============================================================================================")
+--			LmodMessage("")
+--			LmodMessage("Attention! Le 1er decembre, la version par default de scipy-stack deviendra la version 2019b.")
+--			LmodMessage("Notez que la version 2019a est la derniere qui supportera python/2.7.")
+--			LmodMessage("Si vous devez utiliser python/2.7, nous vous suggerons de charger le module scipy-stack/2019a")
+--			LmodMessage("La version 2019b est la premiere version a supporter python/3.8.")
+--			LmodMessage("==============================================================================================")
+--		end
+--	end
 end
 
 local function load_hook(t)
