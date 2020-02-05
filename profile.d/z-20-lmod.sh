@@ -1,5 +1,10 @@
-export MODULESHOME=/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/lmod
-source /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/lmod/init/profile
+if [ -n "$GENTOO_CC_CVMFS" ]; then
+	export MODULESHOME=/cvmfs/soft.computecanada.ca/gentoo/2019/usr/lmod/lmod
+	export LMOD_SYSTEM_DEFAULT_MODULES="gentoo/2019"
+else
+	export MODULESHOME=/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/lmod
+fi
+source $MODULESHOME/init/profile
 export LMOD_PACKAGE_PATH=/cvmfs/soft.computecanada.ca/config/lmod/
 export LMOD_ADMIN_FILE=/cvmfs/soft.computecanada.ca/config/lmod/admin.list
 export LMOD_AVAIL_STYLE=grouped:system

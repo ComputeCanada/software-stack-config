@@ -12,6 +12,7 @@ module-version cuda/8.0.44 default
 module-version python/3.7.4 default
 module-version singularity/3.5 default
 module-version matlab/2018b default
+module-version scipy-stack/2019a default
 
 # shortcut versions
 module-version intel/2018.3 2018 18
@@ -58,6 +59,7 @@ hide-version julia/0.6.0
 hide-version julia/0.6.2
 hide-version julia/1.0.0
 hide-version impi/2018.3.222
+hide-version StdEnv/2020
 #hide-version cuda/10.0.130
 # default versions for hidden deprecated modules,
 # where there is only one version per directory
