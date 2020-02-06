@@ -2,6 +2,7 @@ local ompiv=...
 local cluster = os.getenv("CC_CLUSTER") or nil
 local arch = os.getenv("RSNT_ARCH") or nil
 local interconnect = os.getenv("RSNT_INTERCONNECT") or nil
+local gentoo = os.getenv("EBROOTGENTOO") or nil
 
 local posix = require "posix"
 local slurmpaths = { "/opt/software/slurm/lib", "/opt/software/slurm/lib64",
@@ -18,6 +19,10 @@ if cluster == "beluga" then
 	-- hack to disable OpenIB warnings on Beluga login nodes,
 	-- and UCX issues from trying to use mlx5_2 and mlx5_bond_0
 	setenv("UCX_NET_DEVICES","mlx5_0:1")
+	if gentoo then
+		-- see https://github.com/openucx/ucx/issues/4556
+		setenv("UCX_IB_MLX5_DEVX","no")
+	end
 	setenv("OMPI_MCA_btl_openib_if_include", "mlx5_0")
 end
 
