@@ -16,7 +16,9 @@ else
 	end
 end
 
-if string.sub(impiv,1,4) ~= "2019" then
+if string.sub(impiv,1,4) == "2019" then
+	setenv("I_MPI_LINK", "opt")
+else
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 		setenv("I_MPI_FABRICS_LIST", "ofi,tmi,dapl,tcp,ofa")
 	else
