@@ -1,5 +1,5 @@
-setenv MODULESHOME /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/lmod
-source /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/lmod/lmod/init/csh
+setenv MODULESHOME /cvmfs/soft.computecanada.ca/custom/software/lmod/lmod
+source /cvmfs/soft.computecanada.ca/custom/software/lmod/lmod/init/csh
 setenv LMOD_PACKAGE_PATH /cvmfs/soft.computecanada.ca/config/lmod/
 setenv LMOD_ADMIN_FILE /cvmfs/soft.computecanada.ca/config/lmod/admin.list
 setenv LMOD_AVAIL_STYLE grouped:system
