@@ -112,11 +112,13 @@ function dofile (filename)
 	return f()
 end
 
-dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_logging.lua")
-dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_licenses.lua")
-dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_families.lua")
-dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_properties.lua")
-dofile("/cvmfs/soft.computecanada.ca/config/lmod/SitePackage_visible.lua")
+local lmod_package_path = os.getenv("LMOD_PACKAGE_PATH")
+dofile(pathJoin(lmod_package_path,"SitePackage_logging.lua"))
+dofile(pathJoin(lmod_package_path,"SitePackage_licenses.lua"))
+dofile(pathJoin(lmod_package_path,"SitePackage_families.lua"))
+dofile(pathJoin(lmod_package_path,"SitePackage_properties.lua"))
+dofile(pathJoin(lmod_package_path,"SitePackage_visible.lua"))
+dofile(pathJoin(lmod_package_path,"SitePackage_localpaths.lua"))
 
 sandbox_registration{ loadfile = loadfile, assert = assert, loaded_modules = loaded_modules, serializeTbl = serializeTbl, clearWarningFlag = clearWarningFlag  }
 require("strict")
@@ -196,17 +198,22 @@ local function default_module_change_warning(t)
 --		end
 --	end
 end
-
+local function unload_hook(t)
+	set_local_paths(t)
+end
 local function load_hook(t)
 	local valid = validate_license(t)
 	set_props(t)
 	set_family(t)
 	default_module_change_warning(t)
 	log_module_load(t,true)
+	set_local_paths(t)
 end
 local function spider_hook(t)
 	set_props(t)
+	set_local_paths(t)
 end
+hook.register("unload",           unload_hook)
 hook.register("load",           load_hook)
 hook.register("load_spider", 	spider_hook)
 local mapT =
@@ -239,7 +246,15 @@ function avail_hook(t)
    if (not availStyle or availStyle == "system" or styleT == nil) then
       return
    end
-
+   local localModulePaths = os.getenv("RSNT_LOCAL_MODULEPATHS") or nil
+   if localModulePaths ~= nil then
+	for localModulePathRoot in localModulePaths:split(":") do
+	   styleT[localModulePathRoot .. "/.*/Core.*"] = "Cluster specific Core modules"
+	   styleT[localModulePathRoot .. "/.*/CUDA.*"] = "Cluster specific Cuda-dependent modules"
+	   styleT[localModulePathRoot .. "/.*/Compiler.*"] = "Cluster specific Compiler-dependent modules"
+	   styleT[localModulePathRoot .. "/.*/MPI.*"] = "Cluster specific MPI-dependent modules"
+	end
+   end
    for k,v in pairs(t) do
       for pat,label in pairs(styleT) do
          if (k:find(pat)) then
