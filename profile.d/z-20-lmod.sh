@@ -1,6 +1,3 @@
-if [ -n "$GENTOO_CC_CVMFS" ]; then
-	export LMOD_SYSTEM_DEFAULT_MODULES="gentoo/2019"
-fi
 export MODULESHOME=/cvmfs/soft.computecanada.ca/custom/software/lmod/lmod
 source $MODULESHOME/init/profile
 export LMOD_PACKAGE_PATH=/cvmfs/soft.computecanada.ca/config/lmod/

@@ -11,9 +11,6 @@ fi
 if [[ -f $HOME/.force_cc_cvmfs ]]; then
 	FORCE_CC_CVMFS=1
 fi
-if [[ -f $HOME/.gentoo_cc_cvmfs ]]; then
-        GENTOO_CC_CVMFS=1
-fi
 if [[ ($UID -ge 1000 && $SKIP_CC_CVMFS -ne 1) || ($FORCE_CC_CVMFS -eq 1) ]]
 then
 	for file in /cvmfs/soft.computecanada.ca/config/profile.d/*.sh; do
