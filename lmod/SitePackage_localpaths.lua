@@ -41,6 +41,7 @@ function set_local_paths(t)
 			local relativeFileName = string.gsub(myFileName, rootModulePath, "")
 			-- from the module filename, remove the <name>/<version>.lua
 			relativeModulePaths = string.gsub(relativeFileName, myModuleFullName .. ".lua", "")
+--			LmodWarning("myModuleName:" .. myModuleName)
 --			LmodWarning("initial:" .. relativeModulePaths)
 	
 			local subPath = myModuleName .. myModuleVersionTwoDigits
@@ -52,6 +53,11 @@ function set_local_paths(t)
 			elseif myModuleName == "gcc" or myModuleName == "intel" or myModuleName == "pgi" then
 				-- build the module path by changing Core by Compiler
 				relativeModulePaths = string.gsub(relativeModulePaths, "/Core/", "/" .. arch .. "/Compiler/")
+				relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-sse3/", "/" .. arch .. "/Compiler/")
+				relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx/", "/" .. arch .. "/Compiler/")
+				relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx2/", "/" .. arch .. "/Compiler/")
+				relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx512/", "/" .. arch .. "/Compiler/")
+--				LmodWarning("replaced:" .. relativeModulePaths)
 			elseif myModuleName == "cuda" then
 				-- build the module path by changing Compiler for CUDA
 				relativeModulePaths = string.gsub(relativeModulePaths, "/Compiler/", "/CUDA/")
