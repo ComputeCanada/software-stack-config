@@ -6,6 +6,7 @@ function set_family(t)
    local familyT = {
       [ { "gcc", "intel", "pgi" } ] = "compiler",
       [ { "openmpi", "mvapich2" } ] = "mpi",
+      [ { "nixpkgs", "gentoo" } ] = "base_os",
       [ { "hdf5-mpi", "hdf5", "hdf5-serial" } ] = "hdf5",
       [ { "petsc", "petsc-64bits", "petsc-debug", "petsc-complex" } ] = "petsc",
       [ { "gromacs-plumed", "gromacs" } ] = "gromacs",
