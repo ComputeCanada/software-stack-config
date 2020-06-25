@@ -199,6 +199,7 @@ local function default_module_change_warning(t)
 --	end
 end
 local function unload_hook(t)
+	set_family(t)
 	set_local_paths(t)
 end
 local function load_hook(t)
