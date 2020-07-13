@@ -46,7 +46,8 @@ function visible_hook(t)
 		[ "singularity/3.2" ] = "/opt/software/singularity-3.2",
 		[ "singularity/3.3" ] = "/opt/software/singularity-3.3",
 		[ "singularity/3.4" ] = "/opt/software/singularity-3.4",
-		[ "singularity/3.5" ] = "/opt/software/singularity-3.5"
+		[ "singularity/3.5" ] = "/opt/software/singularity-3.5",
+		[ "cuda" ] = "/usr/lib64/nvidia",
 	}
 	-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
 	local cuda_minimum_drivers_version = {
@@ -75,12 +76,14 @@ function visible_hook(t)
 		local ftype = posix.stat(modulePath,"type") or nil
 		if ftype == nil then
 			t['isVisible'] = false
+			return
 		end
 	end
 	local restricted_available = os.getenv("CC_RESTRICTED") or "false"
 	if (restricted_available ~= "true") then
 		if (has_value(restricted_packages,moduleName)) then
 			t['isVisible'] = false
+			return
 		end
 	end
 
