@@ -1,16 +1,3 @@
-function installed_cuda_driver_version(t) 
-	local lfs       = require("lfs")
-	for f in lfs.dir('/usr/lib64/nvidia') do
-		local name = f:match("^(.+%.so).+$")
-		if name == "libcuda.so" then
-			local version = f:match("^.+%.so%.(.+)$")
-			if version ~= "1" then
-				return version
-			end
-		end
-	end
-end
-
 function visible_hook(t)
 	local restricted_packages = {
 		"abaqus", 
@@ -47,20 +34,6 @@ function visible_hook(t)
 		[ "singularity/3.3" ] = "/opt/software/singularity-3.3",
 		[ "singularity/3.4" ] = "/opt/software/singularity-3.4",
 		[ "singularity/3.5" ] = "/opt/software/singularity-3.5",
-		[ "cuda" ] = "/usr/lib64/nvidia",
-	}
-	-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
-	local cuda_minimum_drivers_version = {
-		[ "11.0" ] = "450.36.06",
-		[ "10.2" ] = "440.33",
-		[ "10.1" ] = "418.39",
-		[ "10.0" ] = "410.48",
-		[ "9.2" ] = "396.26",
-		[ "9.1" ] = "390.46",
-		[ "9.0" ] = "384.81",
-		[ "8.0" ] = "367.48",
-		[ "7.5" ] = "352.31",
-		[ "7.0" ] = "346.46"
 	}
 	local moduleName = t.sn
 	local fullName = t.fullName
@@ -87,26 +60,34 @@ function visible_hook(t)
 		end
 	end
 
-	local arch = get_highest_supported_architecture()
 	if moduleName == "cuda" then
-		local driver_version = installed_cuda_driver_version()
+		-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
+		local cuda_minimum_drivers_version = {
+			[ "11.0" ] = "450.36.06",
+			[ "10.2" ] = "440.33",
+			[ "10.1" ] = "418.39",
+			[ "10.0" ] = "410.48",
+			[ "9.2" ] = "396.26",
+			[ "9.1" ] = "390.46",
+			[ "9.0" ] = "384.81",
+			[ "8.0" ] = "367.48",
+			[ "7.5" ] = "352.31",
+			[ "7.0" ] = "346.46"
+		}
+		local driver_version = os.getenv("RSNT_CUDA_DRIVER_VERSION") or "0"
+		-- for backward compatibility, if no driver version were found, we consider that they can run 10.2
+		-- this is because we introduced hiding of cuda versions when cuda/11.0 was just out
+		if driver_version == "0" then
+			driver_version = cuda_minimum_drivers_version["10.2"]
+		end
 		local cuda_version_two_digits = fullName:match("^.+/([0-9]+%.[0-9]+).*$")
-		local dv_major = tonumber(driver_version:match("^([0-9]+)%..*$"))
-		local dv_minor = tonumber(driver_version:match("^[0-9]+%.([0-9]+).*$"))
-		local dv_revision = tonumber(driver_version:match("^[0-9]+%.[0-9]+%.([0-9]+)$")) or 0
-		local min_driver_version = cuda_minimum_drivers_version[cuda_version_two_digits]
-		local min_dv_major = tonumber(min_driver_version:match("^([0-9]+)%..*$"))
-		local min_dv_minor = tonumber(min_driver_version:match("^[0-9]+%.([0-9]+).*$"))
-		local min_dv_revision = tonumber(min_driver_version:match("^[0-9]+%.[0-9]+%.([0-9]+)$")) or 0
-
-		if dv_major < min_dv_major then
-			t['isVisible'] = false
-		elseif dv_major == min_dv_major and dv_minor < min_dv_minor then
-			t['isVisible'] = false
-		elseif dv_major == min_dv_major and dv_minor == min_dv_minor and dv_revision < min_dv_revision then
+		local min_driver_version = cuda_minimum_drivers_version[cuda_version_two_digits] or "10000"
+		
+		if driver_version < min_driver_version then
 			t['isVisible'] = false
 		end
 	end
+	local arch = get_highest_supported_architecture()
 	if moduleName == "arch" then
 		local name = nil
 		local version = nil
