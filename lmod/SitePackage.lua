@@ -175,6 +175,21 @@ function get_interconnect()
 	return "ethernet"
 end
 sandbox_registration{ get_interconnect = get_interconnect }
+function get_installed_cuda_driver_version()
+	local lfs       = require("lfs")
+	for f in lfs.dir('/usr/lib64/nvidia') do
+		local name = f:match("^(.+%.so).+$")
+		if name == "libcuda.so" then
+			local version = f:match("^.+%.so%.(.+)$")
+			-- skip libcuda.so.1
+			if version ~= "1" then
+				return version
+			end
+		end
+	end
+end
+sandbox_registration{ get_installed_cuda_driver_version = get_installed_cuda_driver_version }
+
 local function default_module_change_warning(t)
 	local FrameStk   = require("FrameStk")
 	local frameStk   = FrameStk:singleton()
