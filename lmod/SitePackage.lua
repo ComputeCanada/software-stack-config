@@ -177,15 +177,19 @@ end
 sandbox_registration{ get_interconnect = get_interconnect }
 function get_installed_cuda_driver_version()
 	local lfs       = require("lfs")
-	for f in lfs.dir('/usr/lib64/nvidia') do
-		local name = f:match("^(.+%.so).+$")
-		if name == "libcuda.so" then
-			local version = f:match("^.+%.so%.(.+)$")
-			-- skip libcuda.so.1
-			if version ~= "1" then
-				return version
+	if posix.stat("/usr/lib64/nvidia") == 'directory' then
+		for f in lfs.dir('/usr/lib64/nvidia') do
+			local name = f:match("^(.+%.so).+$")
+			if name == "libcuda.so" then
+				local version = f:match("^.+%.so%.(.+)$")
+				-- skip libcuda.so.1
+				if version ~= "1" then
+					return version
+				end
 			end
 		end
+	else
+		return "0"
 	end
 end
 sandbox_registration{ get_installed_cuda_driver_version = get_installed_cuda_driver_version }
