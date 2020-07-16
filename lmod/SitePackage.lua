@@ -189,9 +189,8 @@ function get_installed_cuda_driver_version()
 				end
 			end
 		end
-	else
-		return "0"
 	end
+	return "0"
 end
 sandbox_registration{ get_installed_cuda_driver_version = get_installed_cuda_driver_version }
 
