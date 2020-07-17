@@ -50,7 +50,7 @@ local function confirm_acceptance(soft)
 end
 
 function find_and_define_license_file(environment_variable,application)
-	require'lfs'
+	require "lfs"
 	require "os"
 	local mode_s = mode() or nil
 	-- unless 
@@ -67,7 +67,13 @@ function find_and_define_license_file(environment_variable,application)
 	local license_found = false
 	local license_path = ""
 
-	-- First, look at the public repository for a file called by the cluster's name
+	-- First, check if the license was defined through the environment variable
+	if os.getenv(environment_variable) ~= nil then
+		license_path = os.getenv(environment_variable)
+		license_found = true
+	end
+
+	-- Then, look at the public repository for a file called by the cluster's name
 	local cluster = os.getenv("CC_CLUSTER") or nil
 	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application)
 	if (posix.stat(dir,"type") == 'directory') then
@@ -79,7 +85,7 @@ function find_and_define_license_file(environment_variable,application)
 		end
 	end
 
-	-- Second, look at restricted repository for a license readable if you are in the right group
+	-- Then, look at restricted repository for a license readable if you are in the right group
 	local dir = pathJoin("/cvmfs/restricted.computecanada.ca/config/licenses/",application)
 	if (posix.stat(dir,"type") == 'directory') then
 		for item in lfs.dir(dir) do
@@ -106,7 +112,7 @@ function find_and_define_license_file(environment_variable,application)
 		end
 	end
 	
-	-- Third, look at the public repository for a file called by the cluster's name with priority
+	-- Then, look at the public repository for a file called by the cluster's name with priority
 	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application)
 	if (posix.stat(dir,"type") == 'directory') then
 		local path = pathJoin(dir,cluster .. ".priority.lic")
@@ -128,6 +134,7 @@ function find_and_define_license_file(environment_variable,application)
 	end
 	return license_found, license_path
 end
+
 function validate_license(t)
 	require "io"
 	local academic_autoaccept_message = [[
