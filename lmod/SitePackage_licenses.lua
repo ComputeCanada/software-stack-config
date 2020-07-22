@@ -50,7 +50,7 @@ local function confirm_acceptance(soft)
 end
 
 function find_and_define_license_file(environment_variable,application)
-	require'lfs'
+	require "lfs"
 	require "os"
 	local mode_s = mode() or nil
 	-- unless 
@@ -105,8 +105,23 @@ function find_and_define_license_file(environment_variable,application)
 			end
 		end
 	end
+
+	-- Third, look at the site-specific repository for
+	-- $RSNT_LOCAL_LICENSE_PATH/<application>.lic
+	local dir = os.getenv("RSNT_LOCAL_LICENSE_PATH")
+	if (dir ~= nil) then
+		if (posix.stat(dir, "type") == "directory") then
+			local path = pathJoin(dir, application .. ".lic")
+			local typef = posix.stat(path, "type") or "nil"
+			if (typef == "regular" or typef == "link") then
+				license_path = path
+				prepend_path(environment_variable, path)
+				license_found = true
+			end
+		end
+	end
 	
-	-- Third, look at the public repository for a file called by the cluster's name with priority
+	-- Fourth, look at the public repository for a file called by the cluster's name with priority
 	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application)
 	if (posix.stat(dir,"type") == 'directory') then
 		local path = pathJoin(dir,cluster .. ".priority.lic")
@@ -128,6 +143,7 @@ function find_and_define_license_file(environment_variable,application)
 	end
 	return license_found, license_path
 end
+
 function validate_license(t)
 	require "io"
 	local academic_autoaccept_message = [[
