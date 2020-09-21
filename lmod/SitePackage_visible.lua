@@ -34,6 +34,7 @@ function visible_hook(t)
 		[ "singularity/3.3" ] = "/opt/software/singularity-3.3",
 		[ "singularity/3.4" ] = "/opt/software/singularity-3.4",
 		[ "singularity/3.5" ] = "/opt/software/singularity-3.5",
+		[ "singularity/3.6" ] = "/opt/software/singularity-3.6",
 	}
 	local moduleName = t.sn
 	local fullName = t.fullName
