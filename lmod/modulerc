@@ -10,7 +10,7 @@ module-version openmpi/2.1.1 default
 module-version gcc/5.4.0 default
 module-version cuda/8.0.44 default
 module-version python/3.7.4 default
-module-version singularity/3.5 default
+#module-version singularity/3.5 default
 module-version matlab/2018b default
 module-version scipy-stack/2019a default
 
