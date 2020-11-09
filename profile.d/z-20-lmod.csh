@@ -3,7 +3,7 @@ source /cvmfs/soft.computecanada.ca/custom/software/lmod/lmod/init/csh
 setenv LMOD_PACKAGE_PATH /cvmfs/soft.computecanada.ca/config/lmod/
 setenv LMOD_ADMIN_FILE /cvmfs/soft.computecanada.ca/config/lmod/admin.list
 setenv LMOD_AVAIL_STYLE grouped:system
-setenv LMOD_AVAIL_EXTENSIONS=no
+setenv LMOD_AVAIL_EXTENSIONS no
 setenv LMOD_RC $LMOD_PACKAGE_PATH/lmodrc.lua
 setenv LMOD_SHORT_TIME 3600
 
