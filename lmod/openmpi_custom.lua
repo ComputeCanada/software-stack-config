@@ -22,6 +22,10 @@ if cluster == "beluga" then
 	setenv("OMPI_MCA_btl_openib_if_include", "mlx5_0")
 end
 
+if posix.stat(pathJoin(slurmpath,"share/doc/slurm-20.11.0", "type")) == "directory" then
+	setenv("SLURM_WHOLE", "1")
+end
+
 if ompiv ~= "3.1" and ompiv ~= '4.0' then
 	-- OpenMPI 3.1+ do not need LD_LIBRARY_PATH any more
 	if slurmpath and posix.stat(pathJoin(slurmpath,"libpmi.so"),"type") == "link" then
