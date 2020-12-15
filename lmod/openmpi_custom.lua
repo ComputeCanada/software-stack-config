@@ -22,7 +22,9 @@ if cluster == "beluga" then
 	setenv("OMPI_MCA_btl_openib_if_include", "mlx5_0")
 end
 
-if posix.stat(pathJoin(slurmpath,"share/doc/slurm-20.11.0", "type")) == "directory" then
+if posix.stat(pathJoin(slurmpath,"libslurm.so.36", "type")) == "link" then
+	-- we need SLURM_WHOLE for Slurm 20.11 which ships with .so.36
+	-- older Slurms use .so.35
 	setenv("SLURM_WHOLE", "1")
 end
 
