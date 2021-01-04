@@ -198,24 +198,36 @@ local function default_module_change_warning(t)
 	local FrameStk   = require("FrameStk")
 	local frameStk   = FrameStk:singleton()
 	local modulename = myModuleName()
---	if (modulename == "scipy-stack") then
-		-- This will only display if "module load scipy-stack" is used, for "module load scipy-stack/2019a"
+	local moduleversion = myModuleVersion()
+	if (modulename == "StdEnv" and moduleversion ~= "2020") then
+		-- This will only display if "module load StdEnv" and results in an environment different than 2020
 		-- there is a deprecation message
---		if (frameStk:userName() == modulename) then
---			LmodMessage("==============================================================================================")
---			LmodMessage("Warning, on December 1st, the default scipy-stack module will be changed to 2019b.")
---			LmodMessage("Note that version 2019a is the last one to support python/2.7.")
---			LmodMessage("If you need python/2.7, we suggest you load the module scipy-stack/2019a")
---			LmodMessage("Version 2019b is the first one to support python/3.8.")
---			LmodMessage("==============================================================================================")
---			LmodMessage("")
---			LmodMessage("Attention! Le 1er decembre, la version par default de scipy-stack deviendra la version 2019b.")
---			LmodMessage("Notez que la version 2019a est la derniere qui supportera python/2.7.")
---			LmodMessage("Si vous devez utiliser python/2.7, nous vous suggerons de charger le module scipy-stack/2019a")
---			LmodMessage("La version 2019b est la premiere version a supporter python/3.8.")
---			LmodMessage("==============================================================================================")
---		end
---	end
+		if (frameStk:userName() == modulename) then
+			LmodMessage("=====================================================================================================")
+			LmodMessage("Warning, in April 2021, the default standard environment module will be changed to a more recent one.")
+			LmodMessage("To test your jobs with the new environment, please run:")
+			LmodMessage("module load StdEnv/2020")
+			LmodMessage("")
+			LmodMessage("To change your default version immediately, please run the following command:")
+			LmodMessage("")
+			LmodMessage('echo "module-version StdEnv/2020 default" >> $HOME/.modulerc')
+			LmodMessage("")
+			LmodMessage("For more information, please see:")
+			LmodMessage("https://docs.computecanada.ca/wiki/Standard_software_environments")
+			LmodMessage("=====================================================================================================")
+			LmodMessage("Attention, en avril 2021, la version par defaut de l'environnement standard sera mis a jour.")
+			LmodMessage("Pour tester vos taches avec le nouvel environnement, executez la commande :")
+			LmodMessage("module load StdEnv/2020")
+			LmodMessage("")
+			LmodMessage("Pour changer votre version par defaut immediatement, executez la commande suivante : ")
+			LmodMessage("")
+			LmodMessage('echo "module-version StdEnv/2020 default" >> $HOME/.modulerc')
+			LmodMessage("")
+			LmodMessage("Pour davantage d'information, visitez :")
+			LmodMessage("https://docs.computecanada.ca/wiki/Standard_software_environments/fr")
+			LmodMessage("=====================================================================================================")
+		end
+	end
 end
 local function unload_hook(t)
 	set_family(t)
