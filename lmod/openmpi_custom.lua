@@ -25,7 +25,7 @@ end
 if posix.stat(pathJoin(slurmpath,"libslurm.so.36"),"type") == "link" then
 	-- we need SLURM_WHOLE for Slurm 20.11 which ships with .so.36
 	-- older Slurms use .so.35
-	setenv("SLURM_WHOLE", "1")
+	setenv("OMPI_MCA_plm_slurm_args", "--whole")
 end
 
 if ompiv ~= "3.1" and ompiv ~= '4.0' then
