@@ -19,7 +19,11 @@ if [[ -z "$__Init_Default_Modules" ]]; then
 	if [[ -z "$LMOD_SYSTEM_DEFAULT_MODULES" ]]; then
 		export LMOD_SYSTEM_DEFAULT_MODULES="StdEnv"
 	fi
-	module --initial_load restore
+	if [[ $- == *i* ]]; then
+		module --initial_load restore
+	else
+		module -q --initial_load restore
+	fi
 else
 	module refresh
 fi
