@@ -195,38 +195,54 @@ end
 sandbox_registration{ get_installed_cuda_driver_version = get_installed_cuda_driver_version }
 
 local function default_module_change_warning(t)
+	local moduleName = myModuleName()
+
+	-- only go further for StdEnv
+	if (moduleName ~= "StdEnv") then return end
+
 	local FrameStk   = require("FrameStk")
 	local frameStk   = FrameStk:singleton()
-	local modulename = myModuleName()
-	local moduleversion = myModuleVersion()
-	if (modulename == "StdEnv" and moduleversion ~= "2020") then
-		-- This will only display if "module load StdEnv" and results in an environment different than 2020
-		-- there is a deprecation message
-		if (frameStk:userName() == modulename) then
-			LmodMessage("=====================================================================================================")
-			LmodMessage("Warning, in April 2021, the default standard environment module will be changed to a more recent one.")
-			LmodMessage("To test your jobs with the new environment, please run:")
-			LmodMessage("module load StdEnv/2020")
-			LmodMessage("")
-			LmodMessage("To change your default version immediately, please run the following command:")
-			LmodMessage("")
-			LmodMessage('echo "module-version StdEnv/2020 default" >> $HOME/.modulerc')
-			LmodMessage("")
-			LmodMessage("For more information, please see:")
-			LmodMessage("https://docs.computecanada.ca/wiki/Standard_software_environments")
-			LmodMessage("=====================================================================================================")
-			LmodMessage("Attention, en avril 2021, la version par defaut de l'environnement standard sera mis a jour.")
-			LmodMessage("Pour tester vos taches avec le nouvel environnement, executez la commande :")
-			LmodMessage("module load StdEnv/2020")
-			LmodMessage("")
-			LmodMessage("Pour changer votre version par defaut immediatement, executez la commande suivante : ")
-			LmodMessage("")
-			LmodMessage('echo "module-version StdEnv/2020 default" >> $HOME/.modulerc')
-			LmodMessage("")
-			LmodMessage("Pour davantage d'information, visitez :")
-			LmodMessage("https://docs.computecanada.ca/wiki/Standard_software_environments/fr")
-			LmodMessage("=====================================================================================================")
+	local userProvidedName = frameStk:userName()
+	local moduleFullName = t.modFullName
+	-- do not go further if the user provided the name with the version
+	if (userProvidedName == moduleFullName) then return end
+
+	local moduleVersion = myModuleVersion()
+	local defaultKind
+	if convertToCanonical(LmodVersion()) >= convertToCanonical("8.4.19") then
+		defaultKind = t.mname:defaultKind()
+	else
+		defaultKind = "unknown"   -- before 8.4.19, we can not detect if the default comes from the user, so we display the warning regardless
+	end
+		
+   	local lang = os.getenv("LANG") or "en"
+	-- only show the warning if the user provided "StdEnv" as load, if the defaultKind is system, and if it does not result in 2020
+	if (userProvidedName == "StdEnv" and moduleVersion ~= "2020" and (defaultKind == "system" or defaultKind == "unknown")) then
+		color_banner("red")
+		if (string.sub(lang,1,2) == "fr") then
+			LmodMessage([[Attention, en avril 2021, la version par defaut de l'environnement standard sera mis a jour.
+Pour tester vos taches avec le nouvel environnement, executez la commande :
+module load StdEnv/2020
+
+Pour changer votre version par defaut immediatement, executez la commande suivante : 
+
+echo "module-version StdEnv/2020 default" >> $HOME/.modulerc
+
+Pour davantage d'information, visitez :
+https://docs.computecanada.ca/wiki/Standard_software_environments/fr]])
+		else
+			LmodMessage([[Warning, in April 2021, the default standard environment module will be changed to a more recent one.
+To test your jobs with the new environment, please run:
+module load StdEnv/2020
+
+To change your default version immediately, please run the following command:
+
+echo "module-version StdEnv/2020 default" >> $HOME/.modulerc
+
+For more information, please see:
+https://docs.computecanada.ca/wiki/Standard_software_environments]])
 		end
+		color_banner("red")
 	end
 end
 local function unload_hook(t)
