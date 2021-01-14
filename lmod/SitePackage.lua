@@ -220,11 +220,11 @@ local function default_module_change_warning(t)
 	if (userProvidedName == "StdEnv" and moduleVersion ~= "2020" and (defaultKind == "system" or defaultKind == "unknown")) then
 		color_banner("red")
 		if (string.sub(lang,1,2) == "fr") then
-			LmodMessage([[Attention, en avril 2021, la version par defaut de l'environnement standard sera mis a jour.
-Pour tester vos taches avec le nouvel environnement, executez la commande :
+			LmodMessage([[Attention, en avril 2021, la version par défaut de l'environnement standard sera mise à jour.
+Pour tester vos tâches avec le nouvel environnement, exécutez la commande :
 module load StdEnv/2020
 
-Pour changer votre version par defaut immediatement, executez la commande suivante : 
+Pour changer votre version par défaut immédiatement, exécutez la commande suivante : 
 
 echo "module-version StdEnv/2020 default" >> $HOME/.modulerc
 
