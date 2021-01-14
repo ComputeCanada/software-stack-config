@@ -209,10 +209,10 @@ local function default_module_change_warning(t)
 
 	local moduleVersion = myModuleVersion()
 	local defaultKind
-	if convertToCanonical(LmodVersion()) >= convertToCanonical("8.4.19") then
+	if convertToCanonical(LmodVersion()) >= convertToCanonical("8.4.20") then
 		defaultKind = t.mname:defaultKind()
 	else
-		defaultKind = "unknown"   -- before 8.4.19, we can not detect if the default comes from the user, so we display the warning regardless
+		defaultKind = "unknown"   -- before 8.4.20, we can not detect if the default comes from the user, so we display the warning regardless
 	end
 		
    	local lang = os.getenv("LANG") or "en"
