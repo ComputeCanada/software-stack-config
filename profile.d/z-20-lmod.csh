@@ -23,7 +23,11 @@ if ( ! $?__Init_Default_Modules ) then
 	if ( ! $?LMOD_SYSTEM_DEFAULT_MODULES ) then
 		setenv LMOD_SYSTEM_DEFAULT_MODULES "StdEnv"
 	endif
-	module -q --initial_load restore
+	if ( $?prompt ) then
+		module --initial_load restore
+	else
+		module -q --initial_load restore
+	endif
 else
 	module refresh
 endif
