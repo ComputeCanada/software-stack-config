@@ -200,8 +200,8 @@ local function default_module_change_warning(t)
 	-- only go further for StdEnv
 	if (moduleName ~= "StdEnv") then return end
 	-- allow to completely disable the upcoming transition
-	local disableStdEnv2020Transition = os.getenv("RSNT_DISABLE_STDENV2020_TRANSITION") or "no"
-	if (disableStdEnv2020Transition == "yes") then return end
+	local enableStdEnv2020Transition = os.getenv("RSNT_ENABLE_STDENV2020_TRANSITION") or "no"
+	if (enableStdEnv2020Transition == "no") then return end
 
 	local FrameStk   = require("FrameStk")
 	local frameStk   = FrameStk:singleton()
