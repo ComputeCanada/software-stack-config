@@ -201,6 +201,11 @@ local function default_module_change_warning(t)
 	if (moduleName ~= "StdEnv") then return end
 	-- allow to completely disable the upcoming transition
 	local enableStdEnv2020Transition = os.getenv("RSNT_ENABLE_STDENV2020_TRANSITION") or "no"
+   	local cccluster = os.getenv("CC_CLUSTER") or "computecanada"
+	-- Niagara sets the variable locally
+	if (cccluster == "cedar" or cccluster == "graham" or cccluster == "beluga") then
+		enableStdEnv2020Transition = "yes"
+	end
 	if (enableStdEnv2020Transition == "no") then return end
 
 	local FrameStk   = require("FrameStk")
