@@ -222,9 +222,9 @@ local function default_module_change_warning(t)
 
 	-- only show the warning if the user provided "StdEnv" as load, if the defaultKind is system, and if it does not result in 2020
 	if (userProvidedName == "StdEnv" and moduleVersion ~= "2020" and (defaultKind == "system" or defaultKind == "unknown")) then
-		color_banner("red")
+		--color_banner("red")
 		if (string.sub(lang,1,2) == "fr") then
-			LmodMessage([[Attention, en avril 2021, la version par défaut de l'environnement standard sera mise à jour.
+			LmodWarning([[Attention, en avril 2021, la version par défaut de l'environnement standard sera mise à jour.
 Pour tester vos tâches avec le nouvel environnement, exécutez la commande :
 module load StdEnv/2020
 
@@ -235,7 +235,7 @@ echo "module-version StdEnv/2020 default" >> $HOME/.modulerc
 Pour davantage d'information, visitez :
 https://docs.computecanada.ca/wiki/Standard_software_environments/fr]])
 		else
-			LmodMessage([[Warning, in April 2021, the default standard environment module will be changed to a more recent one.
+			LmodWarning([[Warning, in April 2021, the default standard environment module will be changed to a more recent one.
 To test your jobs with the new environment, please run:
 module load StdEnv/2020
 
@@ -246,7 +246,7 @@ echo "module-version StdEnv/2020 default" >> $HOME/.modulerc
 For more information, please see:
 https://docs.computecanada.ca/wiki/Standard_software_environments]])
 		end
-		color_banner("red")
+		--color_banner("red")
 	end
 end
 local function unload_hook(t)
