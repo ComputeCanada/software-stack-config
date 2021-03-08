@@ -206,9 +206,9 @@ local function default_module_change_warning(t)
    		local cccluster = os.getenv("CC_CLUSTER") or "computecanada"
 		if (cccluster == "cedar" or cccluster == "graham" or cccluster == "beluga") then
 			enableStdEnv2020Transition = "yes"
+		else
+			enableStdEnv2020Transition = "no"
 		end
-	else
-		enableStdEnv2020Transition = "no"
 	end
 	if (enableStdEnv2020Transition == "no") then return end
 
