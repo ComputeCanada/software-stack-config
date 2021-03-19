@@ -85,10 +85,3 @@ This version of Julia was compiled with the Intel compiler, which is not recomme
 Cette version de Julia a été compilée avec les compilateurs Intel, ce qui n'est pas recommandé par les développeurs de Julia. Nous vous suggérons de plutôt charger la version compilée avec le compilateur gcc/7.3.0 : 
 	module load gcc/7.3.0 julia
 
-StdEnv/2016.4:
-		This standard environment module is deprecated. Please upgrade to StdEnv/2020.
-		Cet environnement logiciel est obsolete. Veuillez mettre a jour votre flux de travail pour utiliser StdEnv/2020.
-
-StdEnv/2018.3:
-		This standard environment module is deprecated. Please upgrade to StdEnv/2020.
-		Cet environnement logiciel est obsolete. Veuillez mettre a jour votre flux de travail pour utiliser StdEnv/2020.
