@@ -1,2 +1,12 @@
+#%Module
+
+# default versions
 module-version StdEnv/2020 default
 
+module-version boost/1.68.0 default
+module-version boost-mpi/1.68.0 default
+module-version imkl/2018.3.222 default
+module-version intel/2018.3 default
+module-version openmpi/3.1.2 default
+module-version gcc/7.3.0 default
+module-version cuda/10.0.130 default

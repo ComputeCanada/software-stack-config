@@ -84,4 +84,3 @@ This version of Julia was compiled with the Intel compiler, which is not recomme
 	module load gcc/7.3.0 julia
 Cette version de Julia a été compilée avec les compilateurs Intel, ce qui n'est pas recommandé par les développeurs de Julia. Nous vous suggérons de plutôt charger la version compilée avec le compilateur gcc/7.3.0 : 
 	module load gcc/7.3.0 julia
-
