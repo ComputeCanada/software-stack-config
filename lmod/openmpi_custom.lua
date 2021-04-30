@@ -28,7 +28,7 @@ if posix.stat(pathJoin(slurmpath,"libslurm.so.36"),"type") == "link" then
 	setenv("OMPI_MCA_plm_slurm_args", "--whole")
 end
 
-if ompiv ~= "3.1" and ompiv ~= '4.0' then
+if ompiv ~= "3.1" and ompiv ~= '4.0' and ompiv ~= '4.1' then
 	-- OpenMPI 3.1+ do not need LD_LIBRARY_PATH any more
 	if slurmpath and posix.stat(pathJoin(slurmpath,"libpmi.so"),"type") == "link" then
 		prepend_path("LD_LIBRARY_PATH", slurmpath)
@@ -37,10 +37,10 @@ if ompiv ~= "3.1" and ompiv ~= '4.0' then
 	end
 end
 
-if ompiv == "2.1" or ompiv == "3.1" or ompiv == "4.0" then
+if ompiv == "2.1" or ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 	local slurm_pmi = nil
 	if slurmpath then
-		if ompiv == "3.1" or ompiv == "4.0" then
+		if ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 			if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v3.so"),"type") == "regular" then
 				slurm_pmi = "pmix_v3"
 			elseif posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v2.so"),"type") == "regular" then
@@ -88,7 +88,7 @@ if ompiv == "2.1" or ompiv == "2.0" or (ompiv == "1.10" and arch == "avx512") th
 			setenv("MXM_LOG_LEVEL", "error")
 		end
 	end
-elseif  ompiv == "3.1" or ompiv == "4.0" then
+elseif  ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 	-- disable openib unconditionally, as it does not work very well with UCX
 	setenv("OMPI_MCA_btl", "^openib")
 
