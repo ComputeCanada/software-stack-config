@@ -49,6 +49,8 @@ function log_module_load(t,success)
 	local pbs_jobid = getenv("PBS_JOBID") or "-"
 	local jobid = getenv("SLURM_JOB_ID") or getenv("MOAB_JOBID") or getenv("PBS_JOBID") or "-"
 	local clustername = getenv("CC_CLUSTER")
+	-- yes means that it is a module directly request by the user
+	local userload = (frameStk:atTop()) and "yes" or "no"
 	if hostname == nil then
 		hostname = io.popen("hostname"):read("*a")
 		hostname = string.gsub(hostname,"[\n\r]+ *","")
@@ -62,6 +64,7 @@ function log_module_load(t,success)
 	a[#a+1] = "J=" .. jobid
 	a[#a+1] = "M="  .. t.modFullName
 	a[#a+1] = "FN=" .. t.fn
+	a[#a+1] = "UL=" .. userload
 	local hierarchy = "na"
 	local arch = "generic"
 	local root = "na"
