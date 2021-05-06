@@ -1,1 +1,2 @@
 pip <= 18.1; python_version < '3'
+pip < 21; python_version >= '3'
