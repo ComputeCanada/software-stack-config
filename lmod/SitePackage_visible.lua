@@ -89,7 +89,7 @@ function visible_hook(t)
 		local cuda_version_two_digits = fullName:match("^.+/([0-9]+%.[0-9]+).*$")
 		local min_driver_version = cuda_minimum_drivers_version[cuda_version_two_digits] or "10000"
 		
-		if driver_version < min_driver_version then
+		if convertToCanonical(driver_version) < convertToCanonical(min_driver_version) then
 			t['isVisible'] = false
 		end
 	end
