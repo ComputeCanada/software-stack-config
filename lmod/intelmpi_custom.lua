@@ -33,7 +33,7 @@ end
 
 if string.sub(impiv,1,4) == "2019" then
 	setenv("I_MPI_LINK", "opt")
-else
+elseif string.sub(impiv,1,4) ~= "2021" then
 	if os.getenv("RSNT_INTERCONNECT") == "omnipath" then
 		setenv("I_MPI_FABRICS_LIST", "ofi,tmi,dapl,tcp,ofa")
 	else
