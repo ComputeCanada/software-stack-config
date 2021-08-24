@@ -217,7 +217,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue", "motioncor2", "pwrf"} ] = "academic_license",
 		[ { "namd", "namd-mpi", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "academic_license_autoaccept",
-		[ { "cfour", "cpmd", "dl_poly4", "gaussian", "maker", "orca", "vasp/4.6", "vasp/5.4.1", "sas" } ] = "posix_group",
+		[ { "cfour", "cpmd", "dl_poly4", "gaussian", "maker", "orca", "vasp/4.6", "vasp/5.4.1", "sas", "imagenet", "voxceleb" } ] = "posix_group",
 	}
 	local groupT = {
 		[ "cfour" ] = "soft_cfour",
@@ -229,6 +229,8 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ "vasp/4.6" ] = "soft_vasp4",
 		[ "vasp/5.4.1" ] = "soft_vasp5",
 		[ "sas" ] = "soft_sas",
+		[ "imagenet" ] = "imagenet-optin",
+		[ "voxceleb"] = "voxceleb-optin",
 	}
 	local posix_group_messageT = {
 		[ { "maker" } ] = [[
@@ -353,6 +355,29 @@ The email should include your userid and a statment that you are in the
 the Alberta School of Buisness and thefore the current SAS license covers you.
 ============================================================================================
 		]],
+		[ { "imagenet" } ] = [[
+
+============================================================================================
+Using IMAGENET requires you to have agreed to Imagenet's license and have registered with the 
+owner of the data. Please see https://docs.computecanada.ca/wiki/ImageNet
+
+L'utilisation d'IMAGENET nécessite que vous acceptiez la licence d'Imagenet et que vous vous 
+soyez enregistré auprès du propriétaire des données.
+Veuillez consulter https://docs.computecanada.ca/wiki/ImageNet
+============================================================================================
+		]],
+		[ { "voxceleb" } ] = [[
+
+============================================================================================
+Using VoxCeleb requires you to have agreed to VoxCeleb's license and have registered with 
+the owner of the data. Please see https://docs.computecanada.ca/wiki/VoxCeleb
+		
+L'utilisation de VoxCeleb nécessite que vous ayez accepté la licence de VoxCeleb et que vous
+vous soyez enregistré auprès du propriétaire des données. 
+Veuillez consulter https://docs.computecanada.ca/wiki/VoxCeleb
+============================================================================================
+		]],
+		
 	}
 	local licenseURLT = {
 		[ "namd" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
