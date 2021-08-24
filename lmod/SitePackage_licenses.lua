@@ -362,7 +362,7 @@ Using IMAGENET requires you to have agreed to Imagenet's license and have regist
 owner of the data. Please see https://docs.computecanada.ca/wiki/ImageNet
 
 L'utilisation d'IMAGENET nécessite que vous acceptiez la licence d'Imagenet et que vous vous 
-soyez enregistré auprès de le propriétaire des données.
+soyez enregistré auprès du propriétaire des données.
 Veuillez consulter https://docs.computecanada.ca/wiki/ImageNet
 ============================================================================================
 		]],
@@ -373,7 +373,7 @@ Using VoxCeleb requires you to have agreed to VoxCeleb's license and have regist
 the owner of the data. Please see https://docs.computecanada.ca/wiki/VoxCeleb
 		
 L'utilisation de VoxCeleb nécessite que vous ayez accepté la licence de VoxCeleb et que vous
-vous soyez enregistré auprès de le propriétaire des données. 
+vous soyez enregistré auprès du propriétaire des données. 
 Veuillez consulter https://docs.computecanada.ca/wiki/VoxCeleb
 ============================================================================================
 		]],
