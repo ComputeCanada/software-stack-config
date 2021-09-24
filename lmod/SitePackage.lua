@@ -165,7 +165,7 @@ function _get_highest_supported_architecture()
 	end
 	return "sse3"
 end
-local cached_vendor = "unknown"
+local cached_vendor = nil
 function get_cpu_vendor_id()
 	if not cached_vendor then
 		cached_vendor = _get_cpu_vendor_id()
@@ -178,15 +178,13 @@ function _get_cpu_vendor_id()
 	for line in io.lines("/proc/cpuinfo") do
 		local values = string.match(line, "vendor_id%s*: (.+)");
 		if values ~= nil then
-			for match in (values.." "):gmatch("(.-)".." ") do
-				vendor_id[match] = true;
-			end
+			vendor_id = values
 			break
 		end
 	end
-	if vendor_id.AuthenticAMD then
+	if vendor_id == "AuthenticAMD" then
 		return "amd"
-	elseif vendor_id.GenuineIntel then
+	elseif vendor_id == "GenuineIntel" then
 		return "intel"
 	else
 		return "unknown"
