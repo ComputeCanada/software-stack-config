@@ -165,15 +165,15 @@ function _get_highest_supported_architecture()
 	end
 	return "sse3"
 end
-local cached_vendor = vendor_id
-function get_vendor_id()
+local cached_vendor = "unknown"
+function get_cpu_vendor_id()
 	if not cached_vendor then
-		cached_vendor = _get_vendor_id()
+		cached_vendor = _get_cpu_vendor_id()
 	end
 	return cached_vendor
 end
-sandbox_registration{ get_vendor_id = get_vendor_id }
-function _get_vendor_id()
+sandbox_registration{ get_cpu_vendor_id = get_cpu_vendor_id }
+function _get_cpu_vendor_id()
 	local vendor_id = {};
 	for line in io.lines("/proc/cpuinfo") do
 		local values = string.match(line, "vendor_id%s*: (.+)");
