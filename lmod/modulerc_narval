@@ -1,0 +1,7 @@
+module-version StdEnv/2020 default
+hide-version StdEnv/2018.3
+hide-version StdEnv/2016.4
+hide-version nixpkgs/16.09
+hide-version intel/2018.3
+hide-version intel/2016.4
+
