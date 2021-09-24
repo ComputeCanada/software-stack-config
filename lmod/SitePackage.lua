@@ -165,6 +165,33 @@ function _get_highest_supported_architecture()
 	end
 	return "sse3"
 end
+local cached_vendor = vendor_id
+function get_vendor_id()
+	if not cached_vendor then
+		cached_vendor = _get_vendor_id()
+	end
+	return cached_vendor
+end
+sandbox_registration{ get_vendor_id = get_vendor_id }
+function _get_vendor_id()
+	local vendor_id = {};
+	for line in io.lines("/proc/cpuinfo") do
+		local values = string.match(line, "vendor_id%s*: (.+)");
+		if values ~= nil then
+			for match in (values.." "):gmatch("(.-)".." ") do
+				vendor_id[match] = true;
+			end
+			break
+		end
+	end
+	if vendor_id.AuthenticAMD then
+		return "amd"
+	elseif vendor_id.GenuineIntel then
+		return "intel"
+	else
+		return "unknown"
+	end
+end
 function get_interconnect()
 	local posix = require "posix"
 	if posix.stat("/sys/module/opa_vnic","type") == 'directory' then
