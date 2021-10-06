@@ -105,6 +105,10 @@ elseif  ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 		if ompiv == "3.1" then -- removed in 4.0
 			setenv("OMPI_MCA_mtl", "^mxm")
 		end
+		if ompiv == "4.1" then -- ofi mtl/btl are suboptimal with IB and can give cryptic warnings
+			setenv("OMPI_MCA_mtl", "^ofi")
+			setenv("OMPI_MCA_btl", "^openib,ofi")
+		end
 		-- avoids error messages about multicast, needs investigation
 		-- setenv("HCOLL_ENABLE_MCAST_ALL", "0")
 		-- we have multiple issues with the hcoll module, will need
