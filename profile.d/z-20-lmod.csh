@@ -21,7 +21,7 @@ if ( ! $?__Init_Default_Modules ) then
 	setenv MODULEPATH /cvmfs/soft.computecanada.ca/custom/modules
 	setenv __Init_Default_Modules 1
 	if ( ! $?LMOD_SYSTEM_DEFAULT_MODULES ) then
-		setenv LMOD_SYSTEM_DEFAULT_MODULES "StdEnv"
+		setenv LMOD_SYSTEM_DEFAULT_MODULES "StdEnv mii"
 	endif
 	if ( $?prompt ) then
 		module --initial_load restore
