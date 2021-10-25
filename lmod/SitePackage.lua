@@ -219,6 +219,29 @@ function get_installed_cuda_driver_version()
 end
 sandbox_registration{ get_installed_cuda_driver_version = get_installed_cuda_driver_version }
 
+local function intel_old_stack_warning(t)
+	local moduleName = myModuleName()
+	-- only go further for intel
+	if (moduleName ~= "intel") then return end
+	local vendor_cpu_id = os.getenv("RSNT_CPU_VENDOR_ID") or get_cpu_vendor_id()
+	if vendor_cpu_id == "amd" then
+		local myFileName = myFileName()
+		if string.match(myFileName, "/cvmfs/soft.computecanada.ca/easybuild/modules/2017/Core") then
+	   		local lang = os.getenv("LANG") or "en"
+			if (string.sub(lang,1,2) == "fr") then
+				LmodWarning([[Vous tentez de charger le module d'un compilateur intel sur un ordinateur doté de processeurs AMD. 
+Les logiciels compilés à l'aide des compilateurs Intel dans les environnements standard StdEnv/2016.4 et StdEnv/2018.3 ne sont pas
+compatibles avec les processeurs AMD. Veuillez plutôt charger l'environnement StdEnv/2020 et un compilateur plus récent.
+]])
+			else
+				LmodWarning([[You are attempting to load the intel compiler on a computer equiped with AMD processors. 
+Software compiled with the Intel compiler in the standard environments StdEnv/2016.4 and StdEnv/2018.3 are not compatible
+with AMD processors. Please instead use the StdEnv/2020 standard environment and a more recent compiler. 
+]])
+			end
+		end
+	end
+end
 local function default_module_change_warning(t)
 	local moduleName = myModuleName()
 
@@ -292,6 +315,7 @@ local function load_hook(t)
 	set_props(t)
 	set_family(t)
 	default_module_change_warning(t)
+	intel_old_stack_warning(t)
 	log_module_load(t,true)
 	set_local_paths(t)
 end
