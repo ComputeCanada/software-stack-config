@@ -132,6 +132,18 @@ function find_and_define_license_file(environment_variable,application)
 			license_found = true
 		end
 	end
+	
+	-- Fifth, look at the restricted repository for a file called by the cluster's name with priority
+	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application,"clusters")
+	if (posix.stat(dir,"type") == 'directory') then
+		local path = pathJoin(dir,cluster .. ".priority.lic")
+		local typef = posix.stat(path,"type") or "nil"
+		if (typef == 'regular' or typef == 'link') then
+			license_path = path
+			prepend_path(environment_variable,path)
+			license_found = true
+		end
+	end
 
 	-- Finally, look at the user's home for a $HOME/.licenses/<application>.lic
 	local home = getenv_logged("HOME",pathJoin("/home",user))
