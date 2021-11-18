@@ -134,7 +134,7 @@ function find_and_define_license_file(environment_variable,application)
 	end
 	
 	-- Fifth, look at the restricted repository for a file called by the cluster's name with priority
-	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application,"clusters")
+	local dir = pathJoin("/cvmfs/restricted.computecanada.ca/config/licenses/",application,"clusters")
 	if (posix.stat(dir,"type") == 'directory') then
 		local path = pathJoin(dir,cluster .. ".priority.lic")
 		local typef = posix.stat(path,"type") or "nil"
