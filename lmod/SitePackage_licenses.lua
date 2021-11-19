@@ -90,7 +90,7 @@ function find_and_define_license_file(environment_variable,application)
 				if (posix.stat(path,"type") == 'directory') then
 					local file = pathJoin(path,cluster .. ".lic")
 					local typef = posix.stat(file,"type") or "nil"
-					if (typef == 'regular' or typef == 'link') then
+					if (typef == 'regular' or typef == 'link' or typef == 'directory') then
 						-- We can open that file, lets use it as license file
 						license_path = file
 						prepend_path(environment_variable,file)
