@@ -67,6 +67,14 @@ function find_and_define_license_file(environment_variable,application)
 	local license_found = false
 	local license_path = ""
 
+	-- if there is already an existing value for the environment variable, never fail
+	local existing_value = os.getenv(environment_variable) or nil
+	if (existing_value == nil or existing_value == '') then
+		license_found = false
+	else 
+		license_found = true
+	end
+
 	-- First, look at the public repository for a file called by the cluster's name
 	local cluster = os.getenv("CC_CLUSTER") or nil
 	local dir = pathJoin("/cvmfs/soft.computecanada.ca/config/licenses/",application)
