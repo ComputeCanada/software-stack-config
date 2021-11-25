@@ -162,11 +162,11 @@ function find_and_define_license_file(environment_variable,application)
 		license_found = true
 	end
 
-	-- Finally, if restricted is not available don't set any license info automatically
-	-- This is relevant to pgi and intel modules for which the license is irrelevant
-	-- if the restricted repo isn't available
+	-- Finally, if restricted is not available don't set any license info automically
+	-- for intel or pgi. For those the license is irrelevant if the restricted repo
+	-- isn't available but they are still loaded to expand MODULEPATH.
 	local restricted = os.getenv("CC_RESTRICTED") or nil
-	if (not license_found and restricted ~= 'true') then
+	if (not license_found and restricted ~= 'true' and (application == 'intel' or application == 'pgi')) then
 		license_found = true
 	end
 
