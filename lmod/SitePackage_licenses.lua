@@ -153,7 +153,7 @@ function find_and_define_license_file(environment_variable,application)
 		end
 	end
 
-	-- Finally, look at the user's home for a $HOME/.licenses/<application>.lic
+	-- Sixth, look at the user's home for a $HOME/.licenses/<application>.lic
 	local home = getenv_logged("HOME",pathJoin("/home",user))
 	local license_file = pathJoin(home,".licenses",application .. ".lic")
 	if (posix.stat(license_file,"type") == 'regular') then
@@ -161,6 +161,15 @@ function find_and_define_license_file(environment_variable,application)
 		prepend_path(environment_variable,license_file)
 		license_found = true
 	end
+
+	-- Finally, if restricted is not available don't set any license info automically
+	-- for intel or pgi. For those the license is irrelevant if the restricted repo
+	-- isn't available but they are still loaded to expand MODULEPATH.
+	local restricted = os.getenv("CC_RESTRICTED") or nil
+	if (not license_found and restricted ~= 'true' and (application == 'intel' or application == 'pgi')) then
+		license_found = true
+	end
+
 	return license_found, license_path
 end
 
