@@ -9,7 +9,7 @@ function set_family(t)
       [ { "nixpkgs", "gentoo" } ] = "base_os",
       [ { "hdf5-mpi", "hdf5", "hdf5-serial" } ] = "hdf5",
       [ { "petsc", "petsc-64bits", "petsc-debug", "petsc-complex" } ] = "petsc",
-      [ { "gromacs-plumed", "gromacs" } ] = "gromacs",
+      [ { "gromacs", "gromacs-plumed", "gromacs-colvars" } ] = "gromacs",
       [ { "netcdf-mpi", "netcdf", "netcdf-serial" } ] = "netcdf",
       [ { "fftw-mpi", "fftw", "fftw-serial" } ] = "fftw",
       [ { "boost-mpi", "boost", "boost-serial" } ] = "boost",
@@ -21,8 +21,9 @@ function set_family(t)
       [ { "starccm", "starccm-mixed" } ] = "starccm",
       [ { "gatk", "gatk-queue" } ] = "gatk",
       [ { "gdal", "gdal-mpi" } ] = "gdal",
-      [ { "wrf", "pwrf" } ] = "wrf",
-      [ { "lumerical", "fdtd_solutions"  } ] = "lumerical"
+      [ { "wrf", "wrf-co2", "pwrf" } ] = "wrf",
+      [ { "lumerical", "fdtd_solutions"  } ] = "lumerical",
+      [ { "openmabel", "openbabel-omp"  } ] = "openbabel"
    }
 
    for k,v in pairs(familyT) do
@@ -35,4 +36,3 @@ function set_family(t)
      end
    end
 end
-
