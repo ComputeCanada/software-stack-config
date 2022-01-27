@@ -104,8 +104,7 @@ elseif  ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 	        setenv("OMPI_MCA_pml", "^yalla")
 		if ompiv == "3.1" then -- removed in 4.0
 			setenv("OMPI_MCA_mtl", "^mxm")
-		end
-		if ompiv == "4.1" then -- ofi mtl/btl are suboptimal with IB and can give cryptic warnings
+		else -- ofi mtl/btl are suboptimal with IB and can give cryptic warnings
 			setenv("OMPI_MCA_mtl", "^ofi")
 			setenv("OMPI_MCA_btl", "^openib,ofi")
 		end
