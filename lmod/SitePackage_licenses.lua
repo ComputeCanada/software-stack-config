@@ -363,12 +363,12 @@ accès à Gaussian.
 
 ============================================================================================
 Using ORCA requires you to have access to a license. Please register on this site
-https://cec.mpg.de/orcadownload/
+https://orcaforum.kofo.mpg.de/
 Once this is done, send a copy of the confirmation message to us at support@computecanada.ca.
 We will then be able to grant you access to ORCA.
 
 Utiliser ORCA nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
-https://cec.mpg.de/orcadownload/
+https://orcaforum.kofo.mpg.de/
 Lorsque c'est fait, envoyez-nous une copie du courriel de confirmation à
 support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 ============================================================================================
