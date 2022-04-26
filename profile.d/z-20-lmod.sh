@@ -6,7 +6,9 @@ export LMOD_AVAIL_STYLE=grouped:system
 export LMOD_AVAIL_EXTENSIONS=no
 export LMOD_RC=$LMOD_PACKAGE_PATH/lmodrc.lua
 export LMOD_SHORT_TIME=3600
-
+if [[ -z "$RSNT_ENABLE_LMOD_CACHE" ]]; then
+	export RSNT_ENABLE_LMOD_CACHE="yes"
+fi
 if [[ -z "$__Init_Default_Modules" ]]; then
 	NEWMODULERCFILE=$LMOD_PACKAGE_PATH/modulerc
 	if [[ ! -z "$CC_CLUSTER" && -f $LMOD_PACKAGE_PATH/modulerc_${CC_CLUSTER} ]]; then

@@ -7,6 +7,10 @@ setenv LMOD_AVAIL_EXTENSIONS no
 setenv LMOD_RC $LMOD_PACKAGE_PATH/lmodrc.lua
 setenv LMOD_SHORT_TIME 3600
 
+if ( ! $?RSNT_ENABLE_LMOD_CACHE ) then
+	setenv RSNT_ENABLE_LMOD_CACHE "yes"
+endif
+
 if ( ! $?__Init_Default_Modules ) then
 	set NEWMODULERCFILE=${LMOD_PACKAGE_PATH}/modulerc
 	if ( $?CC_CLUSTER && -f ${LMOD_PACKAGE_PATH}/modulerc_${CC_CLUSTER} ) then
