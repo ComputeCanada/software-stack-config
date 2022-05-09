@@ -7,7 +7,7 @@ export LMOD_AVAIL_EXTENSIONS=no
 export LMOD_RC=$LMOD_PACKAGE_PATH/lmodrc.lua
 export LMOD_SHORT_TIME=3600
 if [[ -z "$RSNT_ENABLE_LMOD_CACHE" ]]; then
-	export RSNT_ENABLE_LMOD_CACHE="yes"
+	export RSNT_ENABLE_LMOD_CACHE="auto"
 fi
 if [[ -z "$__Init_Default_Modules" ]]; then
 	NEWMODULERCFILE=$LMOD_PACKAGE_PATH/modulerc
