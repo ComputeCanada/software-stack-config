@@ -8,7 +8,7 @@ setenv LMOD_RC $LMOD_PACKAGE_PATH/lmodrc.lua
 setenv LMOD_SHORT_TIME 3600
 
 if ( ! $?RSNT_ENABLE_LMOD_CACHE ) then
-	setenv RSNT_ENABLE_LMOD_CACHE "yes"
+	setenv RSNT_ENABLE_LMOD_CACHE "auto"
 endif
 
 if ( ! $?__Init_Default_Modules ) then
