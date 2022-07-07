@@ -67,6 +67,9 @@ function visible_hook(t)
 		-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
 		-- New reference: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
 		local cuda_minimum_drivers_version = {
+			[ "11.7" ] = "515.43.04",
+			[ "11.6" ] = "510.47.03",
+			[ "11.5" ] = "495.29.05",
 			[ "11.4" ] = "470.57.02",
 			[ "11.3" ] = "465.19.01",
 			[ "11.2" ] = "460.32.03",
