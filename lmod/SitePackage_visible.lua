@@ -64,37 +64,8 @@ function visible_hook(t)
 	end
 
 	if moduleName == "cuda" then
-		-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
-		-- New reference: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
-		local cuda_minimum_drivers_version = {
-			[ "11.7" ] = "515.43.04",
-			[ "11.6" ] = "510.47.03",
-			[ "11.5" ] = "495.29.05",
-			[ "11.4" ] = "470.57.02",
-			[ "11.3" ] = "465.19.01",
-			[ "11.2" ] = "460.32.03",
-			[ "11.1" ] = "455.32",
-			[ "11.0" ] = "450.51.06",
-			[ "10.2" ] = "440.33",
-			[ "10.1" ] = "418.39",
-			[ "10.0" ] = "410.48",
-			[ "9.2" ] = "396.26",
-			[ "9.1" ] = "390.46",
-			[ "9.0" ] = "384.81",
-			[ "8.0" ] = "367.48",
-			[ "7.5" ] = "352.31",
-			[ "7.0" ] = "346.46"
-		}
-		local driver_version = os.getenv("RSNT_CUDA_DRIVER_VERSION") or "0"
-		-- for backward compatibility, if no driver version were found, we consider that they can run 10.2
-		-- this is because we introduced hiding of cuda versions when cuda/11.0 was just out
-		if driver_version == "0" then
-			driver_version = cuda_minimum_drivers_version["10.2"]
-		end
 		local cuda_version_two_digits = fullName:match("^.+/([0-9]+%.[0-9]+).*$")
-		local min_driver_version = cuda_minimum_drivers_version[cuda_version_two_digits] or "10000"
-		
-		if convertToCanonical(driver_version) < convertToCanonical(min_driver_version) then
+		if cuda_driver_library_available(cuda_version_two_digits) == "none" then
 			t['isVisible'] = false
 		end
 	end
