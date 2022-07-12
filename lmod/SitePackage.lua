@@ -250,11 +250,17 @@ function cuda_driver_library_available(cuda_version_two_digits)
 	if convertToCanonical(driver_version) >= convertToCanonical(min_driver_version) then
 		return "native"
 	end
-	if convertToCanonical(driver_version) >= convertToCanonical(cuda_minimum_drivers_version["10.2"]) then
-		local restricted_available = os.getenv("CC_RESTRICTED") or "false"
-		if (restricted_available == "true") then
-			-- can use compat library via LD_LIBRARY_PATH
-			return "compat"
+
+	-- Older compat versions need driver 418.40.04+, 11.7 needs 450.36.06+, see
+	-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html#use-the-right-compat-package
+	if convertToCanonical(driver_version) >= convertToCanonical("418.40.04") then
+		if (convertToCanonical(driver_version) >= convertToCanonical("450.36.06") or
+		    convertToCanonical(cuda_version_two_digits) < convertToCanonical("11.7")) then
+			local restricted_available = os.getenv("CC_RESTRICTED") or "false"
+			if (restricted_available == "true") then
+				-- can use compat library via LD_LIBRARY_PATH
+				return "compat"
+			end
 		end
 	end
 	return "none"
