@@ -218,6 +218,55 @@ function get_installed_cuda_driver_version()
 	return "0"
 end
 sandbox_registration{ get_installed_cuda_driver_version = get_installed_cuda_driver_version }
+function cuda_driver_library_available(cuda_version_two_digits)
+	-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
+	-- New reference: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
+	local cuda_minimum_drivers_version = {
+		[ "11.7" ] = "515.43.04",
+		[ "11.6" ] = "510.47.03",
+		[ "11.5" ] = "495.29.05",
+		[ "11.4" ] = "470.57.02",
+		[ "11.3" ] = "465.19.01",
+		[ "11.2" ] = "460.32.03",
+		[ "11.1" ] = "455.32",
+		[ "11.0" ] = "450.51.06",
+		[ "10.2" ] = "440.33",
+		[ "10.1" ] = "418.39",
+		[ "10.0" ] = "410.48",
+		[ "9.2" ] = "396.26",
+		[ "9.1" ] = "390.46",
+		[ "9.0" ] = "384.81",
+		[ "8.0" ] = "367.48",
+		[ "7.5" ] = "352.31",
+		[ "7.0" ] = "346.46"
+	}
+	local driver_version = os.getenv("RSNT_CUDA_DRIVER_VERSION") or "0"
+	-- for backward compatibility, if no driver version were found, we consider that they can run 10.2
+	-- this is because we introduced hiding of cuda versions when cuda/11.0 was just out
+	if driver_version == "0" then
+		driver_version = cuda_minimum_drivers_version["10.2"]
+	end
+	local min_driver_version = cuda_minimum_drivers_version[cuda_version_two_digits] or "10000"
+	if convertToCanonical(driver_version) >= convertToCanonical(min_driver_version) then
+		return "native"
+	end
+
+	-- can possibly use compat library via LD_LIBRARY_PATH
+	local restricted_available = os.getenv("CC_RESTRICTED") or "false"
+	if (restricted_available == "true") then
+		-- Older compat versions need driver 418.40.04+, 11.7 needs 450.36.06+, see
+		-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html#use-the-right-compat-package
+		if convertToCanonical(cuda_version_two_digits) >= convertToCanonical("11.7") then
+		    if convertToCanonical(driver_version) >= convertToCanonical("450.36.06") then
+			return "compat"
+		    end
+		elseif convertToCanonical(driver_version) >= convertToCanonical("418.40.04") then
+			return "compat"
+		end
+	end
+	return "none"
+end
+sandbox_registration{ cuda_driver_library_available = cuda_driver_library_available }
 
 local function intel_old_stack_warning(t)
 	local moduleName = myModuleName()
