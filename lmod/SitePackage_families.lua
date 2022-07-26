@@ -32,7 +32,14 @@ function set_family(t)
      if (has_value(k,myModuleFullName()) or has_value(k,myModuleName())) then
         ----------------------------------------------------------
         -- Loop over value array and fill properties for this module.
-	family(v)
+	if (has_value(k, "fftw")) then
+	   -- fftw-mpi 3.3.10 depends on fftw, no longer conflicts with it
+	   if(convertToCanonical(myModuleVersion()) < convertToCanonical("3.3.10")) then
+	      family(v)
+	   end
+	else
+	   family(v)
+	end
      end
    end
 end
