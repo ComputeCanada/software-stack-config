@@ -47,8 +47,8 @@ python/3.5.2: 		This module is deprecated and will be removed in the future. Ple
 			Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser python/3.5. Si vous aviez créé un environnement
 			virtuel, nous vous recommandons de le recréer.
 
-python/3.6.10:          Support for Python 3.6 has ended in Decembre 2021. Please upgrade to a more recent version of Python. 
-                        Le soutien de Python 3.6 s'est arrêté au mois de décembre 2021. Veuillez mettre à jour votre travail vers une version plus récente.
+python/3.6.10:          Support for Python 3.6 has ended in Decembre 2021. Please upgrade to the latest version of Python. 
+                        Le soutien de Python 3.6 s'est arrêté au mois de décembre 2021. Veuillez mettre à jour votre travail vers la version la plus récente.
 
 python/2.7.18:          We build python packages only for the latest 3 major releases (currently 3.8, 3.9, 3.10). By using python/2.7, you may run
                         into dependency issues. Please upgrade your workflow to the latest version of python.
