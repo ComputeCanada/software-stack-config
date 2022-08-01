@@ -54,19 +54,19 @@ python/2.7.18:          We build python packages only for the latest 3 major rel
                         into dependency issues. Please upgrade your workflow to the latest version of python.
 			Nous construisons les paquets python seulement pour les 3 versions majeures les plus récentes (présentement 3.8, 3.9, 3.10). En utilisant
 			python/2.7, vous pourriez rencontrer des problèmes lors de la résolution de dépendances. Veuillez mettre à jour votre travail vers
-			une version plus récente.
+			la version la plus récente.
 
 python/3.7.7:           We build python packages only for the latest 3 major releases (currently 3.8, 3.9, 3.10). By using python/3.7, you may run
                         into dependency issues. Please upgrade your workflow to the latest version of python.
 			Nous construisons les paquets python seulement pour les 3 versions majeures les plus récentes (présentement 3.8, 3.9, 3.10). En utilisant
 			python/3.7, vous pourriez rencontrer des problèmes lors de la résolution de dépendances. Veuillez mettre à jour votre travail vers
-			une version plus récente.
+			la version la plus récente.
 
 python/3.7.9:           We build python packages only for the latest 3 major releases (currently 3.8, 3.9, 3.10). By using python/3.7, you may run
                         into dependency issues. Please upgrade your workflow to the latest version of python.
 			Nous construisons les paquets python seulement pour les 3 versions majeures les plus récentes (présentement 3.8, 3.9, 3.10). En utilisant
 			python/3.7, vous pourriez rencontrer des problèmes lors de la résolution de dépendances. Veuillez mettre à jour votre travail vers
-			une version plus récente.
+			la version la plus récente.
 
 python27-mpi4py/2.0.0:   This module is deprecated and will be removed in the future. Please use the module "mpi4py" instead.
 			Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser le module "mpi4py" à la place.
