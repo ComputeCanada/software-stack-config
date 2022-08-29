@@ -24,7 +24,7 @@ function set_family(t)
       [ { "wrf", "wrf-co2", "pwrf" } ] = "wrf",
       [ { "lumerical", "fdtd_solutions"  } ] = "lumerical",
       [ { "openmabel", "openbabel-omp"  } ] = "openbabel",
-      [ { "scotch", "scotch-no-thread" } ] = "scotch"
+      [ { "scotch", "scotch-no-thread" } ] = "scotch",
    }
 
    for k,v in pairs(familyT) do
