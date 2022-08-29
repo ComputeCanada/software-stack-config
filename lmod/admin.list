@@ -7,35 +7,9 @@ torch/20170530: 	This module is deprecated and will be removed in the future. A 
 pyqt/4.12: 	This module is deprecated and will be removed in the future. python/2.7 or python/3.5 and qt/4.8.7 should be used instead.
 			Ce module est marqué pour être retiré et sera supprimé dans le futur. 
 
-singularity/2.3: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
-
-singularity/2.4: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
-
-singularity/2.5: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
-
-singularity/2.6: 	This module is deprecated and will be removed in the future due to problematic behaviour. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de comportement problématique. Utilisez plutôt singularity/3.8.
-
-singularity/3.1: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
-
-singularity/3.2: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
-
-singularity/3.3: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
-
-singularity/3.4: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
-
-singularity/3.5: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
-
-singularity/3.6: 	This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
+singularity/2%.[3-6] | singularity/3%.[1-6]:
+This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
+Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
 
 python/2.7.13 | python/2.7.18 | python/3.5.2 | python/3.6.10 | python/3.7.7 | python/3.7.9:
 We build python packages only for the latest 3 major releases (currently 3.8, 3.9, 3.10). By using this version of python, you may run
@@ -44,36 +18,20 @@ Nous construisons les paquets python seulement pour les 3 versions majeures les 
 cette version de python, vous pourriez rencontrer des problèmes lors de la résolution de dépendances. Nous vous recommendons de mettre à jour
 votre travail vers une version plus récente de python.
 
-python27-mpi4py/2.0.0:   This module is deprecated and will be removed in the future. Please use the module "mpi4py" instead.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser le module "mpi4py" à la place.
+python27-mpi4py/2.0.0 | python35-mpi4py/2.0.0:
+This module is deprecated and will be removed in the future. Please use the module "mpi4py" instead.
+Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser le module "mpi4py" à la place.
 
-python35-mpi4py/2.0.0:   This module is deprecated and will be removed in the future. Please use the module "mpi4py" instead.
-			Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser le module "mpi4py" à la place.
-
-python27-scipy-stack/2017a: This module is deprecated and will be removed in the future. Please use the module "scipy-stack" instead.
-			   Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser le module "scipy-stack" à la place.
-
-python35-scipy-stack/2017a: This module is deprecated and will be removed in the future. Please use the module "scipy-stack" instead.
-			   Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser le module "scipy-stack" à la place.
+python27-scipy-stack/2017a | python35-scipy-stack/2017a:
+This module is deprecated and will be removed in the future. Please use the module "scipy-stack" instead.
+Ce module est marqué pour être retiré et sera supprimé dans le futur. Veuillez utiliser le module "scipy-stack" à la place.
 
 caffe2/0.8.1: 		This module is deprecated and will be removed in the future. caffe2 is now part of pytorch. To use caffe2, please create a python
 			virtual environment as instructed here https://docs.computecanada.ca/wiki/Python  and install the package "torch_gpu".
 			Ce module est marqué pour être retiré est sera supprimé dans le futur. caffe2 fait maintenant partie de pytorch. Pour utiliser caffe2,
 			créez un environnement virtuel tel que décrit ici https://docs.computecanada.ca/wiki/Python/fr et installez le paquet "torch_gpu".
 
-julia/0.5.1:
-Julia versions prior to 1.x had serious performance issues to manage packages. We recommend moving to julia 1.x, which is available by first loading the module gcc/7.3.0 : 
-	module load gcc/7.3.0 julia
-Les versions de Julia précédant la version 1.x avaient de sérieux problèmes de performance lors de l'installation de packages. Nous recommandons de migrer à la version 1.x, qui est disponible en chargeant le module gcc/7.3.0 au préalable : 
-	module load gcc/7.3.0 julia
-
-julia/0.6.0:
-Julia versions prior to 1.x had serious performance issues to manage packages. We recommend moving to julia 1.x, which is available by first loading the module gcc/7.3.0 : 
-	module load gcc/7.3.0 julia
-Les versions de Julia précédant la version 1.x avaient de sérieux problèmes de performance lors de l'installation de packages. Nous recommandons de migrer à la version 1.x, qui est disponible en chargeant le module gcc/7.3.0 au préalable : 
-	module load gcc/7.3.0 julia
-
-julia/0.6.2:
+julia/0.5.1 | julia/0.6.0 | julia/0.6.2:
 Julia versions prior to 1.x had serious performance issues to manage packages. We recommend moving to julia 1.x, which is available by first loading the module gcc/7.3.0 : 
 	module load gcc/7.3.0 julia
 Les versions de Julia précédant la version 1.x avaient de sérieux problèmes de performance lors de l'installation de packages. Nous recommandons de migrer à la version 1.x, qui est disponible en chargeant le module gcc/7.3.0 au préalable : 
