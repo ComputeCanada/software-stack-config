@@ -23,7 +23,7 @@ function set_family(t)
       [ { "gdal", "gdal-mpi" } ] = "gdal",
       [ { "wrf", "wrf-co2", "pwrf" } ] = "wrf",
       [ { "lumerical", "fdtd_solutions"  } ] = "lumerical",
-      [ { "openmabel", "openbabel-omp"  } ] = "openbabel",
+      [ { "openbabel", "openbabel-omp"  } ] = "openbabel",
       [ { "scotch", "scotch-no-thread" } ] = "scotch",
    }
 
