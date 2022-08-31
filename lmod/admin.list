@@ -11,7 +11,7 @@ singularity/2%.[3-6] | singularity/3%.[1-6]:
 This module is deprecated and will be removed in the future due to security reasons. Please move to singularity/3.8.
 Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité. Utilisez plutôt singularity/3.8.
 
-python/2.7.13 | python/2.7.18 | python/3.5.2 | python/3.6.10 | python/3.7.7 | python/3.7.9:
+python/2.7.13 | python/3.5.2 | python/3.6.10:
 We build python packages only for the latest 3 major releases (currently 3.8, 3.9, 3.10). By using this version of python, you may run
 into dependency issues. We recommend that you upgrade your workflow to a more recent version of python.
 Nous construisons les paquets python seulement pour les 3 versions majeures les plus récentes (présentement 3.8, 3.9, 3.10). En utilisant
