@@ -25,7 +25,7 @@ function set_family(t)
       [ { "lumerical", "fdtd_solutions"  } ] = "lumerical",
       [ { "openbabel", "openbabel-omp"  } ] = "openbabel",
       [ { "scotch", "scotch-no-thread" } ] = "scotch",
-      [ { "hoomd-blue", "hoomd-blue-mpi" } ] = "hoomd-blue",
+      [ { "hoomd-blue", "hoomd-blue-mpi" } ] = "hoomd_blue",
    }
 
    for k,v in pairs(familyT) do
