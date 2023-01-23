@@ -354,6 +354,20 @@ https://docs.computecanada.ca/wiki/Standard_software_environments]])
 		end
 		--color_banner("red")
 	end
+	
+	-- only show the warning if the user provided "StdEnv" as load, if the defaultKind is system, and if it does not result in 2020
+	if (userProvidedName == "python" and moduleVersion ~= "3.10.2" and (defaultKind == "system" or defaultKind == "unknown")) then
+		if (string.sub(lang,1,2) == "fr") then
+			LmodWarning([[Attention, le 1er avril 2023, la version par défaut de python deviendra la version 3.10. 
+Pour continuer d'utiliser la version 3.8, veuillez charger le module python/3.8 explicitement.
+]])
+		else
+			LmodWarning([[Warning. On April 1st 2023, the default version of python will become 3.10. 
+To keep using python 3.8, please load the python/3.8 module explicitly. 
+]])
+		end
+		--color_banner("red")
+	end
 end
 local function unload_hook(t)
 	set_family(t)
