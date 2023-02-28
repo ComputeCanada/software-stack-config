@@ -359,7 +359,7 @@ https://docs.computecanada.ca/wiki/Standard_software_environments]])
 	if (userProvidedName == "python" or userProvidedName == "python/3" or userProvidedName == "python/3.") then
 		if (moduleVersion ~= "3.10.2" and (defaultKind == "system" or defaultKind == "unknown" or defaultKind == "marked")) then
 			if (string.sub(lang,1,2) == "fr") then
-				LmodWarning([[Attention, le 1er avril 2023, la version par défaut de python deviendra la version 3.10. 
+				LmodWarning([[Attention, le 1er avril 2023, la version par défaut de python deviendra 3.10. 
 Pour continuer d'utiliser la version 3.8, veuillez charger le module python/3.8 explicitement.
 ]])
 			else
