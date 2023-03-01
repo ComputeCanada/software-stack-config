@@ -295,7 +295,7 @@ local function default_module_change_warning(t)
 	local moduleName = myModuleName()
 
 	-- only go further for StdEnv
-	if (moduleName ~= "StdEnv") then return end
+	if (moduleName ~= "StdEnv" and moduleName ~= "python") then return end
 	-- allow to completely disable the upcoming transition
 	local enableStdEnv2020Transition = os.getenv("RSNT_ENABLE_STDENV2020_TRANSITION") or "unknown"
 	if (enableStdEnv2020Transition == "unknown") then
@@ -351,6 +351,22 @@ echo "module-version StdEnv/2020 default" >> $HOME/.modulerc
 
 For more information, please see:
 https://docs.computecanada.ca/wiki/Standard_software_environments]])
+		end
+		--color_banner("red")
+	end
+	
+	-- only show the warning if the user provided a shortened version of python as load, if the defaultKind is system or marked, and if it does not result in 3.10.2
+	if (userProvidedName == "python" or userProvidedName == "python/3" or userProvidedName == "python/3.") then
+		if (moduleVersion ~= "3.10.2" and (defaultKind == "system" or defaultKind == "unknown" or defaultKind == "marked")) then
+			if (string.sub(lang,1,2) == "fr") then
+				LmodWarning([[Attention, le 1er avril 2023, la version par défaut de python deviendra 3.10. 
+Pour continuer d'utiliser la version 3.8, veuillez charger le module python/3.8 explicitement.
+]])
+			else
+				LmodWarning([[Warning. On April 1st 2023, the default version of python will become 3.10. 
+To keep using python 3.8, please load the python/3.8 module explicitly. 
+]])
+			end
 		end
 		--color_banner("red")
 	end
