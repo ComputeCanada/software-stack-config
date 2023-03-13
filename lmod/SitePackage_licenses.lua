@@ -283,11 +283,11 @@ Using CFOUR requires you to agree to the following license terms:
 
 1) I will use CFOUR only for academic research.
 2) I will not copy the CFOUR software, nor make it available to anyone else.
-3) I will properly acknowledge original papers of CFOUR and Compute Canada in my 
+3) I will properly acknowledge original papers of CFOUR and the Alliance in my 
    publications (see the license form for more details).
 4) I understand that the agreement for using CFOUR can be terminated by one of the 
-   parties: CFOUR developers or Compute Canada.
-5) I will notify Compute Canada of any change in the above acknowledgement.
+   parties: CFOUR developers or the Alliance.
+5) I will notify the Alliance of any change in the above acknowledgement.
 
 If you do, please send an email with a copy of those conditions, saying that you agree to
 them at support@tech.alliancecan.ca. We will then be able to grant you access to CFOUR.
@@ -296,11 +296,11 @@ Utiliser CFOUR nécessites que vous acceptiez les conditions suivantes (en angla
 
 1) I will use CFOUR only for academic research.
 2) I will not copy the CFOUR software, nor make it available to anyone else.
-3) I will properly acknowledge original papers of CFOUR and Compute Canada in my 
+3) I will properly acknowledge original papers of CFOUR and the Alliance in my 
    publications (see the license form for more details).
 4) I understand that the agreement for using CFOUR can be terminated by one of the 
-   parties: CFOUR developers or Compute Canada.
-5) I will notify Compute Canada of any change in the above acknowledgement.
+   parties: CFOUR developers or the Alliance.
+5) I will notify the Alliance of any change in the above acknowledgement.
 
 Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
 que vous les acceptez, à support@tech.alliancecan.ca. Nous pourrons ensuite activer votre
@@ -342,8 +342,8 @@ support@tech.alliancecan.ca. Nous pourrons ensuite vous donner accès à DL POLY
 Using Gaussian requires you to agree to the following license terms:
  1) I am not a member of a research group developing software competitive to Gaussian.
  2) I will not copy the Gaussian software, nor make it available to anyone else.
- 3) I will properly acknowledge Gaussian Inc. and Compute Canada in publications.
- 4) I will notify Compute Canada of any change in the above acknowledgement.
+ 3) I will properly acknowledge Gaussian Inc. and the Alliance in publications.
+ 4) I will notify the Alliance of any change in the above acknowledgement.
 
 If you do, please send an email with a copy of those conditions, saying that you agree to
 them at support@tech.alliancecan.ca. We will then be able to grant you access to Gaussian.
@@ -351,8 +351,8 @@ them at support@tech.alliancecan.ca. We will then be able to grant you access to
 Utiliser Gaussian nécessites que vous acceptiez les conditions suivantes (en anglais) :
  1) I am not a member of a research group developing software competitive to Gaussian.
  2) I will not copy the Gaussian software, nor make it available to anyone else.
- 3) I will properly acknowledge Gaussian Inc. and Compute Canada in publications.
- 4) I will notify Compute Canada of any change in the above acknowledgement.
+ 3) I will properly acknowledge Gaussian Inc. and the Alliance in publications.
+ 4) I will notify the Alliance of any change in the above acknowledgement.
 
 Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
 que vous les acceptez, à support@tech.alliancecan.ca. Nous pourrons ensuite activer votre
