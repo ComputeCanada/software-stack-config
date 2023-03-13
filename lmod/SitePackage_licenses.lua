@@ -225,10 +225,10 @@ Veuillez vous enregistrer sur le site web ci-dessous.
 	local posix_group_message = [[
 ============================================================================================
 Using this software requires you to have access to a license. If you do, please write to
-us at support@computecanada.ca so that we can enable access for you.
+us at support@tech.alliancecan.ca so that we can enable access for you.
 
 Utiliser ce logiciel nécessite que vous aillez accès à une licence. Si c'est le cas, 
-veuillez nous écrire à support@calculcanada.ca pour que nous puissions l'activer.
+veuillez nous écrire à support@tech.alliancecan.ca pour que nous puissions l'activer.
 ============================================================================================
 	]]
 	local not_accepted_message = [[
@@ -267,12 +267,12 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 ============================================================================================
 Using maker requires you to register with them. Please register on this site
  http://yandell.topaz.genetics.utah.edu/cgi-bin/maker_license.cgi
-Once this is done, write to us at support@computecanada.ca showing us that you've registered. 
+Once this is done, write to us at support@tech.alliancecan.ca showing us that you've registered. 
 Then we will be able to grant you access to maker.
 
 Utiliser maker nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
  http://yandell.topaz.genetics.utah.edu/cgi-bin/maker_license.cgi
-Lorsque c'est fait, écrivez-nous à support@calculcanada.ca pour nous le dire. Nous pourrons
+Lorsque c'est fait, écrivez-nous à support@tech.alliancecan.ca pour nous le dire. Nous pourrons
 ensuite vous donner accès à maker.
 ============================================================================================
 		]],
@@ -283,27 +283,27 @@ Using CFOUR requires you to agree to the following license terms:
 
 1) I will use CFOUR only for academic research.
 2) I will not copy the CFOUR software, nor make it available to anyone else.
-3) I will properly acknowledge original papers of CFOUR and Compute Canada in my 
+3) I will properly acknowledge original papers of CFOUR and the Alliance in my 
    publications (see the license form for more details).
 4) I understand that the agreement for using CFOUR can be terminated by one of the 
-   parties: CFOUR developers or Compute Canada.
-5) I will notify Compute Canada of any change in the above acknowledgement.
+   parties: CFOUR developers or the Alliance.
+5) I will notify the Alliance of any change in the above acknowledgement.
 
 If you do, please send an email with a copy of those conditions, saying that you agree to
-them at support@computecanada.ca. We will then be able to grant you access to CFOUR.
+them at support@tech.alliancecan.ca. We will then be able to grant you access to CFOUR.
 
 Utiliser CFOUR nécessites que vous acceptiez les conditions suivantes (en anglais) :
 
 1) I will use CFOUR only for academic research.
 2) I will not copy the CFOUR software, nor make it available to anyone else.
-3) I will properly acknowledge original papers of CFOUR and Compute Canada in my 
+3) I will properly acknowledge original papers of CFOUR and the Alliance in my 
    publications (see the license form for more details).
 4) I understand that the agreement for using CFOUR can be terminated by one of the 
-   parties: CFOUR developers or Compute Canada.
-5) I will notify Compute Canada of any change in the above acknowledgement.
+   parties: CFOUR developers or the Alliance.
+5) I will notify the Alliance of any change in the above acknowledgement.
 
 Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
-que vous les acceptez, à support@calculcanada.ca. Nous pourrons ensuite activer votre
+que vous les acceptez, à support@tech.alliancecan.ca. Nous pourrons ensuite activer votre
 accès à CFOUR.
 ============================================================================================
                 ]],
@@ -312,12 +312,12 @@ accès à CFOUR.
 ============================================================================================
 Using CPMD requires you to have access to a license. Please register on this site
  http://cpmd.org/download/cpmd-download-1/accept-license
-Once this is done, write to us at support@computecanada.ca telling us so. Once we confirm
+Once this is done, write to us at support@tech.alliancecan.ca telling us so. Once we confirm
 with CPMD that you indeed have registered, we will be able to grant you access to CPMD.
 
 Utiliser CPMD nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
  http://cpmd.org/download/cpmd-download-1/accept-license
-Lorsque c'est fait, écrivez-nous à support@calculcanada.ca pour nous le dire. Lorsque
+Lorsque c'est fait, écrivez-nous à support@tech.alliancecan.ca pour nous le dire. Lorsque
 nous aurons confirmé votre enregistrement avec CPMD, nous pourrons vous donner accès au
 logiciel.
 ============================================================================================
@@ -327,13 +327,13 @@ logiciel.
 ============================================================================================
 Using DL POLY4 requires you to have access to a license. Please register on this site
  http://www.scd.stfc.ac.uk/SCD/40526.aspx
-Once this is done, send a copy of the confirmation message to us at support@computecanada.ca.
+Once this is done, send a copy of the confirmation message to us at support@tech.alliancecan.ca.
 We will then be able to grant you access to DL POLY4.
 
 Utiliser DL POLY4 nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
  http://www.scd.stfc.ac.uk/SCD/40526.aspx
 Lorsque c'est fait, envoyez-nous une copie du courriel de confirmation à
-support@calculcanada.ca. Nous pourrons ensuite vous donner accès à DL POLY4.
+support@tech.alliancecan.ca. Nous pourrons ensuite vous donner accès à DL POLY4.
 ============================================================================================
 		]],
 		[ { "gaussian" } ] = [[
@@ -342,20 +342,20 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à DL POLY4.
 Using Gaussian requires you to agree to the following license terms:
  1) I am not a member of a research group developing software competitive to Gaussian.
  2) I will not copy the Gaussian software, nor make it available to anyone else.
- 3) I will properly acknowledge Gaussian Inc. and Compute Canada in publications.
- 4) I will notify Compute Canada of any change in the above acknowledgement.
+ 3) I will properly acknowledge Gaussian Inc. and the Alliance in publications.
+ 4) I will notify the Alliance of any change in the above acknowledgement.
 
 If you do, please send an email with a copy of those conditions, saying that you agree to
-them at support@computecanada.ca. We will then be able to grant you access to Gaussian.
+them at support@tech.alliancecan.ca. We will then be able to grant you access to Gaussian.
 
 Utiliser Gaussian nécessites que vous acceptiez les conditions suivantes (en anglais) :
  1) I am not a member of a research group developing software competitive to Gaussian.
  2) I will not copy the Gaussian software, nor make it available to anyone else.
- 3) I will properly acknowledge Gaussian Inc. and Compute Canada in publications.
- 4) I will notify Compute Canada of any change in the above acknowledgement.
+ 3) I will properly acknowledge Gaussian Inc. and the Alliance in publications.
+ 4) I will notify the Alliance of any change in the above acknowledgement.
 
 Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
-que vous les acceptez, à support@calculcanada.ca. Nous pourrons ensuite activer votre
+que vous les acceptez, à support@tech.alliancecan.ca. Nous pourrons ensuite activer votre
 accès à Gaussian.
 ============================================================================================
 		]],
@@ -364,13 +364,13 @@ accès à Gaussian.
 ============================================================================================
 Using ORCA requires you to have access to a license. Please register on this site
 https://orcaforum.kofo.mpg.de/
-Once this is done, send a copy of the confirmation message to us at support@computecanada.ca.
+Once this is done, send a copy of the confirmation message to us at support@tech.alliancecan.ca.
 We will then be able to grant you access to ORCA.
 
 Utiliser ORCA nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
 https://orcaforum.kofo.mpg.de/
 Lorsque c'est fait, envoyez-nous une copie du courriel de confirmation à
-support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
+support@tech.alliancecan.ca. Nous pourrons ensuite vous donner accès à ORCA.
 ============================================================================================
 		]],
 		[ { "sas" } ] = [[
@@ -378,7 +378,7 @@ support@calculcanada.ca. Nous pourrons ensuite vous donner accès à ORCA.
 ============================================================================================
 This software is only licensed for Alberta School of Business users.
 If you are in the Alberta School of Buisness and covered by the SAS license agreement
-please send an email to support@computecanada.ca with following subject line:
+please send an email to support@tech.alliancecan.ca with following subject line:
 Please add me to soft_sas group
 The email should include your userid and a statment that you are in the
 the Alberta School of Buisness and thefore the current SAS license covers you.
@@ -388,22 +388,22 @@ the Alberta School of Buisness and thefore the current SAS license covers you.
 
 ============================================================================================
 Using IMAGENET requires you to have agreed to Imagenet's license and have registered with the 
-owner of the data. Please see https://docs.computecanada.ca/wiki/ImageNet
+owner of the data. Please see https://docs.alliancecan.ca/wiki/ImageNet
 
 L'utilisation d'IMAGENET nécessite que vous acceptiez la licence d'Imagenet et que vous vous 
 soyez enregistré auprès du propriétaire des données.
-Veuillez consulter https://docs.computecanada.ca/wiki/ImageNet
+Veuillez consulter https://docs.alliancecan.ca/wiki/ImageNet
 ============================================================================================
 		]],
 		[ { "voxceleb" } ] = [[
 
 ============================================================================================
 Using VoxCeleb requires you to have agreed to VoxCeleb's license and have registered with 
-the owner of the data. Please see https://docs.computecanada.ca/wiki/VoxCeleb
+the owner of the data. Please see https://docs.alliancecan.ca/wiki/VoxCeleb
 		
 L'utilisation de VoxCeleb nécessite que vous ayez accepté la licence de VoxCeleb et que vous
 vous soyez enregistré auprès du propriétaire des données. 
-Veuillez consulter https://docs.computecanada.ca/wiki/VoxCeleb
+Veuillez consulter https://docs.alliancecan.ca/wiki/VoxCeleb
 ============================================================================================
 		]],
 		
