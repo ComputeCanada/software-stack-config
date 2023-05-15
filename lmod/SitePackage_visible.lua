@@ -27,17 +27,6 @@ function visible_hook(t)
 	local pathT = {
 		[ "vasp" ] = "/opt/software/easybuild",
 		[ "gaussian" ] = "/opt/software/gaussian",
-		[ "singularity/2.5" ] = "/opt/software/singularity-2.5",
-		[ "singularity/2.6" ] = "/opt/software/singularity-2.6",
-		[ "singularity/3.1" ] = "/opt/software/singularity-3.1",
-		[ "singularity/3.2" ] = "/opt/software/singularity-3.2",
-		[ "singularity/3.3" ] = "/opt/software/singularity-3.3",
-		[ "singularity/3.4" ] = "/opt/software/singularity-3.4",
-		[ "singularity/3.5" ] = "/opt/software/singularity-3.5-hidden",
-		[ "singularity/3.6" ] = "/opt/software/singularity-3.6-hidden",
-		[ "singularity/3.7" ] = "/opt/software/singularity-3.7-hidden",
-                [ "singularity/3.8" ] = "/opt/software/singularity-3.8-hidden",
-                [ "apptainer/1.0" ] = "/opt/software/apptainer-1.0-hidden",
                 [ "apptainer-suid/1.1" ] = "/opt/software/apptainer-1.1",
 	}
 	local moduleName = t.sn
