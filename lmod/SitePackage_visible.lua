@@ -35,8 +35,10 @@ function visible_hook(t)
 		[ "singularity/3.4" ] = "/opt/software/singularity-3.4",
 		[ "singularity/3.5" ] = "/opt/software/singularity-3.5-hidden",
 		[ "singularity/3.6" ] = "/opt/software/singularity-3.6-hidden",
-		[ "singularity/3.7" ] = "/opt/software/singularity-3.7",
-                [ "singularity/3.8" ] = "/opt/software/singularity-3.8",
+		[ "singularity/3.7" ] = "/opt/software/singularity-3.7-hidden",
+                [ "singularity/3.8" ] = "/opt/software/singularity-3.8-hidden",
+                [ "apptainer/1.0" ] = "/opt/software/apptainer-1.0-hidden",
+                [ "apptainer-suid/1.1" ] = "/opt/software/apptainer-1.1",
 	}
 	local moduleName = t.sn
 	local fullName = t.fullName
