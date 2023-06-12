@@ -26,6 +26,7 @@ function set_family(t)
       [ { "openbabel", "openbabel-omp"  } ] = "openbabel",
       [ { "scotch", "scotch-no-thread" } ] = "scotch",
       [ { "hoomd-blue", "hoomd-blue-mpi" } ] = "hoomd_blue",
+      [ { "singularity", "apptainer", "apptainer-suid" } ] = "apptainer",
    }
 
    for k,v in pairs(familyT) do
