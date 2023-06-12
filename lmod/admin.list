@@ -8,10 +8,12 @@ pyqt/4.12: 	This module is deprecated and will be removed in the future. python/
 			Ce module est marqué pour être retiré et sera supprimé dans le futur. 
 
 singularity/2%.[3-6] | singularity/3%.[1-8] | apptainer/1.0:
-This module is deprecated and will be removed in the future due to security reasons.
+This software has been removed due to security reasons.
 Please move to apptainer/1.1 or, if you use encrypted containers, apptainer-suid/1.1.
-Ce module est marqué pour être retiré et sera supprimé dans le futur pour des raisons de sécurité.
+Loading apptainer/1.1 for compatibility reasons.
+Ce logiciel a été supprimé pour des raisons de sécurité.
 Utilisez plutôt apptainer/1.1, ou si vous utilisez des conteneurs cryptés, apptainer-suid/1.1.
+Pour des raisons de compatibilité apptainer/1.1 est chargé.
 
 python/2.7.13 | python/3.5.2 | python/3.6.10:
 We build python packages only for the latest 3 major releases (currently 3.8, 3.9, 3.10). By using this version of python, you may run
