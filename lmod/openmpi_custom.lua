@@ -41,7 +41,9 @@ if ompiv == "2.1" or ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 	local slurm_pmi = nil
 	if slurmpath then
 		if ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
-			if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v3.so"),"type") == "regular" then
+			if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v4.so"),"type") == "regular" then
+				slurm_pmi = "pmix_v4"
+			elseif posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v3.so"),"type") == "regular" then
 				slurm_pmi = "pmix_v3"
 			elseif posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v2.so"),"type") == "regular" then
 				slurm_pmi = "pmix_v2"
