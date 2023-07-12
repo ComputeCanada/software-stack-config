@@ -102,3 +102,40 @@ To keep using python 3.8, please load the python/3.8 module explicitly.
 	end
 end
 
+function incomplete_version_warning(t)
+   local min_digits = {
+      [ { "python", "arrow" } ]       = 2,
+      [ { "scipy-stack", "StdEnv" } ] = 1,
+   }
+
+   for modules,min_digit in pairs(min_digits) do
+     ------------------------------------------------------------
+     -- Look for fullName first otherwise sn
+     if (has_value(modules,myModuleFullName()) or has_value(modules,myModuleName())) then
+        ----------------------------------------------------------
+	local FrameStk   = require("FrameStk")
+	local frameStk   = FrameStk:singleton()
+	local userProvidedName = frameStk:userName()
+	local userProvidedVersion = string.match(userProvidedName, "/(.*)") or ""
+	local num_digit = 0
+	if userProvidedVersion == "" then
+		num_digit = 0
+	else
+		local _, num_dot = string.gsub(userProvidedVersion, "%.", "")
+		num_digit = num_dot+1
+	end
+	if (num_digit < min_digit) then
+   		local lang = os.getenv("LANG") or "en"
+		if (string.sub(lang,1,2) == "fr") then
+			LmodWarning([[Attention, vous avez chargé le module ]] .. myModuleName() .. [[ en spécifiant une version incomplète: "]] .. userProvidedVersion .. [[".
+Nous vous recommandons fortement de spécifier au moins ]] .. min_digit .. [[ chiffres pour la version de ce module. Dans le cas contraire, une future mise à jour
+de ce module pourrait faire échouer vos tâches.]])
+		else
+			LmodWarning([[Warning, you have loaded the module ]] .. myModuleName() .. [[ by specifying an incomplete version: "]] .. userProvidedVersion .. [[".
+We strongly recommend that you specify at least ]] .. min_digit .. [[ digits for the version of this module. Not doing this could crash your jobs when we install a newer version in the future.]])
+		end
+	end
+     end
+   end
+end
+
