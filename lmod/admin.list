@@ -46,3 +46,7 @@ This version of Julia was compiled with the Intel compiler, which is not recomme
 	module load gcc/7.3.0 julia
 Cette version de Julia a été compilée avec les compilateurs Intel, ce qui n'est pas recommandé par les développeurs de Julia. Nous vous suggérons de plutôt charger la version compilée avec le compilateur gcc/7.3.0 : 
 	module load gcc/7.3.0 julia
+
+rstudio-server/2021.09.1+372:
+This module is deprecated and will be removed in the future. Please use the module "rstudio-server/4.1" instead.
+Ce module est obsolète et sera supprimé dans le futur. Veuillez utiliser le module "rstudio-server/4.1" plutôt.
