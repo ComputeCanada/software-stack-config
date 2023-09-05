@@ -222,6 +222,7 @@ function cuda_driver_library_available(cuda_version_two_digits)
 	-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
 	-- New reference: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
 	local cuda_minimum_drivers_version = {
+		[ "12.2" ] = "535.54.03",
 		[ "12.1" ] = "530.30.02",
 		[ "12.0" ] = "525.60.13",
 		[ "11.8" ] = "520.61.05",
