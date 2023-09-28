@@ -1,35 +1,7 @@
 #%Module
 
 # default versions
-module-version StdEnv/2016.4 default
-module-version boost/1.60.0 default
-module-version boost-mpi/1.60.0 default
-module-version imkl/11.3.4.258 default
-module-version intel/2016.4 default
-module-version openmpi/2.1.1 default
-module-version gcc/5.4.0 default
-module-version cuda/8.0.44 default
-module-version python/3.7.4 default
-module-version singularity/3.8 default
-module-version matlab/2018b default
-module-version scipy-stack/2019a default
-
-# shortcut versions
-#module-version intel/2018.3 2018 18
-#module-version intel/2017.5 2017 17
-#module-version intel/2016.4 2016 16
-#module-version python/2.7.14 2.7 2
-#module-version python/3.5.4 3.5
-#module-version python/3.6.3 3.6 
-#module-version python/3.7.4 3.7 3
-#module-version python/3.8.0 3.8
-#module-version r/3.3.3 3.3 3
-#module-version imkl/11.3.4.258 11
-#module-version imkl/2017.4.239 2017.4 2017
-#module-version imkl/2018.3.222 2018.3 2018
-#module-version cuda/8.0.44 8.0 8
-#module-version cuda/9.0.176 9.0 9
-#module-version cuda/10.0.130 10.0 10
+module-version StdEnv/2020 default
 
 # module aliases (uses symlinks)
 hide-version allinea-cpu/7.1
