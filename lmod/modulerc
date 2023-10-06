@@ -72,6 +72,8 @@ hide-version julia/0.6.2
 hide-version julia/1.0.0
 hide-version impi/2018.3.222
 hide-version rstudio-server/2021.09.1+372
+hide-version busco/5.0.0
+hide-version busco/5.2.2
 #hide-version cuda/10.0.130
 # default versions for hidden deprecated modules,
 # where there is only one version per directory
@@ -80,4 +82,3 @@ module-version python35-scipy-stack/2017a default
 module-version python27-mpi4py/2.0.0 default
 module-version python35-mpi4py/2.0.0 default
 module-version caffe2/0.8.1 default
-
