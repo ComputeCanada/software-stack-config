@@ -27,3 +27,5 @@ hide-version singularity/3.7
 hide-version singularity/3.8
 hide-version apptainer/1.0
 hide-version rstudio-server/2021.09.1+372
+hide-version busco/5.0.0
+hide-version busco/5.2.2
