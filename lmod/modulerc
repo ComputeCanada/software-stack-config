@@ -22,34 +22,8 @@ hide-version arm-forge-gpu/19.1.4
 hide-version arm-forge-gpu/20.2
 
 # hidden versions
-hide-version parallel/20170622
-hide-version parallel/20160722
-hide-version boost/1.63.0
-hide-version flex/2.5.39
-hide-version python/3.5.2
-hide-version python/2.7.13
-hide-version python27-scipy-stack/2017a
-hide-version python35-scipy-stack/2017a
-hide-version python27-mpi4py/2.0.0
-hide-version python35-mpi4py/2.0.0
-hide-version caffe2/0.8.1
 hide-version librt-compat/centos7
 hide-version singularity/3.7
 hide-version singularity/3.8
 hide-version apptainer/1.0
-hide-version gentoo/2019
-hide-version julia/0.5.1
-hide-version julia/0.6.0
-hide-version julia/0.6.2
-hide-version julia/1.0.0
-hide-version impi/2018.3.222
 hide-version rstudio-server/2021.09.1+372
-#hide-version cuda/10.0.130
-# default versions for hidden deprecated modules,
-# where there is only one version per directory
-module-version python27-scipy-stack/2017a default
-module-version python35-scipy-stack/2017a default
-module-version python27-mpi4py/2.0.0 default
-module-version python35-mpi4py/2.0.0 default
-module-version caffe2/0.8.1 default
-
