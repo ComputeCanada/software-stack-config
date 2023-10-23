@@ -399,11 +399,16 @@ local mapT =
 {
    grouped = {
       ['/cvmfs/.*/modules/.*/Core.*']     = "Core Modules",
+      ['/cvmfs/.*/modules/.*/gcccore.*']     = "Core Modules",
       ['/cvmfs/.*/modules/.*/CUDA.*'] = "Cuda-dependent modules",
       ['/cvmfs/.*/modules/.*/avx512/Compiler.*'] = "Compiler-dependent avx512 modules",
       ['/cvmfs/.*/modules/.*/avx512/MPI.*'] = "MPI-dependent avx512 modules",
+      ['/cvmfs/.*/modules/.*/x86%-64%-v4/Compiler.*'] = "Compiler-dependent avx512 modules",
+      ['/cvmfs/.*/modules/.*/x86%-64%-v4/MPI.*'] = "MPI-dependent avx512 modules",
       ['/cvmfs/.*/modules/.*/avx2/Compiler.*'] = "Compiler-dependent avx2 modules",
       ['/cvmfs/.*/modules/.*/avx2/MPI.*'] = "MPI-dependent avx2 modules",
+      ['/cvmfs/.*/modules/.*/x86%-64%-v3/Compiler.*'] = "Compiler-dependent avx2 modules",
+      ['/cvmfs/.*/modules/.*/x86%-64%-v3/MPI.*'] = "MPI-dependent avx2 modules",
       ['/cvmfs/.*/modules/.*/avx/Compiler.*'] = "Compiler-dependent avx modules",
       ['/cvmfs/.*/modules/.*/avx/MPI.*'] = "MPI-dependent avx modules",
       ['/cvmfs/.*/modules/.*/sse3/Compiler.*'] = "Compiler-dependent sse3 modules",
