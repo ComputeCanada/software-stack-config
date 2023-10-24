@@ -99,8 +99,13 @@ elseif  ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 	        if ompiv == "3.1" then -- removed in 4.0; don't use ofi by default for cuda
 			setenv("OMPI_MCA_mtl", "^mxm,ofi")
 			setenv("OMPI_MCA_oob", "^ud")
-		elseif ompiv == "4.1" then -- omnipath nodes may run out of contexts if the ofi btl is enabled
-			setenv("OMPI_MCA_btl", "^openib,ofi")
+		else
+			if interconnect == "ethernet" then
+				setenv("OMPI_MCA_mtl", "^ofi")
+			end
+			if ompiv == "4.1" then -- omnipath nodes may run out of contexts if the ofi btl is enabled
+				setenv("OMPI_MCA_btl", "^openib,ofi")
+			end
 		end
 	        setenv("OMPI_MCA_coll", "^fca,hcoll")
 		setenv("OMPI_MCA_osc", "^ucx")
