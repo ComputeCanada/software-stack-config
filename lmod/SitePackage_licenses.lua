@@ -455,7 +455,7 @@ Veuillez consulter https://docs.alliancecan.ca/wiki/VoxCeleb
 				end
 			end
 			if (v == "noncommercial_autoaccept") then
-				if (not user_accepted_license(name,true)) then
+				if (not user_accepted_license(myModuleName(),true)) then
 					LmodMessage(myModuleFullName() .. ":")
 					LmodMessage(non_commercial_autoaccept_message)
 				end
