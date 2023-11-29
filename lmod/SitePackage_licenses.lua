@@ -242,7 +242,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 	local licenseT = {
 		[ { "matlab" } ] = "academic_autoaccept",
 		[ { "fsl" } ] = "academic_autoaccept",
-		[ { "intel/2014.6", "intel/2016.4", intel/2017.1", "intel/2017.5", "intel/2018.3", "intel/2019.3", "intel/2020.1.217" } ] = "noncommercial_autoaccept",
+		[ { "intel/2014.6", "intel/2016.4", "intel/2017.1", "intel/2017.5", "intel/2018.3", "intel/2019.3", "intel/2020.1.217" } ] = "noncommercial_autoaccept",
 		[ { "signalp", "tmhmm", "rnammer", "amber/22.5-23.5" } ] = "noncommercial_autoaccept",
 		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue", "motioncor2", "pwrf"} ] = "academic_license",
