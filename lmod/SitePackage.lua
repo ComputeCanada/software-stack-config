@@ -222,6 +222,7 @@ function cuda_driver_library_available(cuda_version_two_digits)
 	-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
 	-- New reference: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
 	local cuda_minimum_drivers_version = {
+		[ "12.3" ] = "545.23.06",
 		[ "12.2" ] = "535.54.03",
 		[ "12.1" ] = "530.30.02",
 		[ "12.0" ] = "525.60.13",
@@ -244,6 +245,20 @@ function cuda_driver_library_available(cuda_version_two_digits)
 		[ "7.5" ] = "352.31",
 		[ "7.0" ] = "346.46"
 	}
+	-- https://docs.nvidia.com/deploy/cuda-compatibility#use-the-right-compat-package (+ archive.org)
+	-- https://docs.nvidia.com/datacenter/tesla/drivers/index.html
+	-- when drivers reach EOL, they can no longer be used for compat with new CUDA releases
+	local driver_max_compat_cuda = {
+		[ "418.40.04" ] = "11.6", -- LTSB EOL mar 2022
+		[ "440.33.01" ] = "11.4", -- PB EOL 2021
+		[ "450.36.06" ] = "12.2", -- LTSB EOL jul 2023
+		[ "460.27.04" ] = "11.6", -- PB EOL jan 2022
+		[ "470.57.02" ] = "12.5", -- LTSB EOL jul 2024, guess
+		[ "510.39.01" ] = "12.1", -- PB EOL jan 2023
+		[ "515.43.04" ] = "12.1", -- PB EOL may 2023
+		[ "525.60.04" ] = "12.3", -- PB EOL dec 2023
+		[ "535.54.03" ] = "13.0", -- LTSB EOL jun 2026, guess
+	}
 	local driver_version = os.getenv("RSNT_CUDA_DRIVER_VERSION") or "0"
 	-- for backward compatibility, if no driver version were found, we consider that they can run 10.2
 	-- this is because we introduced hiding of cuda versions when cuda/11.0 was just out
@@ -258,14 +273,13 @@ function cuda_driver_library_available(cuda_version_two_digits)
 	-- can possibly use compat library via LD_LIBRARY_PATH
 	local restricted_available = os.getenv("CC_RESTRICTED") or "false"
 	if (restricted_available == "true") then
-		-- Older compat versions need driver 418.40.04+, 11.7 needs 450.36.06+, see
-		-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html#use-the-right-compat-package
-		if convertToCanonical(cuda_version_two_digits) >= convertToCanonical("11.7") then
-		    if convertToCanonical(driver_version) >= convertToCanonical("450.36.06") then
-			return "compat"
-		    end
-		elseif convertToCanonical(driver_version) >= convertToCanonical("418.40.04") then
-			return "compat"
+		local branch = string.sub(driver_version,1,3)
+		for k,v in pairs(driver_max_compat_cuda) do
+			if string.sub(k,1,3) == branch and convertToCanonical(driver_version) >= convertToCanonical(k) then
+				if convertToCanonical(cuda_version_two_digits) <= convertToCanonical(v) then
+					return "compat"
+				end
+			end
 		end
 	end
 	return "none"
