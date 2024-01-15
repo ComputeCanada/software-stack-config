@@ -310,7 +310,7 @@ with AMD processors. Please instead use the StdEnv/2020 standard environment and
 	end
 end
 local function default_module_change_warning(t)
-	return -- temporarily disable warning message
+	if (true) then return end
 	local moduleName = myModuleName()
 
 	-- only go further for StdEnv
