@@ -314,14 +314,14 @@ with AMD processors. Please instead use the StdEnv/2020 standard environment and
 		if string.match(myFileName, "/cvmfs/soft.computecanada.ca/easybuild/modules/2020/Core") then
 	   		local lang = os.getenv("LANG") or "en"
 			if (string.sub(lang,1,2) == "fr") then
-				LmodWarning([[Vous tentez de charger le module d'un compilateur intel sur un ordinateur doté de processeurs AMD. 
-Les logiciels compilés à l'aide des compilateurs Intel dans l'environnement standard StdEnv/2020 n'est pas
-compatible avec les processeurs AMD. Veuillez plutôt charger l'environnement StdEnv/2023 et un compilateur plus récent.
+				LmodWarning([[Vous tentez de charger le module d'un compilateur intel sur un ordinateur doté de processeurs AMD 
+avec support pour AVX512. Les logiciels compilés à l'aide des compilateurs Intel dans l'environnement standard StdEnv/2020 ne sont pas
+compatibles avec ces processeurs AMD. Veuillez plutôt charger l'environnement StdEnv/2023 et un compilateur plus récent.
 ]])
 			else
-				LmodWarning([[You are attempting to load the intel compiler on a computer equiped with AMD processors. 
-Software compiled with the Intel compiler in the standard environment StdEnv/2020 is not compatible
-with AMD processors. Please instead use the StdEnv/2023 standard environment and a more recent compiler. 
+				LmodWarning([[You are attempting to load the intel compiler on a computer equiped with AMD processors 
+with support for AVX512. Software compiled with the Intel compiler in the standard environment StdEnv/2020 is not compatible
+with those AMD processors. Please instead use the StdEnv/2023 standard environment and a more recent compiler. 
 ]])
 			end
 		end
