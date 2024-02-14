@@ -308,6 +308,24 @@ with AMD processors. Please instead use the StdEnv/2020 standard environment and
 			end
 		end
 	end
+	local rsnt_arch = os.getenv("RSNT_ARCH") or get_highest_supported_architecture()
+	if vendor_cpu_id == "amd" and rsnt_arch == "avx512" then
+		local myFileName = myFileName()
+		if string.match(myFileName, "/cvmfs/soft.computecanada.ca/easybuild/modules/2020/Core") then
+	   		local lang = os.getenv("LANG") or "en"
+			if (string.sub(lang,1,2) == "fr") then
+				LmodWarning([[Vous tentez de charger le module d'un compilateur intel sur un ordinateur doté de processeurs AMD. 
+Les logiciels compilés à l'aide des compilateurs Intel dans l'environnement standard StdEnv/2020 n'est pas
+compatible avec les processeurs AMD. Veuillez plutôt charger l'environnement StdEnv/2023 et un compilateur plus récent.
+]])
+			else
+				LmodWarning([[You are attempting to load the intel compiler on a computer equiped with AMD processors. 
+Software compiled with the Intel compiler in the standard environment StdEnv/2020 is not compatible
+with AMD processors. Please instead use the StdEnv/2023 standard environment and a more recent compiler. 
+]])
+			end
+		end
+	end
 end
 local function default_module_change_warning(t)
 	if (true) then return end
