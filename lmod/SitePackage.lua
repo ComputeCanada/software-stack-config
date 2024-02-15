@@ -315,7 +315,7 @@ with AMD processors. Please instead use the StdEnv/2020 standard environment and
 	   		local lang = os.getenv("LANG") or "en"
 			if (string.sub(lang,1,2) == "fr") then
 				LmodWarning([[Vous tentez de charger le module d'un compilateur intel sur un ordinateur doté de processeurs AMD 
-avec support pour AVX512. Les logiciels compilés à l'aide des compilateurs Intel dans l'environnement standard StdEnv/2020 ne sont pas
+qui soutiennent les instructions AVX512. Les logiciels compilés à l'aide des compilateurs Intel dans l'environnement standard StdEnv/2020 ne sont pas
 compatibles avec ces processeurs AMD. Veuillez plutôt charger l'environnement StdEnv/2023 et un compilateur plus récent.
 ]])
 			else
