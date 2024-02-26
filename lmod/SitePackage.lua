@@ -328,22 +328,12 @@ with those AMD processors. Please instead use the StdEnv/2023 standard environme
 	end
 end
 local function default_module_change_warning(t)
-	if (true) then return end
 	local moduleName = myModuleName()
 
 	-- only go further for StdEnv
 	if (moduleName ~= "StdEnv" and moduleName ~= "python") then return end
 	-- allow to completely disable the upcoming transition
-	local enableStdEnv2023Transition = os.getenv("RSNT_ENABLE_STDENV2023_TRANSITION") or "unknown"
-	if (enableStdEnv2023Transition == "unknown") then
-		-- Niagara sets the variable locally
-   		local cccluster = os.getenv("CC_CLUSTER") or "computecanada"
-		if (cccluster == "cedar" or cccluster == "graham" or cccluster == "beluga" or cccluster == "narval") then
-			enableStdEnv2023Transition = "yes"
-		else
-			enableStdEnv2023Transition = "no"
-		end
-	end
+	local enableStdEnv2023Transition = os.getenv("RSNT_ENABLE_STDENV2023_TRANSITION") or "yes"
 	if (enableStdEnv2023Transition == "no") then return end
 
 	local FrameStk   = require("FrameStk")

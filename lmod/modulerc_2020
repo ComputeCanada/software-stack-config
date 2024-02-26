@@ -1,0 +1,31 @@
+#%Module
+
+# default versions
+module-version StdEnv/2020 default
+
+# module aliases (uses symlinks)
+hide-version allinea-cpu/7.1
+hide-version allinea-cpu/18.3
+hide-version allinea-cpu/19.1.4
+hide-version allinea-cpu/20.2
+hide-version allinea-gpu/7.1
+hide-version allinea-gpu/18.3
+hide-version allinea-gpu/19.1.4
+hide-version allinea-gpu/20.2
+hide-version arm-forge-cpu/7.1
+hide-version arm-forge-cpu/18.3
+hide-version arm-forge-cpu/19.1.4
+hide-version arm-forge-cpu/20.2
+hide-version arm-forge-gpu/7.1
+hide-version arm-forge-gpu/18.3
+hide-version arm-forge-gpu/19.1.4
+hide-version arm-forge-gpu/20.2
+
+# hidden versions
+hide-version librt-compat/centos7
+hide-version singularity/3.7
+hide-version singularity/3.8
+hide-version apptainer/1.0
+hide-version rstudio-server/2021.09.1+372
+hide-version busco/5.0.0
+hide-version busco/5.2.2
