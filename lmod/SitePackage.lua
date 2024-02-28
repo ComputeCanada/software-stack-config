@@ -357,7 +357,7 @@ local function default_module_change_warning(t)
 	if (userProvidedName == "StdEnv" and moduleVersion ~= "2023" and (defaultKind == "system" or defaultKind == "unknown")) then
 		--color_banner("red")
 		if (string.sub(lang,1,2) == "fr") then
-			LmodWarning([[Attention, le 1er avril 2024, la version par défaut de l'environnement standard sera mise à jour.
+			LmodWarning([[Attention, le 3 avril 2024, la version par défaut de l'environnement standard sera mise à jour.
 Pour tester vos tâches avec le nouvel environnement, exécutez la commande :
 module load StdEnv/2023
 
@@ -368,7 +368,7 @@ echo "module-version StdEnv/2023 default" >> $HOME/.modulerc
 Pour davantage d'information, visitez :
 https://docs.computecanada.ca/wiki/Standard_software_environments/fr]])
 		else
-			LmodWarning([[Warning, April 1st 2024, the default standard environment module will be changed to a more recent one.
+			LmodWarning([[Warning, April 3rd 2024, the default standard environment module will be changed to a more recent one.
 To test your jobs with the new environment, please run:
 module load StdEnv/2023
 
