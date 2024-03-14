@@ -311,30 +311,31 @@ accès à CFOUR.
 		[ { "cpmd" } ] = [[
 
 ============================================================================================
-Using CPMD requires you to have access to a license. Please register on this site
- http://cpmd.org/download/cpmd-download-1/accept-license
-Once this is done, write to us at support@tech.alliancecan.ca telling us so. Once we confirm
-with CPMD that you indeed have registered, we will be able to grant you access to CPMD.
+Using CPMD requires being added to the POSIX group "soft_cpmd":
+https://docs.alliancecan.ca/wiki/CPMD/en#License_limitations
+Please write to us at "support@tech.alliancecan.ca" asking to
+be added to the POSIX group and we will grant you access to CPMD.
 
-Utiliser CPMD nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
- http://cpmd.org/download/cpmd-download-1/accept-license
-Lorsque c'est fait, écrivez-nous à support@tech.alliancecan.ca pour nous le dire. Lorsque
-nous aurons confirmé votre enregistrement avec CPMD, nous pourrons vous donner accès au
-logiciel.
+Utiliser CPMD nécessite d'être membre du group "soft_cpmd":
+https://docs.alliancecan.ca/wiki/CPMD/fr#Limites_de_la_licence
+Ecrivez-nous à support@tech.alliancecan.ca pour demander d'être
+membre de ce groupe et nous pourrons vous donner accès au
+logiciel CPMD.
 ============================================================================================
 		]],
 		[ { "dl_poly4" } ] = [[
 
 ============================================================================================
-Using DL POLY4 requires you to have access to a license. Please register on this site
- http://www.scd.stfc.ac.uk/SCD/40526.aspx
-Once this is done, send a copy of the confirmation message to us at support@tech.alliancecan.ca.
-We will then be able to grant you access to DL POLY4.
+Using DL_POLY4 requires being added to the POSIX group "soft_dl_poly4":
+https://docs.alliancecan.ca/wiki/DL_POLY#License_limitations 
+Please write to us at "support@tech.alliancecan.ca" asking to
+be added to the POSIX group and we will grant you access to DL_POLY4
 
-Utiliser DL POLY4 nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
- http://www.scd.stfc.ac.uk/SCD/40526.aspx
-Lorsque c'est fait, envoyez-nous une copie du courriel de confirmation à
-support@tech.alliancecan.ca. Nous pourrons ensuite vous donner accès à DL POLY4.
+Utiliser DL POLY4 nécessite d'être membre du group "soft_dl_poly4":
+https://docs.alliancecan.ca/wiki/DL_POLY/fr#Licence
+Ecrivez-nous à support@tech.alliancecan.ca pour demander d'être
+membre de ce groupe et nous pourrons vous donner accès au
+logiciel DL_POLY4.
 ============================================================================================
 		]],
 		[ { "gaussian" } ] = [[
