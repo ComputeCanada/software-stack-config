@@ -1,7 +1,7 @@
 #%Module
 
 # default versions
-module-version StdEnv/2020 default
+module-version StdEnv/2023 default
 
 # module aliases (uses symlinks)
 hide-version allinea-cpu/7.1
