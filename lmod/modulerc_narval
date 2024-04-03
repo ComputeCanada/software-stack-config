@@ -1,7 +1,2 @@
-hide-version StdEnv/2018.3
-hide-version StdEnv/2016.4
-hide-version nixpkgs/16.09
-hide-version intel/2018.3
-hide-version intel/2016.4
 module-version cuda/11.4 default
 
