@@ -1,7 +1,7 @@
 #%Module
 
 # default versions
-module-version StdEnv/2020 default
+module-version StdEnv/2023 default
 
 # module aliases (uses symlinks)
 hide-version allinea-cpu/7.1
@@ -29,3 +29,9 @@ hide-version apptainer/1.0
 hide-version rstudio-server/2021.09.1+372
 hide-version busco/5.0.0
 hide-version busco/5.2.2
+
+hide-version StdEnv/2018.3
+hide-version StdEnv/2016.4
+hide-version nixpkgs/16.09
+hide-version intel/2018.3
+hide-version intel/2016.4

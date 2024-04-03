@@ -1,8 +1,5 @@
 #%Module
 
-# default versions
-module-version StdEnv/2020 default
-
 # defaults inherited from Beluga:
 module-version boost/1.68.0 default
 module-version boost-mpi/1.68.0 default
