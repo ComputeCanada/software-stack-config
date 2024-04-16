@@ -28,6 +28,7 @@ for i, dir in ipairs({"/project", "/scratch"}) do
    end
 end
 
-if bindmounts ~= "" then
+apptainerbind = os.getenv("APPTAINER_BIND") or ""
+if bindmounts ~= "" and apptainerbind == "" then
    setenv("APPTAINER_BIND", bindmounts)
 end
