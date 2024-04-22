@@ -261,6 +261,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ "sas" ] = "soft_sas",
 		[ "imagenet" ] = "imagenet-optin",
 		[ "voxceleb"] = "voxceleb-optin",
+		[ "mrcc"] = "soft_mrcc",
 	}
 	local posix_group_messageT = {
 		[ { "maker" } ] = [[
@@ -408,7 +409,41 @@ vous soyez enregistré auprès du propriétaire des données.
 Veuillez consulter https://docs.alliancecan.ca/wiki/VoxCeleb
 ============================================================================================
 		]],
-		
+                [ { "mrcc" } ] = [[
+
+============================================================================================
+Using MRCC requires you to agree to the following license terms:
+
+1)  I will use MRCC only for academic research.
+2)  I will not copy the MRCC software, nor make it available to anyone else.
+3)  I will properly acknowledge original papers related to MRCC and to the Alliance in my
+publications, for more details: https://www.mrcc.hu/index.php/citation
+4)  I understand that the agreement for using MRCC can be terminated by one of the
+parties: MRCC developers or the Alliance.
+5)  I will notify the Alliance of any change in the above acknowledgement.
+
+For more information: https://docs.alliancecan.ca/wiki/MRCC
+
+If you do, please send an email with a copy of those conditions, saying that you agree to
+them at support@tech.alliancecan.ca. We will then be able to grant you access to MRCC.
+
+Utiliser MRCC nécessite que vous acceptiez les conditions suivantes (en anglais) :
+
+1)  I will use MRCC only for academic research.
+2)  I will not copy the MRCC software, nor make it available to anyone else.
+3)  I will properly acknowledge original papers related to MRCC and to the Alliance in my
+publications, for more details: https://www.mrcc.hu/index.php/citation
+4)  I understand that the agreement for using MRCC can be terminated by one of the
+parties: MRCC developers or the Alliance.
+5)  I will notify the Alliance of any change in the above acknowledgement.
+
+Pour plus d'informations: https://docs.alliancecan.ca/wiki/MRCC/fr
+
+Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
+que vous les acceptez, à support@tech.alliancecan.ca. Nous pourrons ensuite activer votre
+accès à MRCC.
+============================================================================================
+                ]],
 	}
 	local licenseURLT = {
 		[ "namd" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
