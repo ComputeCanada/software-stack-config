@@ -1,0 +1,4 @@
+# Force our dummy wheel or fail otherwise
+cmake>=3.23.1+dummy.computecanada
+cmake<=3.27.7+dummy.computecanada
+cmake !=3.24.*,!=3.25.*,!=3.26.*
