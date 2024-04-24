@@ -50,3 +50,15 @@ Cette version de Julia a été compilée avec les compilateurs Intel, ce qui n'e
 rstudio-server/2021.09.1+372:
 This module is deprecated and will be removed in the future. Please use the module "rstudio-server/4.1" instead.
 Ce module est obsolète et sera supprimé dans le futur. Veuillez utiliser le module "rstudio-server/4.1" plutôt.
+
+nixpkgs/16.09:
+These standard environment modules are deprecated and now contain software packages that have security issues. We recommend not using these, and
+instead use our more recent StdEnv modules. Use at your own risk. 
+
+Ces modules d'environnements logiciels standards sont marqués pour être retirés et contiennent des logiciels qui ont des problèmes de sécurité.
+Nous recommandons de cesser de les utiliser et de préférer nos modules StdEnv plus récents. Utilisez à votre propre risque.
+
+busco/5.0.0 | busco/5.2.2:
+This module is deprecated and will be removed in the future. Please use the Python wheel instead.
+Ce module est obsolète et sera supprimé dans le futur. Veuillez utiliser le wheel Python plutôt.
+For more information | Pour plus d'information : https://docs.alliancecan.ca/wiki/BUSCO#Installation

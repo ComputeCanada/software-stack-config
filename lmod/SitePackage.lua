@@ -222,6 +222,7 @@ function cuda_driver_library_available(cuda_version_two_digits)
 	-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
 	-- New reference: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
 	local cuda_minimum_drivers_version = {
+		[ "12.3" ] = "545.23.06",
 		[ "12.2" ] = "535.54.03",
 		[ "12.1" ] = "530.30.02",
 		[ "12.0" ] = "525.60.13",
@@ -244,6 +245,20 @@ function cuda_driver_library_available(cuda_version_two_digits)
 		[ "7.5" ] = "352.31",
 		[ "7.0" ] = "346.46"
 	}
+	-- https://docs.nvidia.com/deploy/cuda-compatibility#use-the-right-compat-package (+ archive.org)
+	-- https://docs.nvidia.com/datacenter/tesla/drivers/index.html
+	-- when drivers reach EOL, they can no longer be used for compat with new CUDA releases
+	local driver_max_compat_cuda = {
+		[ "418.40.04" ] = "11.6", -- LTSB EOL mar 2022
+		[ "440.33.01" ] = "11.4", -- PB EOL 2021
+		[ "450.36.06" ] = "12.2", -- LTSB EOL jul 2023
+		[ "460.27.04" ] = "11.6", -- PB EOL jan 2022
+		[ "470.57.02" ] = "12.5", -- LTSB EOL jul 2024, guess
+		[ "510.39.01" ] = "12.1", -- PB EOL jan 2023
+		[ "515.43.04" ] = "12.1", -- PB EOL may 2023
+		[ "525.60.04" ] = "12.3", -- PB EOL dec 2023
+		[ "535.54.03" ] = "13.0", -- LTSB EOL jun 2026, guess
+	}
 	local driver_version = os.getenv("RSNT_CUDA_DRIVER_VERSION") or "0"
 	-- for backward compatibility, if no driver version were found, we consider that they can run 10.2
 	-- this is because we introduced hiding of cuda versions when cuda/11.0 was just out
@@ -258,14 +273,13 @@ function cuda_driver_library_available(cuda_version_two_digits)
 	-- can possibly use compat library via LD_LIBRARY_PATH
 	local restricted_available = os.getenv("CC_RESTRICTED") or "false"
 	if (restricted_available == "true") then
-		-- Older compat versions need driver 418.40.04+, 11.7 needs 450.36.06+, see
-		-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html#use-the-right-compat-package
-		if convertToCanonical(cuda_version_two_digits) >= convertToCanonical("11.7") then
-		    if convertToCanonical(driver_version) >= convertToCanonical("450.36.06") then
-			return "compat"
-		    end
-		elseif convertToCanonical(driver_version) >= convertToCanonical("418.40.04") then
-			return "compat"
+		local branch = string.sub(driver_version,1,3)
+		for k,v in pairs(driver_max_compat_cuda) do
+			if string.sub(k,1,3) == branch and convertToCanonical(driver_version) >= convertToCanonical(k) then
+				if convertToCanonical(cuda_version_two_digits) <= convertToCanonical(v) then
+					return "compat"
+				end
+			end
 		end
 	end
 	return "none"
@@ -294,6 +308,24 @@ with AMD processors. Please instead use the StdEnv/2020 standard environment and
 			end
 		end
 	end
+	local rsnt_arch = os.getenv("RSNT_ARCH") or get_highest_supported_architecture()
+	if vendor_cpu_id == "amd" and rsnt_arch == "avx512" then
+		local myFileName = myFileName()
+		if string.match(myFileName, "/cvmfs/soft.computecanada.ca/easybuild/modules/2020/Core") then
+	   		local lang = os.getenv("LANG") or "en"
+			if (string.sub(lang,1,2) == "fr") then
+				LmodWarning([[Vous tentez de charger le module d'un compilateur intel sur un ordinateur doté de processeurs AMD 
+qui soutiennent les instructions AVX512. Les logiciels compilés à l'aide des compilateurs Intel dans l'environnement standard StdEnv/2020 ne sont pas
+compatibles avec ces processeurs AMD. Veuillez plutôt charger l'environnement StdEnv/2023 et un compilateur plus récent.
+]])
+			else
+				LmodWarning([[You are attempting to load the intel compiler on a computer equiped with AMD processors 
+with support for AVX512. Software compiled with the Intel compiler in the standard environment StdEnv/2020 is not compatible
+with those AMD processors. Please instead use the StdEnv/2023 standard environment and a more recent compiler. 
+]])
+			end
+		end
+	end
 end
 local function default_module_change_warning(t)
 	local moduleName = myModuleName()
@@ -301,17 +333,8 @@ local function default_module_change_warning(t)
 	-- only go further for StdEnv
 	if (moduleName ~= "StdEnv" and moduleName ~= "python") then return end
 	-- allow to completely disable the upcoming transition
-	local enableStdEnv2020Transition = os.getenv("RSNT_ENABLE_STDENV2020_TRANSITION") or "unknown"
-	if (enableStdEnv2020Transition == "unknown") then
-		-- Niagara sets the variable locally
-   		local cccluster = os.getenv("CC_CLUSTER") or "computecanada"
-		if (cccluster == "cedar" or cccluster == "graham" or cccluster == "beluga") then
-			enableStdEnv2020Transition = "yes"
-		else
-			enableStdEnv2020Transition = "no"
-		end
-	end
-	if (enableStdEnv2020Transition == "no") then return end
+	local enableStdEnv2023Transition = os.getenv("RSNT_ENABLE_STDENV2023_TRANSITION") or "yes"
+	if (enableStdEnv2023Transition == "no") then return end
 
 	local FrameStk   = require("FrameStk")
 	local frameStk   = FrameStk:singleton()
@@ -331,27 +354,27 @@ local function default_module_change_warning(t)
    	local lang = os.getenv("LANG") or "en"
 
 	-- only show the warning if the user provided "StdEnv" as load, if the defaultKind is system, and if it does not result in 2020
-	if (userProvidedName == "StdEnv" and moduleVersion ~= "2020" and (defaultKind == "system" or defaultKind == "unknown")) then
+	if (userProvidedName == "StdEnv" and moduleVersion ~= "2023" and (defaultKind == "system" or defaultKind == "unknown")) then
 		--color_banner("red")
 		if (string.sub(lang,1,2) == "fr") then
-			LmodWarning([[Attention, le 1er avril 2021, la version par défaut de l'environnement standard sera mise à jour.
+			LmodWarning([[Attention, le 3 avril 2024, la version par défaut de l'environnement standard sera mise à jour.
 Pour tester vos tâches avec le nouvel environnement, exécutez la commande :
-module load StdEnv/2020
+module load StdEnv/2023
 
 Pour changer votre version par défaut immédiatement, exécutez la commande suivante : 
 
-echo "module-version StdEnv/2020 default" >> $HOME/.modulerc
+echo "module-version StdEnv/2023 default" >> $HOME/.modulerc
 
 Pour davantage d'information, visitez :
 https://docs.computecanada.ca/wiki/Standard_software_environments/fr]])
 		else
-			LmodWarning([[Warning, April 1st 2021, the default standard environment module will be changed to a more recent one.
+			LmodWarning([[Warning, April 3rd 2024, the default standard environment module will be changed to a more recent one.
 To test your jobs with the new environment, please run:
-module load StdEnv/2020
+module load StdEnv/2023
 
 To change your default version immediately, please run the following command:
 
-echo "module-version StdEnv/2020 default" >> $HOME/.modulerc
+echo "module-version StdEnv/2023 default" >> $HOME/.modulerc
 
 For more information, please see:
 https://docs.computecanada.ca/wiki/Standard_software_environments]])
@@ -359,21 +382,6 @@ https://docs.computecanada.ca/wiki/Standard_software_environments]])
 		--color_banner("red")
 	end
 	
-	-- only show the warning if the user provided a shortened version of python as load, if the defaultKind is system or marked, and if it does not result in 3.10.2
-	if (userProvidedName == "python" or userProvidedName == "python/3" or userProvidedName == "python/3.") then
-		if (moduleVersion ~= "3.10.2" and (defaultKind == "system" or defaultKind == "unknown" or defaultKind == "marked")) then
-			if (string.sub(lang,1,2) == "fr") then
-				LmodWarning([[Attention, le 4 avril 2023, la version par défaut de python deviendra 3.10. 
-Pour continuer d'utiliser la version 3.8, veuillez charger le module python/3.8 explicitement.
-]])
-			else
-				LmodWarning([[Warning. On April 4th 2023, the default version of python will become 3.10. 
-To keep using python 3.8, please load the python/3.8 module explicitly. 
-]])
-			end
-		end
-		--color_banner("red")
-	end
 end
 local function unload_hook(t)
 	set_family(t)
@@ -399,11 +407,16 @@ local mapT =
 {
    grouped = {
       ['/cvmfs/.*/modules/.*/Core.*']     = "Core Modules",
+      ['/cvmfs/.*/modules/.*/gcccore.*']     = "Core Modules",
       ['/cvmfs/.*/modules/.*/CUDA.*'] = "Cuda-dependent modules",
       ['/cvmfs/.*/modules/.*/avx512/Compiler.*'] = "Compiler-dependent avx512 modules",
       ['/cvmfs/.*/modules/.*/avx512/MPI.*'] = "MPI-dependent avx512 modules",
+      ['/cvmfs/.*/modules/.*/x86%-64%-v4/Compiler.*'] = "Compiler-dependent avx512 modules",
+      ['/cvmfs/.*/modules/.*/x86%-64%-v4/MPI.*'] = "MPI-dependent avx512 modules",
       ['/cvmfs/.*/modules/.*/avx2/Compiler.*'] = "Compiler-dependent avx2 modules",
       ['/cvmfs/.*/modules/.*/avx2/MPI.*'] = "MPI-dependent avx2 modules",
+      ['/cvmfs/.*/modules/.*/x86%-64%-v3/Compiler.*'] = "Compiler-dependent avx2 modules",
+      ['/cvmfs/.*/modules/.*/x86%-64%-v3/MPI.*'] = "MPI-dependent avx2 modules",
       ['/cvmfs/.*/modules/.*/avx/Compiler.*'] = "Compiler-dependent avx modules",
       ['/cvmfs/.*/modules/.*/avx/MPI.*'] = "MPI-dependent avx modules",
       ['/cvmfs/.*/modules/.*/sse3/Compiler.*'] = "Compiler-dependent sse3 modules",

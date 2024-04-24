@@ -242,7 +242,8 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 	local licenseT = {
 		[ { "matlab" } ] = "academic_autoaccept",
 		[ { "fsl" } ] = "academic_autoaccept",
-		[ { "intel", "signalp", "tmhmm", "rnammer" } ] = "noncommercial_autoaccept",
+		[ { "intel/2014.6", "intel/2016.4", "intel/2017.1", "intel/2017.5", "intel/2018.3", "intel/2019.3", "intel/2020.1.217" } ] = "noncommercial_autoaccept",
+		[ { "signalp", "tmhmm", "rnammer", "amber/22.5-23.5" } ] = "noncommercial_autoaccept",
 		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue", "motioncor2", "pwrf"} ] = "academic_license",
 		[ { "namd", "namd-mpi", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "academic_license_autoaccept",
@@ -260,6 +261,7 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ "sas" ] = "soft_sas",
 		[ "imagenet" ] = "imagenet-optin",
 		[ "voxceleb"] = "voxceleb-optin",
+		[ "mrcc"] = "soft_mrcc",
 	}
 	local posix_group_messageT = {
 		[ { "maker" } ] = [[
@@ -310,30 +312,31 @@ accès à CFOUR.
 		[ { "cpmd" } ] = [[
 
 ============================================================================================
-Using CPMD requires you to have access to a license. Please register on this site
- http://cpmd.org/download/cpmd-download-1/accept-license
-Once this is done, write to us at support@tech.alliancecan.ca telling us so. Once we confirm
-with CPMD that you indeed have registered, we will be able to grant you access to CPMD.
+Using CPMD requires being added to the POSIX group "soft_cpmd":
+https://docs.alliancecan.ca/wiki/CPMD/en#License_limitations
+Please write to us at "support@tech.alliancecan.ca" asking to
+be added to the POSIX group and we will grant you access to CPMD.
 
-Utiliser CPMD nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
- http://cpmd.org/download/cpmd-download-1/accept-license
-Lorsque c'est fait, écrivez-nous à support@tech.alliancecan.ca pour nous le dire. Lorsque
-nous aurons confirmé votre enregistrement avec CPMD, nous pourrons vous donner accès au
-logiciel.
+Utiliser CPMD nécessite d'être membre du group "soft_cpmd":
+https://docs.alliancecan.ca/wiki/CPMD/fr#Limites_de_la_licence
+Ecrivez-nous à support@tech.alliancecan.ca pour demander d'être
+membre de ce groupe et nous pourrons vous donner accès au
+logiciel CPMD.
 ============================================================================================
 		]],
 		[ { "dl_poly4" } ] = [[
 
 ============================================================================================
-Using DL POLY4 requires you to have access to a license. Please register on this site
- http://www.scd.stfc.ac.uk/SCD/40526.aspx
-Once this is done, send a copy of the confirmation message to us at support@tech.alliancecan.ca.
-We will then be able to grant you access to DL POLY4.
+Using DL_POLY4 requires being added to the POSIX group "soft_dl_poly4":
+https://docs.alliancecan.ca/wiki/DL_POLY#License_limitations 
+Please write to us at "support@tech.alliancecan.ca" asking to
+be added to the POSIX group and we will grant you access to DL_POLY4
 
-Utiliser DL POLY4 nécessite que vous ayiez une licence. Vous devez vous enregistrer sur ce site :
- http://www.scd.stfc.ac.uk/SCD/40526.aspx
-Lorsque c'est fait, envoyez-nous une copie du courriel de confirmation à
-support@tech.alliancecan.ca. Nous pourrons ensuite vous donner accès à DL POLY4.
+Utiliser DL POLY4 nécessite d'être membre du group "soft_dl_poly4":
+https://docs.alliancecan.ca/wiki/DL_POLY/fr#Licence
+Ecrivez-nous à support@tech.alliancecan.ca pour demander d'être
+membre de ce groupe et nous pourrons vous donner accès au
+logiciel DL_POLY4.
 ============================================================================================
 		]],
 		[ { "gaussian" } ] = [[
@@ -406,7 +409,41 @@ vous soyez enregistré auprès du propriétaire des données.
 Veuillez consulter https://docs.alliancecan.ca/wiki/VoxCeleb
 ============================================================================================
 		]],
-		
+                [ { "mrcc" } ] = [[
+
+============================================================================================
+Using MRCC requires you to agree to the following license terms:
+
+1)  I will use MRCC only for academic research.
+2)  I will not copy the MRCC software, nor make it available to anyone else.
+3)  I will properly acknowledge original papers related to MRCC and to the Alliance in my
+publications, for more details: https://www.mrcc.hu/index.php/citation
+4)  I understand that the agreement for using MRCC can be terminated by one of the
+parties: MRCC developers or the Alliance.
+5)  I will notify the Alliance of any change in the above acknowledgement.
+
+For more information: https://docs.alliancecan.ca/wiki/MRCC
+
+If you do, please send an email with a copy of those conditions, saying that you agree to
+them at support@tech.alliancecan.ca. We will then be able to grant you access to MRCC.
+
+Utiliser MRCC nécessite que vous acceptiez les conditions suivantes (en anglais) :
+
+1)  I will use MRCC only for academic research.
+2)  I will not copy the MRCC software, nor make it available to anyone else.
+3)  I will properly acknowledge original papers related to MRCC and to the Alliance in my
+publications, for more details: https://www.mrcc.hu/index.php/citation
+4)  I understand that the agreement for using MRCC can be terminated by one of the
+parties: MRCC developers or the Alliance.
+5)  I will notify the Alliance of any change in the above acknowledgement.
+
+Pour plus d'informations: https://docs.alliancecan.ca/wiki/MRCC/fr
+
+Si vous acceptez, envoyez-nous un courriel avec une copie de ces conditions, mentionnant
+que vous les acceptez, à support@tech.alliancecan.ca. Nous pourrons ensuite activer votre
+accès à MRCC.
+============================================================================================
+                ]],
 	}
 	local licenseURLT = {
 		[ "namd" ] = "http://www.ks.uiuc.edu/Research/namd/license.html",
@@ -454,7 +491,7 @@ Veuillez consulter https://docs.alliancecan.ca/wiki/VoxCeleb
 				end
 			end
 			if (v == "noncommercial_autoaccept") then
-				if (not user_accepted_license(name,true)) then
+				if (not user_accepted_license(myModuleName(),true)) then
 					LmodMessage(myModuleFullName() .. ":")
 					LmodMessage(non_commercial_autoaccept_message)
 				end
