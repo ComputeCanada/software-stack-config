@@ -1,7 +1,7 @@
 local posix = require "posix"
 local io = require "io"
 local bindmounts = ""
-for i, dir in ipairs({"/project", "/scratch"}) do
+for i, dir in ipairs({"/project", "/scratch", "/localscratch"}) do
    dirtype = posix.stat(dir, "type")
    if dirtype == 'link' or dirtype == 'directory' then
       local root = dir
