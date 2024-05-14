@@ -9,7 +9,7 @@ function set_family(t)
       [ { "nixpkgs", "gentoo" } ] = "base_os",
       [ { "hdf5-mpi", "hdf5", "hdf5-serial" } ] = "hdf5",
       [ { "petsc", "petsc-64bits", "petsc-debug", "petsc-complex" } ] = "petsc",
-      [ { "gromacs", "gromacs-plumed", "gromacs-colvars" } ] = "gromacs",
+      [ { "gromacs", "gromacs-colvars", "gromacs-cp2k", "gromacs-plumed", "gromacs-ramd", "gromacs-swaxs" } ] = "gromacs",
       [ { "netcdf-mpi", "netcdf", "netcdf-serial" } ] = "netcdf",
       [ { "fftw-mpi", "fftw", "fftw-serial" } ] = "fftw",
       [ { "boost-mpi", "boost", "boost-serial" } ] = "boost",
