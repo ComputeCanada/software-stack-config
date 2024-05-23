@@ -247,12 +247,13 @@ Veuillez répondre "yes" ou "oui" pour accepter.
 		[ { "cudnn" } ] = "nvidia_autoaccept",
 		[ { "namd", "vmd", "rosetta", "gatk", "gatk-queue", "motioncor2", "pwrf"} ] = "academic_license",
 		[ { "namd", "namd-mpi", "namd-verbs", "namd-multicore", "namd-verbs-smp" } ] = "academic_license_autoaccept",
-		[ { "cfour", "cpmd", "dl_poly4", "gaussian", "maker", "orca", "vasp/4.6", "vasp/5.4.1", "sas", "imagenet", "voxceleb" } ] = "posix_group",
+		[ { "cfour", "cpmd", "dl_poly4/4.08", "dl_poly4/4.10.0", "gaussian", "maker", "orca", "vasp/4.6", "vasp/5.4.1", "sas", "imagenet", "voxceleb" } ] = "posix_group",
 	}
 	local groupT = {
 		[ "cfour" ] = "soft_cfour",
 		[ "cpmd" ] = "soft_cpmd",
-		[ "dl_poly4" ] = "soft_dl_poly4",
+		[ "dl_poly4/4.08" ] = "soft_dl_poly4",
+		[ "dl_poly4/4.10.0" ] = "soft_dl_poly4",
 		[ "gaussian" ] = "soft_gaussian",
 		[ "maker" ] = "soft_maker",
 		[ "orca" ] = "soft_orca",
