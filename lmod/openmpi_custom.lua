@@ -28,7 +28,7 @@ if posix.stat(pathJoin(slurmpath,"libslurm.so.36"),"type") == "link" then
 	setenv("OMPI_MCA_plm_slurm_args", "--whole")
 end
 
-if ompiv ~= "3.1" and ompiv ~= '4.0' and ompiv ~= '4.1' then
+if ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" or ompiv == '2.0' or ompiv == '2.1' then
 	-- OpenMPI 3.1+ do not need LD_LIBRARY_PATH any more
 	if slurmpath and posix.stat(pathJoin(slurmpath,"libpmi.so"),"type") == "link" then
 		prepend_path("LD_LIBRARY_PATH", slurmpath)
@@ -64,6 +64,10 @@ if ompiv == "2.1" or ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 		end
 	end
 
+elseif ompiv == "5.0" then
+	-- 5.0 only supports PMIx
+	setenv("SLURM_MPI_TYPE", "pmix")
+	setenv("RSNT_SLURM_MPI_TYPE", "pmix")
 end
 
 if ompiv == "2.1" or ompiv == "2.0" or (ompiv == "1.10" and arch == "avx512") then
@@ -122,6 +126,20 @@ elseif  ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
 		-- we have multiple issues with the hcoll module, will need
 		-- thorough investigation, disabling for now
 		setenv("OMPI_MCA_coll", "^hcoll")
+	end
+elseif ompiv == "5.0" then
+	-- omnipath nodes may run out of contexts if the ofi btl is enabled
+	setenv("OMPI_MCA_btl", "^ofi")
+	if interconnect ~= "infiniband" then
+	        setenv("OMPI_MCA_pml", "^ucx")
+		setenv("OMPI_MCA_osc", "^ucx")
+	end
+	if interconnect ~= "omnipath" then
+		-- ofi mtl/btl are suboptimal with IB and can give cryptic warnings
+		setenv("OMPI_MCA_mtl", "^ofi")
+	end
+	if posix.stat("/dev/knem", "type") ~= "character device" then
+		setenv("OMPI_MCA_smsc", "^knem")
 	end
 elseif ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" then
 	if interconnect == "omnipath" or interconnect == "ethernet" then
