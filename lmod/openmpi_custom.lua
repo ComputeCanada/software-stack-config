@@ -28,7 +28,7 @@ if posix.stat(pathJoin(slurmpath,"libslurm.so.36"),"type") == "link" then
 	setenv("OMPI_MCA_plm_slurm_args", "--whole")
 end
 
-if ompiv ~= "3.1" and ompiv ~= '4.0' and ompiv ~= '4.1' and ompiv ~= '5.0' then
+if ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" or ompiv == '2.0' or ompiv == '2.1' then
 	-- OpenMPI 3.1+ do not need LD_LIBRARY_PATH any more
 	if slurmpath and posix.stat(pathJoin(slurmpath,"libpmi.so"),"type") == "link" then
 		prepend_path("LD_LIBRARY_PATH", slurmpath)
