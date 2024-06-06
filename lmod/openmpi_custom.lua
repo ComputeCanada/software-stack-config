@@ -28,46 +28,34 @@ if posix.stat(pathJoin(slurmpath,"libslurm.so.36"),"type") == "link" then
 	setenv("OMPI_MCA_plm_slurm_args", "--whole")
 end
 
-if ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" or ompiv == '2.0' or ompiv == '2.1' then
-	-- OpenMPI 3.1+ do not need LD_LIBRARY_PATH any more
-	if slurmpath and posix.stat(pathJoin(slurmpath,"libpmi.so"),"type") == "link" then
-		prepend_path("LD_LIBRARY_PATH", slurmpath)
-		-- below is so we can recover it after newgrp
-		prepend_path("RSNT_LD_LIBRARY_PATH", slurmpath)
-	end
-end
-
-if ompiv == "2.1" or ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
+if slurmpath then
 	local slurm_pmi = nil
-	if slurmpath then
-		if ompiv == "3.1" or ompiv == "4.0" or ompiv == "4.1" then
-			if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v4.so"),"type") == "regular" then
-				slurm_pmi = "pmix_v4"
-			elseif posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v3.so"),"type") == "regular" then
-				slurm_pmi = "pmix_v3"
-			elseif posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v2.so"),"type") == "regular" then
-				slurm_pmi = "pmix_v2"
-			else
-				slurm_pmi = "pmi2"
-			end
-		else
+	if ompiv ~= "5.0" then -- 5.0 only supports PMIx, otherwise default to pmi2
+		slurm_pmi = "pmi2"
+	end
+	if ompiv == "1.6" or ompiv == "1.8" or ompiv == "1.10" or ompiv == "2.0" or ompiv == "2.1" then
+		-- OpenMPI 3.1+ do not need LD_LIBRARY_PATH any more
+		if posix.stat(pathJoin(slurmpath,"libpmi.so"),"type") == "link" then
+			prepend_path("LD_LIBRARY_PATH", slurmpath)
+			-- below is so we can recover it after newgrp
+			prepend_path("RSNT_LD_LIBRARY_PATH", slurmpath)
+		end
+		if ompiv == "2.1" then
+			-- special case for 2.1, only supports pmix_v1, older no pmix at all
 			if posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix_v1.so"),"type") == "regular" then
 				if not posix.stat("/usr/lib64/libpmix.so.2.0.2") then
 					slurm_pmi = "pmix_v1"
 				end
 			end
 		end
-		if slurm_pmi then
-			setenv("SLURM_MPI_TYPE", slurm_pmi)
-			-- RSNT_SLURM_MPI_TYPE is set so we can recover SLURM_MPI_TYPE after salloc
-			setenv("RSNT_SLURM_MPI_TYPE", slurm_pmi)
-		end
+	elseif posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix.so"),"type") == "link" then
+		slurm_pmi = "pmix"
 	end
-
-elseif ompiv == "5.0" then
-	-- 5.0 only supports PMIx
-	setenv("SLURM_MPI_TYPE", "pmix")
-	setenv("RSNT_SLURM_MPI_TYPE", "pmix")
+	if slurm_pmi then
+		setenv("SLURM_MPI_TYPE", slurm_pmi)
+		-- RSNT_SLURM_MPI_TYPE is set so we can recover SLURM_MPI_TYPE after salloc
+		setenv("RSNT_SLURM_MPI_TYPE", slurm_pmi)
+	end
 end
 
 if ompiv == "2.1" or ompiv == "2.0" or (ompiv == "1.10" and arch == "avx512") then
