@@ -4,7 +4,6 @@ setenv LMOD_PACKAGE_PATH /cvmfs/soft.computecanada.ca/config/lmod/
 setenv LMOD_ADMIN_FILE /cvmfs/soft.computecanada.ca/config/lmod/admin.list
 setenv LMOD_AVAIL_STYLE grouped:system
 setenv LMOD_AVAIL_EXTENSIONS no
-setenv LMOD_RC $LMOD_PACKAGE_PATH/lmodrc.lua
 setenv LMOD_SHORT_TIME 3600
 
 if ( ! $?RSNT_ENABLE_LMOD_CACHE ) then
@@ -12,6 +11,7 @@ if ( ! $?RSNT_ENABLE_LMOD_CACHE ) then
 endif
 
 if ( ! $?__Init_Default_Modules ) then
+	setenv LMOD_RC $LMOD_PACKAGE_PATH/lmodrc.lua
 	set NEWMODULERCFILE=${LMOD_PACKAGE_PATH}/modulerc
 	if ( $?CC_CLUSTER && -f ${LMOD_PACKAGE_PATH}/modulerc_${CC_CLUSTER} ) then
 		set NEWMODULERCFILE=${LMOD_PACKAGE_PATH}/modulerc_${CC_CLUSTER}:${NEWMODULERCFILE}
