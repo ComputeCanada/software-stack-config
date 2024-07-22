@@ -120,7 +120,9 @@ dofile(pathJoin(lmod_package_path,"SitePackage_properties.lua"))
 dofile(pathJoin(lmod_package_path,"SitePackage_visible.lua"))
 dofile(pathJoin(lmod_package_path,"SitePackage_localpaths.lua"))
 
-sandbox_registration{ loadfile = loadfile, assert = assert, loaded_modules = loaded_modules, serializeTbl = serializeTbl, clearWarningFlag = clearWarningFlag  }
+sandbox_registration{ loadfile = loadfile, assert = assert }
+-- sandbox_registration { serializeTbl = serializeTbl } only used in commented out code in SitePackage_logging.lua
+
 require("strict")
 require("string_utils")
 local hook      = require("Hook")
