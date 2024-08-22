@@ -1,5 +1,4 @@
 export MODULESHOME=/cvmfs/soft.computecanada.ca/custom/software/lmod/lmod
-export __LMOD_SET_KSH_FPATH=1 # temporary workaround for https://github.com/TACC/Lmod/issues/718
 source $MODULESHOME/init/profile
 export LMOD_PACKAGE_PATH=/cvmfs/soft.computecanada.ca/config/lmod/
 export LMOD_ADMIN_FILE=/cvmfs/soft.computecanada.ca/config/lmod/admin.list
