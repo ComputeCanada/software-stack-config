@@ -1,1 +1,2 @@
 pip <= 18.1; python_version < '3'
+cmake==3.23.1+dummy.computecanada # Force our dummy wheel or fail for version above
