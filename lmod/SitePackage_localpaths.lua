@@ -1,6 +1,24 @@
 require("serializeTbl")
 require("string_utils")
 
+function arch2023(arch)
+	if arch == "avx2" then
+		return "x86-64-v3"
+	elseif arch == "avx512" then
+		return "x86-64-v4"
+	end
+end
+
+function has_arch2023(str)
+	if string.find(str, "2023/x86%-64%-v3/") then
+		return true
+	end
+	if string.find(str, "2023/x86%-64%-v4/") then
+		return true
+	end
+	return false
+end
+
 function set_local_paths(t)
 	
 	local localModulePaths = os.getenv("RSNT_LOCAL_MODULEPATHS") or nil
@@ -35,6 +53,11 @@ function set_local_paths(t)
 				relativeModulePaths = "2019/Core"
 			elseif myModuleVersion == "2020" then
 				relativeModulePaths = "2020/Core:2020/" .. arch .. "/Core"
+			elseif myModuleVersion == "2023" then
+				-- arch dirnames changed in StdEnv/2023 but not RSNT_ARCH values
+				-- e.g. avx2 -> x86-64-v3
+				arch = arch2023(arch)
+				relativeModulePaths = "2023/" .. arch .. "/Core"
 			end
 		else
 			local rootModulePath = rootEasyBuildModulePath
@@ -52,11 +75,15 @@ function set_local_paths(t)
 				relativeModulePaths = string.gsub(relativeModulePaths, "/CUDA/", "/MPI/")
 			elseif myModuleName == "gcc" or myModuleName == "intel" or myModuleName == "pgi" then
 				-- build the module path by changing Core by Compiler
-				relativeModulePaths = string.gsub(relativeModulePaths, "/Core/", "/" .. arch .. "/Compiler/")
-				relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-sse3/", "/" .. arch .. "/Compiler/")
-				relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx/", "/" .. arch .. "/Compiler/")
-				relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx2/", "/" .. arch .. "/Compiler/")
-				relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx512/", "/" .. arch .. "/Compiler/")
+				if has_arch2023(relativeModulePaths) then
+					relativeModulePaths = string.gsub(relativeModulePaths, "/Core/", "/Compiler/")
+				else
+					relativeModulePaths = string.gsub(relativeModulePaths, "/Core/", "/" .. arch .. "/Compiler/")
+					relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-sse3/", "/" .. arch .. "/Compiler/")
+					relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx/", "/" .. arch .. "/Compiler/")
+					relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx2/", "/" .. arch .. "/Compiler/")
+					relativeModulePaths = string.gsub(relativeModulePaths, "/Core%-avx512/", "/" .. arch .. "/Compiler/")
+				end
 --				LmodWarning("replaced:" .. relativeModulePaths)
 			elseif myModuleName == "cuda" then
 				-- build the module path by changing Compiler for CUDA
@@ -64,9 +91,14 @@ function set_local_paths(t)
 			end
 --			LmodWarning("after_replacement:" .. relativeModulePaths)
 	
-			-- intelmpi is a corner case in which we don't use the same convention
+			-- intelmpi is a corner case, we use impi rather than the usual convention
+			-- after impi2018.3 we started using a single digit: impi2019, impi2021
 			if myModuleName == "intelmpi" then
-				subPath = "impi" .. myModuleVersionTwoDigits
+				if myModuleVersionOneDigit >= 2019 then
+					subPath = "impi" .. myModuleVersionOneDigit
+				else
+					subPath = "impi" .. myModuleVersionTwoDigits
+				end
 			end
 			-- gcc >= 8, intel >= 2019, openmpi >= 4 use a single version for directories
 			if myModuleName == "gcc" and myModuleVersionOneDigit >= 8 then
