@@ -1,24 +1,6 @@
 require("serializeTbl")
 require("string_utils")
 
-function arch2023(arch)
-	if arch == "avx2" then
-		return "x86-64-v3"
-	elseif arch == "avx512" then
-		return "x86-64-v4"
-	end
-end
-
-function has_arch2023(str)
-	if string.find(str, "2023/x86%-64%-v3/") then
-		return true
-	end
-	if string.find(str, "2023/x86%-64%-v4/") then
-		return true
-	end
-	return false
-end
-
 function set_local_paths(t)
 	
 	local localModulePaths = os.getenv("RSNT_LOCAL_MODULEPATHS") or nil
@@ -54,10 +36,9 @@ function set_local_paths(t)
 			elseif myModuleVersion == "2020" then
 				relativeModulePaths = "2020/Core:2020/" .. arch .. "/Core"
 			elseif myModuleVersion == "2023" then
-				-- arch dirnames changed in StdEnv/2023 but not RSNT_ARCH values
-				-- e.g. avx2 -> x86-64-v3
-				arch = arch2023(arch)
-				relativeModulePaths = "2023/" .. arch .. "/Core"
+				-- StdEnv/2023 uses x86-64-v{3,4} for dirnames rather than RSNT_ARCH
+				-- x86-64-v4 falls back to x86-64-v3 for Core
+				relativeModulePaths = "2023/x86-64-v3/Core"
 			end
 		else
 			local rootModulePath = rootEasyBuildModulePath
@@ -75,7 +56,7 @@ function set_local_paths(t)
 				relativeModulePaths = string.gsub(relativeModulePaths, "/CUDA/", "/MPI/")
 			elseif myModuleName == "gcc" or myModuleName == "intel" or myModuleName == "pgi" then
 				-- build the module path by changing Core by Compiler
-				if has_arch2023(relativeModulePaths) then
+				if string.find(relativeModulePaths, "2023/x86%-64") then
 					relativeModulePaths = string.gsub(relativeModulePaths, "/Core/", "/Compiler/")
 				else
 					relativeModulePaths = string.gsub(relativeModulePaths, "/Core/", "/" .. arch .. "/Compiler/")
