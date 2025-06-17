@@ -1,0 +1,16 @@
+python/2.7.18 | python/3.6.10 | python/3.7.7 | python/3.7.9 | python/3.8.2 | python/3.8.10 | python/3.9.6 | python/3.10.2 | python/3.11.2 | python/3.11.5:
+Python wheels built with these versions of python may not support H100 GPUs or more recent. We recommend using a version of python provided under StdEnv/2023
+Les paquets python construits avec ces versions de python ne sont pas compatibles avec les GPUs H100 ou plus récents. Nous vous recommendons d'utiliser une
+version de python fournie sous StdEnv/2023
+
+cuda/11.0 | cuda/11.1.1 | cuda/11.2.2 | cuda/11.4 | cuda/11.7:
+The modules built with this version of CUDA does not support H100 GPU. Please use a more recent version of CUDA.
+Les modules compilés avec cette version de CUDA ne supporte pas les GPUs H100. Veuillez utiliser une version plus récente de CUDA.
+
+nixpkgs/16.09:
+These standard environment modules are deprecated and now contain software packages that have security issues. We recommend not using these, and
+instead use our more recent StdEnv modules. Use at your own risk. 
+
+Ces modules d'environnements logiciels standards sont marqués pour être retirés et contiennent des logiciels qui ont des problèmes de sécurité.
+Nous recommandons de cesser de les utiliser et de préférer nos modules StdEnv plus récents. Utilisez à votre propre risque.
+
