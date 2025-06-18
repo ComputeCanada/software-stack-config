@@ -3,7 +3,7 @@ Python wheels built with these versions of python may not support H100 GPUs or m
 Les paquets python construits avec ces versions de python ne sont pas compatibles avec les GPUs H100 ou plus récents. Nous vous recommendons d'utiliser une
 version de python fournie sous StdEnv/2023
 
-cuda/11.0 | cuda/11.1.1 | cuda/11.2.2 | cuda/11.4 | cuda/11.7:
+cuda/11.0 | cuda/11.1.1 | cuda/11.2.2 | cuda/11.4 | cuda/11.7 | cuda/11.8.0:
 The modules built with this version of CUDA does not support H100 GPU. Please use a more recent version of CUDA.
 Les modules compilés avec cette version de CUDA ne supporte pas les GPUs H100. Veuillez utiliser une version plus récente de CUDA.
 
