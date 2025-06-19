@@ -57,6 +57,9 @@ function set_local_paths(t)
 			elseif myModuleName == "gcc" or myModuleName == "intel" or myModuleName == "pgi" then
 				-- build the module path by changing Core by Compiler
 				if string.find(relativeModulePaths, "2023/x86%-64") then
+					if arch == "avx512" then
+						relativeModulePaths = string.gsub(relativeModulePaths, "x86%-64-%v3", "x86-64-v4")
+					end
 					relativeModulePaths = string.gsub(relativeModulePaths, "/Core/", "/Compiler/")
 				else
 					relativeModulePaths = string.gsub(relativeModulePaths, "/Core/", "/" .. arch .. "/Compiler/")
