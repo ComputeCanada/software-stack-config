@@ -1,3 +1,4 @@
 hide-version StdEnv/2020
+hide-version gentoo/2020
 module-version cuda/12.6 default
 
