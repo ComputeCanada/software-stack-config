@@ -60,6 +60,18 @@ function visible_hook(t)
 			t['isVisible'] = false
 		end
 	end
+
+	-- hide StdEnv/2020 on systems that have H100
+	if moduleName == "StdEnv" then
+		local version = fullName:match("^.+/([0-9%.]+).*$")
+		local has_h100 = os.getenv("RSNT_HAS_H100") or "false"
+		if has_h100 == "true" then
+			if version == "2020" then
+				t['isVisible'] = false
+			end
+		end
+	end
+
 	local arch = get_highest_supported_architecture()
 	if moduleName == "arch" then
 		local name = nil
