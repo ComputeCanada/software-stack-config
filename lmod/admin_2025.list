@@ -1,4 +1,4 @@
-python/2.7.18 | python/3.6.10 | python/3.7.7 | python/3.7.9 | python/3.8.2 | python/3.8.10 | python/3.9.6 | python/3.10.2 | python/3.11.2 :
+python/2.7.18 | python/3.6.10 | python/3.7.7 | python/3.7.9 | python/3.8.2 | python/3.8.10 | python/3.9.6 | python/3.10.2 | python/3.11.2 | python/3.11.5:
 Python wheels built with these versions of python may not support H100 GPUs or more recent. We recommend using a version of python provided under StdEnv/2023
 Les paquets python construits avec ces versions de python ne sont pas compatibles avec les GPUs H100 ou plus récents. Nous vous recommendons d'utiliser une
 version de python fournie sous StdEnv/2023
