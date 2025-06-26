@@ -1,13 +1,7 @@
 setenv MODULESHOME /cvmfs/soft.computecanada.ca/custom/software/lmod/lmod
 source /cvmfs/soft.computecanada.ca/custom/software/lmod/lmod/init/csh
 setenv LMOD_PACKAGE_PATH /cvmfs/soft.computecanada.ca/config/lmod/
-if ( ! $?LMOD_ADMIN_FILE ) then
-	if ( $RSNT_HAS_H100 ) then
-		setenv LMOD_ADMIN_FILE /cvmfs/soft.computecanada.ca/config/lmod/admin_2025.list
-	else
-		setenv LMOD_ADMIN_FILE /cvmfs/soft.computecanada.ca/config/lmod/admin.list
-	endif
-endif
+setenv LMOD_ADMIN_FILE /cvmfs/soft.computecanada.ca/config/lmod/admin.list
 setenv LMOD_AVAIL_STYLE grouped:system
 setenv LMOD_AVAIL_EXTENSIONS no
 setenv LMOD_SHORT_TIME 3600

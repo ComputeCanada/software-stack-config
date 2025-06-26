@@ -1,13 +1,7 @@
 export MODULESHOME=/cvmfs/soft.computecanada.ca/custom/software/lmod/lmod
 source $MODULESHOME/init/profile
 export LMOD_PACKAGE_PATH=/cvmfs/soft.computecanada.ca/config/lmod/
-if [[ -z "$LMOD_ADMIN_FILE" ]]; then
-	if [[ "$RSNT_HAS_H100" == "true" ]]; then
-		export LMOD_ADMIN_FILE=/cvmfs/soft.computecanada.ca/config/lmod/admin_2025.list
-	else
-		export LMOD_ADMIN_FILE=/cvmfs/soft.computecanada.ca/config/lmod/admin.list
-	fi
-fi
+export LMOD_ADMIN_FILE=/cvmfs/soft.computecanada.ca/config/lmod/admin.list
 export LMOD_AVAIL_STYLE=grouped:system
 export LMOD_AVAIL_EXTENSIONS=no
 export LMOD_SHORT_TIME=3600

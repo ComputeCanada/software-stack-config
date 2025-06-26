@@ -8,13 +8,5 @@ fi
 if [[ -d "/cvmfs/restricted.computecanada.ca/easybuild" ]]; then
 	export CC_RESTRICTED="true"
 fi
-if [[ -z "$RSNT_HAS_H100" ]]; then
-	H100_CLUSTERS="rorqual|nibi|fir|trillium|tamia|killarney|vulcan"
-	if [[ $CC_CLUSTER =~ $H100_CLUSTERS ]]; then
-		export RSNT_HAS_H100="true"
-	else
-		export RSNT_HAS_H100="false"
-	fi
-fi
 umask 0027
 
