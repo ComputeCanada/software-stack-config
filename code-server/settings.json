@@ -1,0 +1,42 @@
+{
+  // file-watch + search
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "/**": true,
+  },
+  "search.exclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "/**": true,
+  },
+  "search.followSymlinks": false,
+  "search.maxThreads": 2,
+  "search.useIgnoreFiles": true,
+  
+  // extensions & updates
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+  "update.mode": "manual",
+  "remote.extensionKind": {
+    "*": [
+      "ui"
+    ],
+    "ms-python.python": [
+      "ui"
+    ]
+  },
+
+  // telemetry & git
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+  "git.autofetch": false,
+  "git.enableStatusBarSync": false,
+  
+  // remote-ssh
+  "remote.SSH.showLoginTerminal": false,
+  "remote.SSH.enableDynamicForwarding": false
+}
