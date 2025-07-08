@@ -24,7 +24,7 @@
         "launcher_entry": {
           "title": "VS Code",
           "enabled": true,
-	  "icon_path": "/home/mboisson/Visual_Studio_Code_1.35_icon.svg"
+	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyter/icons/VSCode.svg"
         }
       },
       "openrefine": {
@@ -40,7 +40,8 @@
         "timeout": 60,
         "launcher_entry": {
           "title": "OpenRefine",
-          "enabled": true
+          "enabled": true,
+	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyter/icons/OpenRefine.svg"
         }
       },
       "libreqda": {
@@ -57,7 +58,8 @@
         "timeout": 180,
         "launcher_entry": {
           "title": "LibreQDA",
-          "enabled": true
+          "enabled": true,
+	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyter/icons/libreqda.svg"
         },
 	"absolute_url": true
       }
