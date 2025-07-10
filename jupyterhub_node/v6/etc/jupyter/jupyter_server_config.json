@@ -24,7 +24,7 @@
         "launcher_entry": {
           "title": "VS Code",
           "enabled": true,
-	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyter/icons/VSCode.svg"
+	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/VSCode.svg"
         }
       },
       "openrefine": {
@@ -41,7 +41,7 @@
         "launcher_entry": {
           "title": "OpenRefine",
           "enabled": true,
-	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyter/icons/OpenRefine.svg"
+	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/OpenRefine.svg"
         }
       },
       "libreqda": {
@@ -59,7 +59,7 @@
         "launcher_entry": {
           "title": "LibreQDA",
           "enabled": true,
-	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyter/icons/libreqda.svg"
+	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/libreqda.svg"
         },
 	"absolute_url": true
       }
