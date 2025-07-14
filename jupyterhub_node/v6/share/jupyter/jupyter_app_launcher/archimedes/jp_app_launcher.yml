@@ -1,0 +1,9 @@
+- title: Archimedes documentation
+  description: Documentation for building software
+  source: https://github.com/ComputeCanada/software-stack/blob/main/doc/INDEX.md
+  type: url
+  catalog: Console
+  args:
+    sandbox: [ 'allow-same-origin', 'allow-scripts', 'allow-downloads', 'allow-modals', 'allow-popups']
+    referrerPolicy: ['no-referrer']
+    createNewWindow: true
