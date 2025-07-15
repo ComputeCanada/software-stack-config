@@ -20,7 +20,7 @@
           "--host=127.0.0.1",
           "--port={port}"
         ],
-        "timeout": 30,
+        "timeout": 180,
         "launcher_entry": {
           "title": "VS Code",
           "enabled": true,
@@ -39,7 +39,7 @@
           "-x",
           "refine.headless=true"
         ],
-        "timeout": 60,
+        "timeout": 180,
         "launcher_entry": {
           "title": "OpenRefine",
           "enabled": true,
