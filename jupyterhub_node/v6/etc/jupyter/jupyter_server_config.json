@@ -17,15 +17,15 @@
           "code-server",
           "--auth=none",
           "--disable-telemetry",
-          "--host=127.0.0.1",
-          "--port={port}"
+          "--socket={unix_socket}"
         ],
         "timeout": 180,
         "launcher_entry": {
           "title": "VS Code",
           "enabled": true,
-	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/VSCode.svg"
-        }
+          "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/VSCode.svg"
+        },
+	"unix_socket": true
       },
       "openrefine": {
         "command": [
