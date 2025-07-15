@@ -12,7 +12,7 @@ import re
 
 templates_path = os.getenv('JUPYTER_APP_LAUNCHER_TEMPLATES_PATH')
 dst_path = os.getenv('JUPYTER_APP_LAUNCHER_PATH')
-if not templates_path:
+if not templates_path or not os.path.isdir(templates_path):
     exit(1)
 
 os.chdir(templates_path)
