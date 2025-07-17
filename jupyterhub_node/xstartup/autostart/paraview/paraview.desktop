@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=paraview
+Hidden=false
+Name[C]=Paraview
+Name=Paraview
+Comment[C]=
+Comment=
+X-MATE-Autostart-Delay=0

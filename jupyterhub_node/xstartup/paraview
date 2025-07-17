@@ -1,0 +1,3 @@
+#!/bin/sh
+cd "$HOME"
+exec dbus-launch mate-session --autostart=/cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/autostart/paraview
