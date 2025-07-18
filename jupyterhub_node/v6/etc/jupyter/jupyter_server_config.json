@@ -61,7 +61,7 @@
         "launcher_entry": {
           "title": "LibreQDA",
           "enabled": true,
-	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/libreqda.svg"
+	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/LibreQDA.svg"
         },
 	"absolute_url": true
       }
