@@ -10,6 +10,7 @@
             "mate"
         ],
 	"launcher_module_map": {
+	    "fluentweb": "ansys",
 	    "fluent": "ansys",
 	    "cfx": "ansys",
 	    "workbench": "ansys"
@@ -118,6 +119,19 @@
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
+            },
+            "fluentweb": {
+                "command": [
+		    "/bin/sh",
+		    "-c",
+		    "export FLUENT_WEBSERVER_TOKEN=$RANDOM ; echo $FLUENT_WEBSERVER_TOKEN>$HOME/fluent_webserver_token;  fluent 2ddp -t $((SLURM_NNODES * SLURM_TASKS_PER_NODE * SLURM_CPUS_PER_TASK)) -g -ws -ws-port={port}"
+                ],
+                "timeout": 180,
+                "launcher_entry": {
+                    "title": "Fluent (web)",
+                    "enabled": true,
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
+                }
             },
             "fluent": {
                 "command": [
