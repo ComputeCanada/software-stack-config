@@ -1,0 +1,4 @@
+#!/bin/sh
+cd "$HOME"
+exec dbus-launch mate-session --autostart=/home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/autostart/matlab
+

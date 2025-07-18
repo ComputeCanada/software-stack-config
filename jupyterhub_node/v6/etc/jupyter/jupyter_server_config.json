@@ -1,70 +1,176 @@
 {
-  "NotebookNotary": {
-    "db_file": ":memory:"
-  },
-  "FileManagerMixin": {
-    "use_atomic_writing": false
-  },
-  "Lmod": {
-    "launcher_pins": [
-      "desktop"
-    ]
-  },
-  "ServerProxy": {
-    "servers": {
-      "code-server": {
-        "command": [
-          "code-server",
-          "--auth=none",
-          "--disable-telemetry",
-          "--socket={unix_socket}"
+    "NotebookNotary": {
+        "db_file": ":memory:"
+    },
+    "FileManagerMixin": {
+        "use_atomic_writing": false
+    },
+    "Lmod": {
+        "launcher_pins": [
+            "mate"
         ],
-        "timeout": 180,
-        "launcher_entry": {
-          "title": "VS Code",
-          "enabled": true,
-          "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/VSCode.svg"
-        },
-	"unix_socket": true
-      },
-      "openrefine": {
-        "command": [
-          "refine",
-          "-i",
-          "127.0.0.1",
-          "-p",
-          "{port}",
-	  "-H",
-	  "*",
-          "-x",
-          "refine.headless=true"
-        ],
-        "timeout": 180,
-        "launcher_entry": {
-          "title": "OpenRefine",
-          "enabled": true,
-	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/OpenRefine.svg"
+	"launcher_module_map": {
+	    "fluent": "ansys",
+	    "cfx": "ansys",
+	    "workbench": "ansys"
+	}
+    },
+    "ServerProxy": {
+        "servers": {
+            "code-server": {
+                "command": [
+                    "code-server",
+                    "--auth=none",
+                    "--disable-telemetry",
+                    "--socket={unix_socket}"
+                ],
+                "timeout": 180,
+                "launcher_entry": {
+                    "title": "VS Code",
+                    "enabled": true,
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/VSCode.svg"
+                },
+                "unix_socket": true
+            },
+            "openrefine": {
+                "command": [
+                    "refine",
+                    "-i",
+                    "127.0.0.1",
+                    "-p",
+                    "{port}",
+                    "-H",
+                    "*",
+                    "-x",
+                    "refine.headless=true"
+                ],
+                "timeout": 180,
+                "launcher_entry": {
+                    "title": "OpenRefine",
+                    "enabled": true,
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/OpenRefine.svg"
+                }
+            },
+            "libreqda": {
+                "command": [
+                    "taguette",
+                    "--no-browser",
+                    "--base_path",
+                    "{base_url}libreqda",
+                    "--unix_socket",
+                    "{unix_socket}",
+                    "--debug"
+                ],
+                "unix_socket": true,
+                "timeout": 180,
+                "launcher_entry": {
+                    "title": "LibreQDA",
+                    "enabled": true,
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/LibreQDA.svg"
+                },
+                "absolute_url": true
+            },
+            "mate": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+                    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/mate"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "Desktop",
+                    "path_info": "matevnc",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Mate.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "paraview": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+                    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/paraview"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "ParaView",
+                    "path_info": "paraviewvnc",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/ParaView.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "matlab": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/matlab"
+                ],
+		"_comment": "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/matlab",
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "MATLAB",
+                    "path_info": "matlabvnc",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/MATLAB.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "fluent": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/fluent"
+                ],
+		"_comment": "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/fluent",
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "Fluent",
+                    "path_info": "fluentvnc",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "cfx": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/cfx"
+                ],
+		"_comment": "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/cfx",
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "CFX",
+                    "path_info": "cfxvnc",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "workbench": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/workbench"
+                ],
+		"_comment": "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/workbench",
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "Workbench",
+                    "path_info": "workbenchvnc",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            }
+
         }
-      },
-      "libreqda": {
-        "command": [
-          "taguette",
-          "--no-browser",
-	  "--base_path",
-	  "{base_url}libreqda",
-	  "--unix_socket",
-	  "{unix_socket}",
-	  "--debug"
-        ],
-	"unix_socket": true,
-        "timeout": 180,
-        "launcher_entry": {
-          "title": "LibreQDA",
-          "enabled": true,
-	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/LibreQDA.svg"
-        },
-	"absolute_url": true
-      }
     }
-  }
 }
