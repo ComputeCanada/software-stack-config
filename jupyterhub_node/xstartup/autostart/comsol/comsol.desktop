@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=comsol
+Hidden=false
+Name[C]=comsol
+Name=comsol
+Comment[C]=
+Comment=
+X-MATE-Autostart-Delay=0
+
+

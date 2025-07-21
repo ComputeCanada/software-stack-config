@@ -7,17 +7,20 @@
     },
     "Lmod": {
         "launcher_pins": [
-            "mate-websockify",
-	    "desktop-websockify"
+            "mate-websockify"
         ],
 	"launcher_module_map": {
-	    "fluentweb": "ansys",
-	    "fluent-websockify": "ansys",
-	    "cfx5-websockify": "ansys",
-	    "workbench-websockify": "ansys",
-	    "mapdl-websockify": "ansys",
+	    "fluentweb": "ansys/",
+	    "fluent-websockify": "ansys/",
+	    "cfx5-websockify": "ansys/",
+	    "workbench-websockify": "ansys/",
+	    "mapdl-websockify": "ansys/",
 	    "paraview-websockify": "paraview",
-	    "matlab-websockify": "matlab"
+	    "matlab-websockify": "matlab",
+	    "starccm-websockify": "starccm,starccm-mixed",
+	    "starccm-mixed-websockify": "starccm-mixed",
+	    "comsol-websockify": "comsol",
+	    "ansysedt-websockify": "ansysedt"
 	}
     },
     "ServerProxy": {
@@ -231,7 +234,70 @@
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
+            },
+            "starccm-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/starccm -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "StarCCM+ (VNC)",
+                    "path_info": "starccm"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "starccm-mixed-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/starccm -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "StarCCM+ mixed (VNC)",
+                    "path_info": "starccm-mixed"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "comsol-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/comsol -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "Comsol (VNC)",
+                    "path_info": "comsol",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Comsol.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "ansysedt-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/ansysedt -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "AnsysEDT (VNC)",
+                    "path_info": "ansysedt",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
             }
+
         }
     }
 }
