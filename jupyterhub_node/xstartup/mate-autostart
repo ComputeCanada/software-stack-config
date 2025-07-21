@@ -1,0 +1,4 @@
+#!/bin/sh
+cd "$HOME"
+exec dbus-launch mate-session --autostart=$(dirname $0)/autostart/$(basename $0)
+

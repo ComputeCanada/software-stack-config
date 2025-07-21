@@ -7,13 +7,17 @@
     },
     "Lmod": {
         "launcher_pins": [
-            "mate"
+            "mate-websockify",
+	    "desktop-websockify"
         ],
 	"launcher_module_map": {
 	    "fluentweb": "ansys",
-	    "fluent": "ansys",
-	    "cfx": "ansys",
-	    "workbench": "ansys"
+	    "fluent-websockify": "ansys",
+	    "cfx5-websockify": "ansys",
+	    "workbench-websockify": "ansys",
+	    "mapdl-websockify": "ansys",
+	    "paraview-websockify": "paraview",
+	    "matlab-websockify": "matlab"
 	}
     },
     "ServerProxy": {
@@ -71,50 +75,49 @@
                 },
                 "absolute_url": true
             },
-            "mate": {
+            "mate-websockify": {
                 "command": [
                     "/bin/sh",
                     "-c",
-                    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/mate"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/mate -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
                 "launcher_entry": {
-                    "title": "Desktop",
-                    "path_info": "matevnc",
+                    "title": "Desktop (VNC)",
+                    "path_info": "mate",
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Mate.svg"
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
             },
-            "paraview": {
+            "paraview-websockify": {
                 "command": [
                     "/bin/sh",
                     "-c",
-                    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/paraview"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/paraview -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
                 "launcher_entry": {
-                    "title": "ParaView",
-                    "path_info": "paraviewvnc",
+                    "title": "ParaView (VNC)",
+                    "path_info": "paraview",
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/ParaView.svg"
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
             },
-            "matlab": {
+            "matlab-websockify": {
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/matlab"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/matlab -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
-		"_comment": "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/matlab",
                 "timeout": 300,
                 "new_browser_window": true,
                 "launcher_entry": {
-                    "title": "MATLAB",
-                    "path_info": "matlabvnc",
+                    "title": "MATLAB (VNC)",
+                    "path_info": "matlab",
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/MATLAB.svg"
                 },
                 "unix_socket": true,
@@ -133,58 +136,102 @@
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
                 }
             },
-            "fluent": {
+            "fluent-websockify": {
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/fluent"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/fluent -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
-		"_comment": "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/fluent",
                 "timeout": 300,
                 "new_browser_window": true,
                 "launcher_entry": {
-                    "title": "Fluent",
-                    "path_info": "fluentvnc",
+                    "title": "Fluent (VNC)",
+                    "path_info": "fluent",
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
             },
-            "cfx": {
+            "cfx5-websockify": {
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/cfx"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/cfx5 -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
-		"_comment": "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/cfx",
                 "timeout": 300,
                 "new_browser_window": true,
                 "launcher_entry": {
-                    "title": "CFX",
-                    "path_info": "cfxvnc",
+                    "title": "CFX5 (VNC)",
+                    "path_info": "cfx5",
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
             },
-            "workbench": {
+            "workbench-websockify": {
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/workbench"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/workbench -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
-		"_comment": "cd && vncserver -verbose -fg -nolisten tcp -rfbunixpath {unix_socket} -SecurityTypes None -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/workbench",
                 "timeout": 300,
                 "new_browser_window": true,
                 "launcher_entry": {
-                    "title": "Workbench",
-                    "path_info": "workbenchvnc",
+                    "title": "Workbench (VNC)",
+                    "path_info": "workbench",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "mapdl-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/mapdl -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "Mapdl (VNC)",
+                    "path_info": "mapdl",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "ensight-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/ensight -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "Ensight (VNC)",
+                    "path_info": "ensight",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "rocky-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/rocky -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "Rocky (VNC)",
+                    "path_info": "rocky",
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Ansys.svg"
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
             }
-
         }
     }
 }
