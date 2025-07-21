@@ -10,17 +10,17 @@
             "mate-websockify"
         ],
 	"launcher_module_map": {
-	    "fluentweb": "ansys/",
-	    "fluent-websockify": "ansys/",
-	    "cfx5-websockify": "ansys/",
-	    "workbench-websockify": "ansys/",
-	    "mapdl-websockify": "ansys/",
-	    "paraview-websockify": "paraview",
-	    "matlab-websockify": "matlab",
-	    "starccm-websockify": "starccm,starccm-mixed",
-	    "starccm-mixed-websockify": "starccm-mixed",
-	    "comsol-websockify": "comsol",
-	    "ansysedt-websockify": "ansysedt"
+	    "fluentweb": ["ansys/"],
+	    "fluent-websockify": ["ansys/"],
+	    "cfx5-websockify": ["ansys/"],
+	    "workbench-websockify": ["ansys/"],
+	    "mapdl-websockify": ["ansys/"],
+	    "paraview-websockify": ["paraview"],
+	    "matlab-websockify": ["matlab"],
+	    "starccm-websockify": ["starccm/"],
+	    "starccm-mixed-websockify": ["starccm-mixed"],
+	    "comsol-websockify": ["comsol"],
+	    "ansysedt-websockify": ["ansysedt"]
 	}
     },
     "ServerProxy": {
