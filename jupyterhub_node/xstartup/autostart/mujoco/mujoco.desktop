@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=simulate
+Hidden=false
+Name[C]=mujoco
+Name=mujoco
+Comment[C]=
+Comment=
+X-MATE-Autostart-Delay=0
+
+
