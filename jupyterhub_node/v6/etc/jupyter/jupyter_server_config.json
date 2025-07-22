@@ -22,9 +22,7 @@
 	    "comsol-websockify": ["comsol/"],
 	    "ansysedt-websockify": ["ansysedt/"],
 	    "qgis-websockify": ["qgis/"],
-	    "vmd-websockify": ["vmd/"],
-	    "octave-websockify": ["octave/"],
-	    "mujoco-websockify": ["mujoco/"]
+	    "octave-websockify": ["octave/"]
 	}
     },
     "ServerProxy": {
@@ -301,22 +299,6 @@
                 "unix_socket": true,
                 "raw_socket_proxy": true
             },
-            "mujoco-websockify": {
-                "command": [
-                    "/bin/sh",
-                    "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/mujoco -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
-                ],
-                "timeout": 300,
-                "new_browser_window": true,
-                "launcher_entry": {
-                    "title": "MuJoCo (VNC)",
-                    "path_info": "mujoco",
-                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/MuJoCo.svg"
-                },
-                "unix_socket": true,
-                "raw_socket_proxy": true
-            },
             "octave-websockify": {
                 "command": [
                     "/bin/sh",
@@ -348,25 +330,7 @@
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
-            },
-            "vmd-websockify": {
-                "command": [
-                    "/bin/sh",
-                    "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/vmd -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
-                ],
-                "timeout": 300,
-                "new_browser_window": true,
-                "launcher_entry": {
-                    "title": "VMD (VNC)",
-                    "path_info": "vmd",
-                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/VMD.svg"
-                },
-                "unix_socket": true,
-                "raw_socket_proxy": true
             }
-
-
         }
     }
 }
