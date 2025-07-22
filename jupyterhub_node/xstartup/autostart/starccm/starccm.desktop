@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=starccm+
+Hidden=false
+Name[C]=starccm+
+Name=starccm+
+Comment[C]=
+Comment=
+X-MATE-Autostart-Delay=0
+
+

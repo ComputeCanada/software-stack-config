@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=ansysedt
+Hidden=false
+Name[C]=ansysedt
+Name=ansysedt
+Comment[C]=
+Comment=
+X-MATE-Autostart-Delay=0
+
+
