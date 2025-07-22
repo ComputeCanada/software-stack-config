@@ -15,12 +15,16 @@
 	    "cfx5-websockify": ["ansys/"],
 	    "workbench-websockify": ["ansys/"],
 	    "mapdl-websockify": ["ansys/"],
-	    "paraview-websockify": ["paraview"],
-	    "matlab-websockify": ["matlab"],
+	    "paraview-websockify": ["paraview/"],
+	    "matlab-websockify": ["matlab/"],
 	    "starccm-websockify": ["starccm/"],
-	    "starccm-mixed-websockify": ["starccm-mixed"],
-	    "comsol-websockify": ["comsol"],
-	    "ansysedt-websockify": ["ansysedt"]
+	    "starccm-mixed-websockify": ["starccm-mixed/"],
+	    "comsol-websockify": ["comsol/"],
+	    "ansysedt-websockify": ["ansysedt/"],
+	    "qgis-websockify": ["qgis/"],
+	    "vmd-websockify": ["vmd/"],
+	    "octave-websockify": ["octave/"],
+	    "mujoco-websockify": ["mujoco/"]
 	}
     },
     "ServerProxy": {
@@ -296,7 +300,72 @@
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
+            },
+            "mujoco-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/mujoco -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "MuJoCo (VNC)",
+                    "path_info": "mujoco",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/MuJoCo.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "octave-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/octave -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "Octave (VNC)",
+                    "path_info": "octave",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Octave.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "qgis-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/qgis -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "QGIS (VNC)",
+                    "path_info": "qgis",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/QGIS.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "vmd-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/vmd -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "VMD (VNC)",
+                    "path_info": "vmd",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/VMD.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
             }
+
 
         }
     }
