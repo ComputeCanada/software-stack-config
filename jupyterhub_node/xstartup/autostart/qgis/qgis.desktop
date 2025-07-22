@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=qgis --nologo --noversioncheck
+Hidden=false
+Name[C]=qgis
+Name=qgis
+Comment[C]=
+Comment=
+X-MATE-Autostart-Delay=0
+
+
