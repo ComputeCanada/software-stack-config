@@ -82,7 +82,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/mate -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/mate -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -98,7 +98,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/paraview -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/paraview -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -114,7 +114,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/matlab -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/matlab -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -143,7 +143,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/fluent -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/fluent -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -159,7 +159,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/cfx5 -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/cfx5 -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -175,7 +175,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/workbench -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/workbench -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -191,7 +191,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/mapdl -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/mapdl -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -207,7 +207,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/ensight -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/ensight -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -223,7 +223,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/rocky -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/rocky -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -239,7 +239,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/starccm -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/starccm -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -254,7 +254,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/starccm -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/starccm -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -269,7 +269,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/comsol -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/comsol -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
@@ -285,7 +285,7 @@
                 "command": [
                     "/bin/sh",
                     "-c",
-		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /home/mboisson/git/software-stack-config/jupyterhub_node/xstartup/ansysedt -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/ansysedt -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
                 ],
                 "timeout": 300,
                 "new_browser_window": true,
