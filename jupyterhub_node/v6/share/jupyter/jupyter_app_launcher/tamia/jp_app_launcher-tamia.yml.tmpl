@@ -1,0 +1,20 @@
+- title: Job statistics
+  description: Statistics of this job
+  source: https://portail.tamia.ecpia.ca/secure/jobstats/{{USER}}/{{SLURM_JOB_ID}}
+  type: url
+  catalog: Other
+  icon: /cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Metrix.svg
+  args:
+    sandbox: [ 'allow-same-origin', 'allow-scripts', 'allow-downloads', 'allow-modals', 'allow-popups']
+    referrerPolicy: ['no-referrer']
+    createNewWindow: true
+- title: Globus
+  description: Globus file transfer
+  source: https://app.globus.org/file-manager?origin_id=72c3bca0-9281-4742-b066-333ba0fdef72
+  type: url
+  catalog: Other
+  icon: /cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Globus.svg
+  args:
+    sandbox: [ 'allow-same-origin', 'allow-scripts', 'allow-downloads', 'allow-modals', 'allow-popups']
+    referrerPolicy: ['no-referrer']
+    createNewWindow: true
