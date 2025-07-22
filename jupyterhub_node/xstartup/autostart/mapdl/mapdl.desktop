@@ -1,10 +1,11 @@
 [Desktop Entry]
 Type=Application
-Exec=cfx5
+Exec=mapdl -g
 Hidden=false
-Name[C]=cfx5
-Name=cfx5
+Name[C]=mapdl
+Name=mapdl
 Comment[C]=
 Comment=
 X-MATE-Autostart-Delay=0
+
 

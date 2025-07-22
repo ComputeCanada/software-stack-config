@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=cfx5
+Exec=runwb2
 Hidden=false
-Name[C]=cfx5
-Name=cfx5
+Name[C]=runwb2
+Name=runwb2
 Comment[C]=
 Comment=
 X-MATE-Autostart-Delay=0
