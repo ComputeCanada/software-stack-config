@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=vmd
+Hidden=false
+Name[C]=vmd
+Name=vmd
+Comment[C]=
+Comment=
+X-MATE-Autostart-Delay=0
+
+
