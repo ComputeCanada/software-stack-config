@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=cfx5
+Exec=matlab
 Hidden=false
-Name[C]=cfx5
-Name=cfx5
+Name[C]=matlab
+Name=matlab
 Comment[C]=
 Comment=
 X-MATE-Autostart-Delay=0
