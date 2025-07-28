@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=nsys-ui
+Hidden=false
+Name[C]=nsys-ui
+Name=nsys-ui
+Comment[C]=
+Comment=
+X-MATE-Autostart-Delay=0
+
+
