@@ -22,7 +22,8 @@
 	    "comsol-websockify": ["comsol/"],
 	    "ansysedt-websockify": ["ansysedt/"],
 	    "qgis-websockify": ["qgis/"],
-	    "octave-websockify": ["octave/"]
+	    "octave-websockify": ["octave/"],
+	    "nsys-websockify": ["cuda/12", "cuda/11", "nvhpc/23", "nvhpc/25"]
 	}
     },
     "ServerProxy": {
@@ -330,7 +331,24 @@
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
+            },
+            "nsys-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/nsys -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "NVidia Nsight System (VNC)",
+                    "path_info": "nsys",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/nsys.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
             }
+
         }
     }
 }
