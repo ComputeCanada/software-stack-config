@@ -43,25 +43,6 @@
           "enabled": true,
 	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/OpenRefine.svg"
         }
-      },
-      "libreqda": {
-        "command": [
-          "taguette",
-          "--no-browser",
-	  "--base_path",
-	  "{base_url}libreqda",
-	  "--unix_socket",
-	  "{unix_socket}",
-	  "--debug"
-        ],
-	"unix_socket": true,
-        "timeout": 180,
-        "launcher_entry": {
-          "title": "LibreQDA",
-          "enabled": true,
-	  "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/libreqda.svg"
-        },
-	"absolute_url": true
       }
     }
   }
