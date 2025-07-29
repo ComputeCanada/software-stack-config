@@ -7,7 +7,8 @@
     },
     "Lmod": {
         "launcher_pins": [
-            "mate-websockify"
+            "mate-websockify",
+	    "xfce4-websockify"
         ],
 	"launcher_module_map": {
 	    "fluentweb": ["ansys/"],
@@ -90,9 +91,25 @@
                 "timeout": 300,
                 "new_browser_window": true,
                 "launcher_entry": {
-                    "title": "Desktop (VNC)",
+                    "title": "Mate Desktop (VNC)",
                     "path_info": "mate",
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Mate.svg"
+                },
+                "unix_socket": true,
+                "raw_socket_proxy": true
+            },
+            "xfce4-websockify": {
+                "command": [
+                    "/bin/sh",
+                    "-c",
+		    "cd && vncserver -rfbunixpath {unix_socket} -xstartup /cvmfs/soft.computecanada.ca/config/jupyterhub_node/xstartup/xfce4 -verbose -fg -geometry 1680x1050 -nolisten tcp -SecurityTypes None"
+                ],
+                "timeout": 300,
+                "new_browser_window": true,
+                "launcher_entry": {
+                    "title": "XFCE4 Desktop (VNC)",
+                    "path_info": "xfce4",
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Xfce.svg"
                 },
                 "unix_socket": true,
                 "raw_socket_proxy": true
