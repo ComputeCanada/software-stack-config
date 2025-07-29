@@ -1,4 +1,26 @@
 #!/bin/sh
 cd "$HOME"
-exec dbus-launch mate-session --autostart=$(dirname $0)/autostart/$(basename $0)
-
+if [[ -d "$HOME/Desktop" ]]; then
+  # ensure previous apps are not shown in this desktop if the modules are not loaded
+  for f in $(ls $HOME/Desktop/*.desktop); do
+    # only test desktop apps that point to the xstartup directory on cvmfs
+    if [[ "$(readlink -f $f)" == "$(dirname $(readlink -f $0))"* ]]; then
+      executable=$(grep Exec $f | cut -d'=' -f2 | cut -d' ' -f1)
+      # if the executable is not found, remove the symlink
+      which $executable 2>&1 > /dev/null
+      if [[ $? -eq 1 ]]; then
+        rm $f
+      fi
+    fi
+  done
+else
+  mkdir -p $HOME/Desktop
+fi
+if [[ $(basename $0) == "mate" ]]; then
+  exec dbus-launch mate-session --autostart=/cvmfs/soft.computecanada.ca/gentoo/2023/x86-64-v3/etc/xdg/autostart/ --autostart=$(dirname $0)/autostart/$(basename $0)
+else
+  if [[ ! -e "$HOME/Desktop/$(basename $0).desktop" ]]; then
+    ln -s $(dirname $0)/autostart/$(basename $0)/$(basename $0).desktop "$HOME/Desktop"
+  fi
+  exec dbus-launch mate-session --autostart=/cvmfs/soft.computecanada.ca/gentoo/2023/x86-64-v3/etc/xdg/autostart/ --autostart=$(dirname $0)/autostart/mate --autostart=$(dirname $0)/autostart/$(basename $0)
+fi

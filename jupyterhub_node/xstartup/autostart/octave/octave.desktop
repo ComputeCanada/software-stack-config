@@ -7,5 +7,6 @@ Name=octave
 Comment[C]=
 Comment=
 X-MATE-Autostart-Delay=0
+Icon=/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Octave.svg
 
 
