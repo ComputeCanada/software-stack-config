@@ -1,13 +1,13 @@
-#- title: Job statistics
-#  description: Statistics of this job
-#  source: https://portail.narval.calculquebec.ca/secure/jobstats/{{USER}}/{{SLURM_JOB_ID}}
-#  type: url
-#  catalog: Other
-#  icon: /cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Metrix.svg
-#  args:
-#    sandbox: [ 'allow-same-origin', 'allow-scripts', 'allow-downloads', 'allow-modals', 'allow-popups']
-#    referrerPolicy: ['no-referrer']
-#    createNewWindow: true
+- title: Job statistics
+  description: Statistics of this job
+  source: https://portal.nibi.sharcnet.ca/secure/jobstats/{{USER}}/{{SLURM_JOB_ID}}
+  type: url
+  catalog: Other
+  icon: /cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Metrix.svg
+  args:
+    sandbox: [ 'allow-same-origin', 'allow-scripts', 'allow-downloads', 'allow-modals', 'allow-popups']
+    referrerPolicy: ['no-referrer']
+    createNewWindow: true
 - title: Globus
   description: Globus file transfer
   source: https://globus.alliancecan.ca/file-manager?origin_id=07baf15f-d7fd-4b6a-bf8a-5b5ef2e229d3
