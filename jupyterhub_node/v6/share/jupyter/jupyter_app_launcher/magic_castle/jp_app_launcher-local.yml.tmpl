@@ -1,0 +1,30 @@
+- title: General
+  description: Alliance documentation
+  source: https://docs.alliancecan.ca
+  type: url
+  catalog: Documentation
+  icon: /cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Alliance.svg
+  args:
+    sandbox: [ 'allow-same-origin', 'allow-scripts', 'allow-downloads', 'allow-modals', 'allow-popups']
+    referrerPolicy: ['no-referrer']
+    createNewWindow: true
+- title: Job statistics
+  description: Statistics of this job
+  source: https://{{METRIX_HOST}}/secure/jobstats/{{USER}}/{{SLURM_JOB_ID}}
+  type: url
+  catalog: Other
+  icon: /cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Metrix.svg
+  args:
+    sandbox: [ 'allow-same-origin', 'allow-scripts', 'allow-downloads', 'allow-modals', 'allow-popups']
+    referrerPolicy: ['no-referrer']
+    createNewWindow: true
+- title: Jupyter
+  description: JupyterHub documentation
+  source: https://docs.alliancecan.ca/wiki/JupyterHub
+  type: url
+  catalog: Documentation
+  icon: /cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Jupyter.svg
+  args:
+    sandbox: [ 'allow-same-origin', 'allow-scripts', 'allow-downloads', 'allow-modals', 'allow-popups']
+    referrerPolicy: ['no-referrer']
+    createNewWindow: true
