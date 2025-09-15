@@ -15,6 +15,11 @@ dst_path = os.getenv('JUPYTER_APP_LAUNCHER_PATH')
 if not templates_path or not os.path.isdir(templates_path):
     exit(1)
 
+hostname = os.getenv('HOSTNAME')
+cc_cluster = os.getenv('CC_CLUSTER')
+if cc_cluster == 'magic_castle':
+    os.environ['METRIX_HOST'] = '.'.join(['metrix'] + hostname.split('.')[2:])
+
 os.chdir(templates_path)
 # copy yml and yaml files as is
 for file in glob.glob('*.yml') + glob.glob('*.yaml'):
