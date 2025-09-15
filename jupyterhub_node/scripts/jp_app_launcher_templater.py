@@ -15,9 +15,9 @@ dst_path = os.getenv('JUPYTER_APP_LAUNCHER_PATH')
 if not templates_path or not os.path.isdir(templates_path):
     exit(1)
 
-hostname = os.getenv('HOSTNAME')
-cc_cluster = os.getenv('CC_CLUSTER')
-if cc_cluster == 'magic_castle':
+hostname = os.getenv('HOSTNAME', '')
+cc_cluster = os.getenv('CC_CLUSTER', '')
+if cc_cluster == 'magic_castle' and hostname != '':
     os.environ['METRIX_HOST'] = '.'.join(['metrix'] + hostname.split('.')[2:])
 
 os.chdir(templates_path)
