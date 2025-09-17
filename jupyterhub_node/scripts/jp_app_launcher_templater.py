@@ -4,6 +4,7 @@ import glob
 import os
 import shutil
 import re
+import socket
 
 # This script is meant to convert a yaml file with values tempalted as {{XXXX}}
 # by recovering values from the environment and writing a proper yaml file.
@@ -15,7 +16,7 @@ dst_path = os.getenv('JUPYTER_APP_LAUNCHER_PATH')
 if not templates_path or not os.path.isdir(templates_path):
     exit(1)
 
-hostname = os.getenv('HOSTNAME', '')
+hostname = socket.gethostname()
 cc_cluster = os.getenv('CC_CLUSTER', '')
 if cc_cluster == 'magic_castle' and hostname != '':
     os.environ['METRIX_HOST'] = '.'.join(['metrix'] + hostname.split('.')[2:])
