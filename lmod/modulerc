@@ -35,3 +35,7 @@ hide-version StdEnv/2016.4
 hide-version nixpkgs/16.09
 hide-version intel/2018.3
 hide-version intel/2016.4
+
+module-hide --hard cython
+module-hide --hard numpy
+module-hide --hard oldest-supported-numpy
