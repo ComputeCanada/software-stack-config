@@ -44,6 +44,21 @@
                 },
                 "unix_socket": true
             },
+            "mlflow": {
+                "command": [
+                    "mlflow-server",
+                    "server",
+                    "--uvicorn-opts=--uds {unix_socket}",
+		    "--disable-security-middleware"
+                ],
+                "timeout": 180,
+                "launcher_entry": {
+                    "title": "MLflow",
+                    "enabled": true
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/mlflow.svg"
+                },
+                "unix_socket": true
+            },
             "openrefine": {
                 "command": [
                     "refine",
