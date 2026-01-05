@@ -54,7 +54,7 @@
                 "timeout": 180,
                 "launcher_entry": {
                     "title": "MLflow",
-                    "enabled": true
+                    "enabled": true,
                     "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/mlflow.svg"
                 },
                 "unix_socket": true
