@@ -47,7 +47,6 @@
             "mlflow": {
                 "command": [
                     "mlflow-server",
-                    "server",
                     "--uvicorn-opts=--uds {unix_socket}",
 		    "--disable-security-middleware"
                 ],
