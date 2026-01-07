@@ -58,6 +58,20 @@
                 },
                 "unix_socket": true
             },
+            "tensorboard": {
+                "command": [
+                    "tensorboard",
+                    "--host=unix://{unix_socket}",
+		    "--logdir=tensorboard"
+                ],
+                "timeout": 180,
+                "launcher_entry": {
+                    "title": "Tensorboard",
+                    "enabled": true,
+                    "icon_path": "/cvmfs/soft.computecanada.ca/config/jupyterhub_node/icons/Tensorboard.svg"
+                },
+                "unix_socket": true
+            },
             "openrefine": {
                 "command": [
                     "refine",
