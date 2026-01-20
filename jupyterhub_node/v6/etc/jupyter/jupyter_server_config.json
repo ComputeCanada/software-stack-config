@@ -60,9 +60,8 @@
             },
             "tensorboard": {
                 "command": [
-                    "/bin/sh",
-                    "-c",
-		    "cd && mkdir -p tensorboard_logs && tensorboard --host=unix://{unix_socket} --logdir=tensorboard_logs"
+                    "tensorboard-wrap",
+                    "--host=unix://{unix_socket}"
                 ],
                 "timeout": 180,
                 "launcher_entry": {
