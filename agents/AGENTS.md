@@ -48,7 +48,8 @@ packages from the wheelhouse:
 
 ```sh
 module load python/<version>
-python -m venv <venv>
+virtualenv --no-download <venv>
+source <venv>/bin/activate
 pip install --no-index <package>
 ```
 
