@@ -4,15 +4,18 @@ This is a shared HPC environment used by many researchers. Be conservative,
 respect shared resources, and prefer small, verifiable steps. Consult the
 Alliance documentation before improvising: https://docs.alliancecan.ca
 
-Do not try to be creative by working outside of the practices documented in
-the Alliance documentation. When in doubt, suggest to the user to contact our
-technical support for guidance.
+Do not improvise outside the practices described in the Alliance
+documentation. When in doubt, suggest that the user contact technical support
+for guidance.
+
+Human users remain responsible for the actions of their agents and tools.
 
 ## Keep login-node work lightweight
 
 The current working directory may be on a shared login node. On login nodes,
 limit work to lightweight operations such as editing files, reading code,
-small Git operations, and short commands.
+small Git operations, and short commands. Resource limits are enforced with
+cgroups.
 
 Do not run heavy, long-running, or parallel workloads on a login node. This
 includes large builds, training or inference, large data processing, and
@@ -21,6 +24,9 @@ it is not.
 
 Not all compute nodes have access to the internet. You may need to stage
 tarballs or wheels.
+
+Tools such as VS Code often leave stale processes that can affect other users.
+Point these processes out and offer to terminate them.
 
 ## Use the scheduler for non-trivial work
 
@@ -32,11 +38,17 @@ salloc --account=<account> --time=... --cpus-per-task=1 --mem=1G
 
 Run unattended work through an `sbatch` script. Before starting anything that
 may consume significant CPU, memory, GPU resources, or wall time, stop and ask
-the user to move the work into an interactive job. Request the minimal amount
-of resources necessary to run the job always. Wasting resources impacts other
-users. Limit test jobs. Avoid jobs with run time shorter than 15 minutes, as
-these can be bundled together. Jobs longer than 12 hours should implement
-checkpointing.
+the user to move the work into an interactive job. Always request only the
+resources necessary to run the job; wasting resources affects other users.
+Limit test jobs. Bundle tasks that would otherwise run for less than 15 minutes.
+Jobs longer than 12 hours should implement checkpointing. Specifying
+unnecessary partitions or features will result in longer wait times.
+
+Do not use tight polling loops against Slurm. Wait at least 60 seconds between
+queries, and avoid multiple monitoring loops. Prefer scheduler-native
+mechanisms such as job dependencies.
+
+Never insert sleep commands into jobs.
 
 ## Use the Alliance Python wheelhouse
 
@@ -60,9 +72,10 @@ wheels can be installed via a support ticket with the Alliance.
 
 ## Use the filesystems
 
-Do not try to access files outside of the user's home, project, or scratch. Do
-not try to access files of other users. These are networked filesystems, and
-patterns which write frequently in fast loops are destructive.
+Do not try to access files outside the user's home, project, or scratch. Do
+not try to access other users' files. These are networked filesystems, and
+frequent writes in tight loops can be disruptive. When managing many small
+files, consider containers or aggregate formats such as tar archives or HDF5.
 
 - **home**: Backed up, with a small quota. Use for configuration, source code,
   and small persistent files.
@@ -75,6 +88,12 @@ patterns which write frequently in fast loops are destructive.
 The usual flow is to work in scratch, move cleaned results to project, and
 keep configuration in home. Check `diskusage_report` before large writes. If
 an operation could exhaust quota, stop and inform the user.
+
+`$SLURM_TMPDIR` is available to each job for its duration. Use it for
+I/O-intensive workflows.
+
+Globus is recommended for file transfers. Other options include Open OnDemand,
+`rsync`, and `scp`.
 
 ## Use environment modules
 
