@@ -40,3 +40,5 @@ elseif string.sub(impiv,1,4) ~= "2021" then
 		setenv("I_MPI_FABRICS_LIST", "ofa,dapl,tmi,tcp,ofi")
 	end
 end
+
+setenv("I_MPI_EXTRA_FILESYSTEM", "on")
