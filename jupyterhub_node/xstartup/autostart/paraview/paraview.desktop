@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=paraview
+Exec=srun paraview
 Hidden=false
 Name[C]=Paraview
 Name=Paraview
