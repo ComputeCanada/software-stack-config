@@ -192,6 +192,27 @@ function _get_cpu_vendor_id()
 		return "unknown"
 	end
 end
+function get_has_h100()
+	local has_h100 = os.getenv("RSNT_HAS_H100") or ""
+	if has_h100 and has_h100 ~= "" then
+		return has_h100
+	end
+	has_h100 = "false"
+	local cluster = os.getenv("CC_CLUSTER") or ""
+	local modulercfile = "/cvmfs/soft.computecanada.ca/config/lmod/modulerc_" .. cluster
+	local f = io.open(modulercfile, "r")
+	if f ~= nil then
+		for line in f:lines() do
+			if line == "module-version cuda/12.6 default" then
+				has_h100 = "true"
+			end
+		end
+		f:close()
+	end
+	setenv("RSNT_HAS_H100", has_h100)
+	return has_h100
+end
+sandbox_registration{ get_has_h100 = get_has_h100 }
 function get_interconnect()
 	local posix = require "posix"
 	if posix.stat("/sys/module/opa_vnic","type") == 'directory' then
