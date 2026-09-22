@@ -22,7 +22,16 @@ if slurmpath then
 	end
 end
 
-if impiv == "2019.7" then
+if string.sub(impiv,1,4) == "2021" and impiv ~= "2021.2" and impiv ~= "2021.6" then
+	if impiv ~= "2021.9" and posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix.so"),"type") == "link" then
+		-- no need to set I_MPI_PMI_LIBRARY, but can use pmix
+		setenv("SLURM_MPI_TYPE", "pmix")
+		-- RSNT_SLURM_MPI_TYPE is set so we can recover SLURM_MPI_TYPE after salloc
+		setenv("RSNT_SLURM_MPI_TYPE", "pmix")
+	else
+		setenv("I_MPI_PMI_LIBRARY", "libpmi2.so")
+	end
+elseif impiv == "2019.7" then
 	setenv("I_MPI_PMI_LIBRARY", "libpmi2.so")
 	setenv("I_MPI_HYDRA_TOPOLIB", "ipl")
 else
