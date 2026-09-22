@@ -22,7 +22,16 @@ if slurmpath then
 	end
 end
 
-if impiv == "2019.7" then
+if convertToCanonical(impiv) >= convertToCanonical("2021.11")
+   and posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix.so"),"type") == "link" then
+	-- 2021.11+ support PMIx, and then there is no need to set I_MPI_PMI_LIBRARY
+	setenv("SLURM_MPI_TYPE", "pmix")
+	-- RSNT_SLURM_MPI_TYPE is set so we can recover SLURM_MPI_TYPE after salloc
+	setenv("RSNT_SLURM_MPI_TYPE", "pmix")
+elseif convertToCanonical(impiv) >= convertToCanonical("2021.9") then
+	-- all Intel MPI versions in StdEnv/2023+: they all support PMI2
+	setenv("I_MPI_PMI_LIBRARY", "libpmi2.so")
+elseif impiv == "2019.7" then
 	setenv("I_MPI_PMI_LIBRARY", "libpmi2.so")
 	setenv("I_MPI_HYDRA_TOPOLIB", "ipl")
 else
