@@ -39,17 +39,37 @@ def main():
         shutil.copy2(central_path, user_path)
         return
 
-    with open(user_path, "r", encoding="utf-8") as f:
-        user_settings = json.load(f)
+    try:
+        with open(user_path, "r", encoding="utf-8") as f:
+            user_settings = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"Warning: could not parse {user_path}: {e}. Leaving it intact.", file=sys.stderr)
+        return
 
-    with open(central_path, "r", encoding="utf-8") as f:
-        central_settings = json.load(f)
+    try:
+        with open(central_path, "r", encoding="utf-8") as f:
+            central_settings = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"Warning: could not parse {central_path}: {e}. Leaving user settings intact.", file=sys.stderr)
+        return
 
     merged_settings = merge(user_settings, central_settings)
 
-    with open(user_path, "w", encoding="utf-8") as f:
-        json.dump(merged_settings, f, indent=2)
-        f.write("\n")
+    # Write to a temp file first so the user's file is never left in a partial state
+    temp_path = user_path + f".tmp.{os.getpid()}"
+    try:
+        with open(
+            temp_path, "w", encoding="utf-8",
+            opener=lambda path, flags: os.open(path, flags, 0o600),
+        ) as f:
+            shutil.copymode(user_path, temp_path)
+            json.dump(merged_settings, f, indent=2)
+            f.write("\n")
+        os.replace(temp_path, user_path)
+    except Exception as e:
+        print(f"Warning: could not write merged settings to {user_path}: {e}. Leaving it intact.", file=sys.stderr)
+        if os.path.exists(temp_path):
+            os.unlink(temp_path)
 
 
 if __name__ == "__main__":
