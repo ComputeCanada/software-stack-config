@@ -58,7 +58,11 @@ def main():
     # Write to a temp file first so the user's file is never left in a partial state
     temp_path = user_path + f".tmp.{os.getpid()}"
     try:
-        with open(temp_path, "w", encoding="utf-8") as f:
+        with open(
+            temp_path, "w", encoding="utf-8",
+            opener=lambda path, flags: os.open(path, flags, 0o600),
+        ) as f:
+            shutil.copymode(user_path, temp_path)
             json.dump(merged_settings, f, indent=2)
             f.write("\n")
         os.replace(temp_path, user_path)
