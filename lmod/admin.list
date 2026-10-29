@@ -58,6 +58,13 @@ instead use our more recent StdEnv modules. Use at your own risk.
 Ces modules d'environnements logiciels standards sont marqués pour être retirés et contiennent des logiciels qui ont des problèmes de sécurité.
 Nous recommandons de cesser de les utiliser et de préférer nos modules StdEnv plus récents. Utilisez à votre propre risque.
 
+rstudio-server/4.3 | code-server/4.92.2 | code-server/4.101.2:
+This module is deprecated and contains known security vulnerabilities. We recommend not using it and instead use a more recent version of it.
+Use at your own risk.
+
+Ce module est marqué pour être retiré et contient des vulnérabilités connues. Nous recommandons d'utiliser une version plus récente.
+Utilisez à votre propre risque.
+
 busco/5.0.0 | busco/5.2.2:
 This module is deprecated and will be removed in the future. Please use the Python wheel instead.
 Ce module est obsolète et sera supprimé dans le futur. Veuillez utiliser le wheel Python plutôt.
