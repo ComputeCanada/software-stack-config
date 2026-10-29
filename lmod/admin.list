@@ -58,7 +58,7 @@ instead use our more recent StdEnv modules. Use at your own risk.
 Ces modules d'environnements logiciels standards sont marqués pour être retirés et contiennent des logiciels qui ont des problèmes de sécurité.
 Nous recommandons de cesser de les utiliser et de préférer nos modules StdEnv plus récents. Utilisez à votre propre risque.
 
-rstudio-server/4.3 | code-server/4.92.2 | code-server/4.101.2 | go/1.21.3 | go/1.26.5 | go/1.27.1 | java/17.0.6 | java/25.36 :
+rstudio-server/4.3 | code-server/4.92.2 | code-server/4.101.2 | go/1.21.3 | go/1.26.5 | go/1.27.1 | java/17.0.6 | java/25.36 | nodejs/18.17.1 | nodejs/20.16.0 | nodejs/24.15.0:
 This module is deprecated and contains known security vulnerabilities. We recommend not using it and instead use a more recent version of it.
 Use at your own risk.
 
