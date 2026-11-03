@@ -22,11 +22,14 @@ if slurmpath then
 	end
 
 	local slurm_pmi = "pmi2"
-	if convertToCanonical(impiv) >= convertToCanonical("2021.11")
-	   and posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix.so"),"type") == "link" then
-		-- 2021.11+ support PMIx, and then there is no need to set I_MPI_PMI_LIBRARY
-		slurm_pmi = "pmix"
-	elseif convertToCanonical(impiv) >= convertToCanonical("2021.9") then
+	-- PMIx support does not work on all clusters (Fir, Trillium, Nibi); getting
+	-- strange errors
+	--if convertToCanonical(impiv) >= convertToCanonical("2021.11")
+	--   and posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix.so"),"type") == "link" then
+	--	-- 2021.11+ support PMIx, and then there is no need to set I_MPI_PMI_LIBRARY
+	--	slurm_pmi = "pmix"
+	--else
+	if convertToCanonical(impiv) >= convertToCanonical("2021.9") then
 		-- all Intel MPI versions in StdEnv/2023+: they all support PMI2
 		setenv("I_MPI_PMI_LIBRARY", "libpmi2.so")
 	elseif impiv == "2019.7" then
