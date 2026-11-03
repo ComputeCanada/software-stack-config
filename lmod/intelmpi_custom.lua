@@ -26,7 +26,6 @@ if slurmpath then
 	   and posix.stat(pathJoin(slurmpath,"slurm/mpi_pmix.so"),"type") == "link" then
 		-- 2021.11+ support PMIx, and then there is no need to set I_MPI_PMI_LIBRARY
 		slurm_pmi = "pmix"
-		-- RSNT_SLURM_MPI_TYPE is set so we can recover SLURM_MPI_TYPE after salloc
 	elseif convertToCanonical(impiv) >= convertToCanonical("2021.9") then
 		-- all Intel MPI versions in StdEnv/2023+: they all support PMI2
 		setenv("I_MPI_PMI_LIBRARY", "libpmi2.so")
