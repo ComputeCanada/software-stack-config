@@ -1,4 +1,7 @@
 setenv MODULESHOME /cvmfs/soft.computecanada.ca/gentoo/2026/x86-64-v3/usr/share/Lmod
+if ( "$RSNT_ARCH" == "sse3" || "$RSNT_ARCH" == "avx" ) then
+	setenv MODULESHOME /cvmfs/soft.computecanada.ca/custom/software/lmod/lmod
+endif
 source ${MODULESHOME}/init/csh
 setenv LMOD_PACKAGE_PATH /cvmfs/soft.computecanada.ca/config/lmod/
 setenv LMOD_ADMIN_FILE /cvmfs/soft.computecanada.ca/config/lmod/admin.list
