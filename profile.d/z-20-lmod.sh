@@ -1,4 +1,7 @@
 export MODULESHOME=/cvmfs/soft.computecanada.ca/gentoo/2026/x86-64-v3/usr/share/Lmod
+if [[ "$RSNT_ARCH" == "sse3" || "$RSNT_ARCH" == "avx" ]]; then
+	export MODULESHOME=/cvmfs/soft.computecanada.ca/custom/software/lmod/lmod
+fi
 source $MODULESHOME/init/profile
 export LMOD_PACKAGE_PATH=/cvmfs/soft.computecanada.ca/config/lmod/
 export LMOD_ADMIN_FILE=/cvmfs/soft.computecanada.ca/config/lmod/admin.list
