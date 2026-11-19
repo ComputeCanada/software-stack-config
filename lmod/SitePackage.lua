@@ -224,6 +224,8 @@ function cuda_driver_library_available(cuda_version_two_digits)
 	-- https://docs.nvidia.com/deploy/cuda-compatibility/index.html
 	-- New reference: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
 	local cuda_minimum_drivers_version = {
+		[ "13.5" ] = "620.53",
+		[ "13.4" ] = "615.31",
 		[ "13.3" ] = "610.43.02",
 		[ "13.2" ] = "595.45.04",
 		[ "13.1" ] = "590.44.01",
@@ -271,8 +273,9 @@ function cuda_driver_library_available(cuda_version_two_digits)
 		[ "535.54.03" ] = "13.3", -- LTSB EOL jun 2026
 		[ "550.54.14" ] = "12.9", -- PB EOL jun 2025
 		[ "570.26"    ] = "13.2", -- PB EOL feb 2026
-		[ "580.56.06" ] = "13.3", -- LTSB EOL jun 2028
-		[ "595.45.04" ] = "13.3", -- PB EOL mar 2027
+		[ "580.56.06" ] = "13.5", -- LTSB EOL jun 2028
+		[ "595.45.04" ] = "13.5", -- PB EOL mar 2027
+		[ "620.53"    ] = "13.5", -- LTSB EOL sep 2029
 	}
 	local driver_version = os.getenv("RSNT_CUDA_DRIVER_VERSION") or "0"
 	-- for backward compatibility, if no driver version were found, we consider that they can run 10.2
